@@ -1,0 +1,23 @@
+# Exemplo FICTÍCIO — dúvidas a submeter (as que podem reabrir um gate aparecem em eliminatorios.md).
+- id: DUV-01
+  documento: "Termo de Referência"
+  referencia: "Item 2.1.1"
+  tema: "Qualificação do fabricante"
+  pergunta: "O item 2.1.1 considera as três últimas edições publicadas do Quadrante Mágico de Observability Platforms, inclusive a edição que antecede a mudança de nome do relatório?"
+  objetivo: "interno: estabilizar a leitura do G1 (continuidade do quadrante)"
+  resposta_desejada: "janela de três edições publicadas, com continuidade entre os nomes do quadrante"
+  impacto: "Pode mudar quem passa no G1"
+  gates: [G1]
+  prioridade: Alta
+  status: PENDENTE
+- id: DUV-02
+  documento: "Termo de Referência"
+  referencia: "Item 2.1.2"
+  tema: "Integrações"
+  pergunta: "Para o item 2.1.2, qual a definição de 'integração nativa' adotada (conector mantido pelo fabricante, fonte de dados suportada, padrão aberto como OpenTelemetry)?"
+  objetivo: "interno: o G2 depende de uma contagem que nem todos os fabricantes publicam"
+  resposta_desejada: "definição objetiva e verificável, aceitando padrões abertos"
+  impacto: "Resolve o G2 INDEFINIDO do Azure Monitor"
+  gates: [G2]
+  prioridade: Alta
+  status: PENDENTE

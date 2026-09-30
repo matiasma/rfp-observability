@@ -1,0 +1,153 @@
+{% if modo == 'proponente' %}
+# Análise de aderência — {{ proponente_nome }} × {{ cliente.nome }}
+{% else %}
+# Estudo de seleção de solução de observabilidade — {{ cliente.nome }}
+{% endif %}
+_Referência: {{ data_referencia }} · Gartner MQ {{ edicao.ano if edicao else '—' }} · {{ rtm.total }} requisitos extraídos · gerado pelo kit v{{ kit_versao }} em {{ gerado_em }}{% if confidencial %} · Confidencial{% endif %}_
+{% if execucao and execucao.assistida and not execucao.completa %}
+
+> ⚠️ **PRELIMINAR — execução assistida incompleta:** {{ execucao.pendencias | join('; ') }}.
+{% endif %}
+
+## Recomendação
+{% if narrativa_md['Recomendação'] %}
+{{ narrativa_md['Recomendação'] }}
+{% else %}
+> ⚠️ Narrativa pendente (02-analise/narrativa.md).{% if melhor_elegivel %} Pelo cálculo, o melhor fornecedor elegível no gate é **{{ melhor_elegivel.nome }}** (aderência {{ melhor_elegivel.aderencia_pct | br }}%).{% endif %}
+
+{% endif %}
+{% if lentes.lider_aderencia %}
+
+_Duas lentes: na aderência pura ao edital o líder é **{{ nome_de(lentes.lider_aderencia) }}** ({{ lentes.aderencia_pct | br }}%){% if lentes.lider_nota %}; no balanço completo (nota final), **{{ nome_de(lentes.lider_nota) }}** ({{ lentes.nota_final | br(2) }}){% endif %}.{% if sens %} 1º robusto na sensibilidade: **{{ nome_de(sens.robusto) }}**{% if sens.robusto_elegivel and sens.robusto_elegivel != sens.robusto %} (entre os elegíveis: **{{ nome_de(sens.robusto_elegivel) }}**){% endif %}.{% endif %}_
+{% endif %}
+
+{% if cobertura and cobertura.respondidos %}
+## Aderência do {{ proponente_nome }} — respostas ao edital
+{{ cobertura.respondidos }} de {{ cobertura.total }} requisitos respondidos.
+
+{% for tb in cobertura.tabelas %}
+**{{ tb.abas }}** — {{ tb.respondidos }} resposta(s)
+
+| Obrigatoriedade |{% for e in tb.escala %} {{ e }} |{% endfor %}
+
+|---|{% for e in tb.escala %}:--:|{% endfor %}
+
+{% for linha in tb.linhas %}
+| {{ linha | join(' | ') }} |
+{% endfor %}
+
+{% endfor %}
+{% if cobertura.eliminatorios_em_risco %}
+
+**Eliminatórios com resposta parcial ou negativa:**
+{% for n in cobertura.eliminatorios_em_risco %}
+- **{{ n.id }}** — {{ n.resposta }}: {{ n.requisito }}
+{% endfor %}
+{% endif %}
+
+{% endif %}
+{% if confianca_linhas %}
+## Confiança da análise
+| Fornecedor | Avaliações | % alta | Eliminatórios com alta | Com pendência |
+|---|:--:|:--:|:--:|:--:|
+{% for c in confianca_linhas %}
+| {{ c.nome }} | {{ c.total }} | {{ c.pct_alta | br }}% | {{ c.elim_alta }}/{{ c.elim_total }} | {{ c.pendencias }} |
+{% endfor %}
+
+_Alta = requisito claro + citação oficial literal conferida + GA + cobre o parâmetro; abaixo disso, pergunta de esclarecimento, pergunta ao fabricante/POC ou nova verificação.{% if independente.amostra %} Verificação independente: concordância {{ independente.concordancia_pct | br }}% ({{ independente.verificados }}/{{ independente.amostra }}).{% endif %}_
+
+{% endif %}
+## Triagem e gates eliminatórios
+| Fornecedor | Origem | Gartner {{ edicao.ano if edicao else '' }} |{% for g in gates_cfg %} {{ g.id }}{% if not g.get('eliminatorio', true) %}*{% endif %} |{% endfor %} Resultado |
+|---|---|---|{% for g in gates_cfg %}:--:|{% endfor %}:--:|
+{% for tr in ranking.triagem %}
+{% set vg = {} %}{% for l in gates.fornecedores[tr.id].gates %}{% set _ = vg.update({l.gate: l.veredito}) %}{% endfor %}
+| **{{ tr.nome }}** | {{ tr.origem }} | {{ posicao_gartner(tr.id) }} |{% for g in gates_cfg %} {{ ROTULO.get(vg.get(g.id), '') }} |{% endfor %} **{{ ROTULO[tr.status_gate] }}** |
+{% endfor %}
+
+{% for g in gates_cfg %}
+- **{{ g.id }}**{% if not g.get('eliminatorio', true) %} (não eliminatório){% endif %} — {{ g.clausula | default(g.regra) }}
+{% endfor %}
+
+{% if cenarios_gate | length > 1 %}
+## Recomendação por cenário de gate
+| Cenário | Melhor elegível | Passam a elegíveis |
+|---|---|---|
+{% for c in cenarios_gate %}
+| {{ c.cenario }} | **{{ nome_de(c.melhor) if c.melhor else 'nenhum' }}** | {{ c.passam_nomes | join(', ') or '—' }} |
+{% endfor %}
+{% if narrativa_md['Cenários'] %}
+
+{{ narrativa_md['Cenários'] }}
+{% endif %}
+
+{% endif %}
+## Scorecard (0–5)
+| # | Fornecedor | Aderência % | Risco | Esforço | Custo | Estratégico | Nota final | Gate |
+|:--:|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+{% for l in ranking.ranking %}
+| {{ l.posicao }} | {{ l.nome }} | {{ l.aderencia_pct | br }} | {{ l.risco | br }} | {{ l.esforco | br }} | {{ l.custo | br }} | {{ l.estrategico | br }} | **{{ l.nota_final | br(2) }}** | {{ ROTULO[l.status_gate] }} |
+{% endfor %}
+
+_Nota final = {% for k, p in ranking.eixos.items() %}{{ (p / 100) | br(2) }}·{{ k }}{% if not loop.last %} + {% endif %}{% endfor %}._
+
+{% if sens %}
+## Sensibilidade
+| Cenário de pesos | 1º | 2º | 3º |
+|---|---|---|---|
+{% for c in sens.cenarios %}
+| {{ c.cenario }} |{% for f in c.ordem[:3] %} {{ nome_de(f) }} ({{ c.notas[f] | br(2) }}) |{% endfor %}{% for _ in range(3 - (c.ordem[:3] | length)) %} |{% endfor %}
+
+{% endfor %}
+
+_1º robusto: **{{ nome_de(sens.robusto) }}** (1º em {{ sens.vitorias[sens.robusto] }} de {{ sens.cenarios | length }} cenários)._
+
+{% endif %}
+## Aderência por categoria
+| Categoria | Peso |{% for l in ranking.ranking %} {{ l.nome }} |{% endfor %}
+
+|---|:--:|{% for l in ranking.ranking %}:--:|{% endfor %}
+
+{% for c in ranking.categorias %}
+| {{ c.nome }} | {{ c.peso | br }} |{% for l in ranking.ranking %} {{ l.notas.get(c.id) | br(2) }} |{% endfor %}
+
+{% endfor %}
+| **Aderência ponderada** | 100 |{% for l in ranking.ranking %} **{{ l.aderencia_pct | br }}%** |{% endfor %}
+
+
+{% if cruzamento %}
+## Esforço de POC × custo de produção{% if custo and custo.ilustrativo %} (ILUSTRATIVO){% endif %}
+
+| Fornecedor | Esforço POC (dias) | Risco POC | Custo/mês | Gate | Nota final |
+|---|:--:|:--:|:--:|:--:|:--:|
+{% for c in cruzamento %}
+| {{ c.nome }} | {{ c.esforco }} | {{ c.risco }} | {{ c.custo_mensal }} | {{ ROTULO[c.status_gate] }} | {{ c.nota_final | br(2) }} |
+{% endfor %}
+{% if custo %}
+
+_Custo: list price no cenário "{{ custo.cenario.descricao or '—' }}" ({{ custo.moeda }}) — estimativa indicativa, não é proposta comercial._
+{% endif %}
+
+{% endif %}
+{% if battlecards %}
+## Concorrentes × {{ proponente_nome }} (battlecards)
+{% for c in battlecards %}
+- **{{ c.nome }}** ({{ ROTULO[c.gate] }}, nota {{ c.nota_final | br(2) }}){% if c.mais_forte %} — mais forte em {{ c.mais_forte | map(attribute=0) | join(', ') }}{% endif %}{% if c.proponente_mais_forte %}; {{ proponente_nome }} mais forte em {{ c.proponente_mais_forte | map(attribute=0) | join(', ') }}{% endif %}.
+{% endfor %}
+
+{% endif %}
+## Fatores estratégicos
+{{ narrativa_md['Fatores estratégicos'] if narrativa_md['Fatores estratégicos'] else '> ⚠️ Pendente.' }}
+
+{% if narrativa_md['Ressalvas'] %}
+## Ressalvas
+{{ narrativa_md['Ressalvas'] }}
+
+{% endif %}
+## Próximos passos
+{{ narrativa_md['Próximos passos'] if narrativa_md['Próximos passos'] else '> ⚠️ Pendente.' }}
+{% if narrativa_md['Revisão crítica'] %}
+
+## Revisão crítica
+{{ narrativa_md['Revisão crítica'] }}
+{% endif %}

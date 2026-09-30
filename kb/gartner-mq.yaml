@@ -1,0 +1,71 @@
+# Histórico do Gartner Magic Quadrant da categoria de observabilidade, por edição.
+# Usado para: (1) montar a lista de fornecedores (Líderes da edição vigente) e (2) avaliar gates do tipo
+# "Líder no Quadrante Mágico pelos últimos N anos".
+#
+# Atualize TODO ANO quando a nova edição sair (normalmente julho). Ids = ids de kb/fornecedores/*.yaml.
+# Observação: o MQ foi RENOMEADO — "Application Performance Monitoring and Observability" (até 2023)
+# -> "Observability Platforms" (2024+). Editais que citam o nome antigo geram ambiguidade: o kit sinaliza.
+#
+# Nomes dos quadrantes: lider | desafiante | visionario | nicho. Fornecedor ausente da edição = não avaliado.
+
+# Última revisão: 2026-09-29 (posições lidas dos gráficos oficiais republicados por fornecedores + Network World).
+
+# revisado_em: última conferência de que não há edição mais nova (a execução assistida exige que seja recente).
+revisado_em: 2026-09-29
+
+edicoes:
+  - ano: 2026
+    titulo: "Magic Quadrant for Observability Platforms"
+    data_publicacao: 2026-07-13
+    confianca: Alta
+    fontes: ["https://www.networkworld.com/article/4197973/ai-workloads-shake-up-observability-market.html", "https://www.elastic.co/blog/elastic-leader-gartner-magic-quadrant-observability-platforms-2026", "https://static-www.elastic.co/v3/assets/bltefdd0b53724fa2ce/blta75009c0a8f01af1/6a57a1e7ade6f57fd06e66b6/GMQ-2026.png", "https://www.datadoghq.com/blog/datadog-observability-platforms-gartner-magic-quadrant-2026/", "https://coralogix.com/gartner-magic-quadrant-observability-platforms-2026/", "https://www.honeycomb.io/blog/honeycomb-named-visionary-2026-gartner-magic-quadrant-observability-platforms"]
+    quadrantes:
+      lider: [chronosphere, coralogix, datadog, dynatrace, elastic, grafana, ibm-instana, new-relic]
+      desafiante: [alibaba-cloud, aws, azure-monitor, logicmonitor, splunk]
+      visionario: [bmc-helix, honeycomb]
+      nicho: [apica, hpe, sciencelogic, solarwinds]
+    obs: "Lista completa (19 fornecedores) confirmada pelo texto da Network World (Denise Dubie, 16/07/2026) e pelo gráfico oficial Gartner 'As of May 2026' publicado pela Elastic. Splunk CONFIRMADO como Desafiante: no gráfico fica à esquerda da linha vertical, e não há press release Cisco/Splunk de 'Leader' em 2026 (a URL no padrão 'fourth consecutive year' do newsroom da Cisco dá 404; as equivalentes de 2024/2025 existem). Autores: Padraig Byrne, Martin Caren, D.B. Cummings, Neil Young. Mudanças vs 2025 (comparando os gráficos): Coralogix Visionário→Líder; Splunk Líder→Desafiante; BMC Helix Nicho→Visionário; ScienceLogic e Apica Visionário→Nicho; entraram Alibaba Cloud e HPE; saíram Oracle, ITRS e Sumo Logic."
+  - ano: 2025
+    titulo: "Magic Quadrant for Observability Platforms"
+    data_publicacao: 2025-07-07
+    confianca: Alta
+    fontes: ["https://www.elastic.co/blog/elastic-leader-gartner-magic-quadrant-observability-platforms-2025", "https://static-www.elastic.co/v3/assets/bltefdd0b53724fa2ce/blt3847b634260dd3fa/686fbe62ead4a7242831d126/GartnerMQ.png", "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2025/m07/splunk-named-a-leader-in-the-gartner-magic-quadrant-for-observability-platforms-for-the-third-consecutive-year.html", "https://awsinsider.net/articles/2025/07/10/observability-research-cites-high-cost-of-amazon-cloudwatch.aspx", "https://coralogix.com/blog/coralogix-magic-quadrant-2025/", "https://community.ibm.com/community/user/blogs/christopher-farrell/2025/07/16/happy-300th-instana-how-about-a-spot-in-the-mq-lea"]
+    quadrantes:
+      lider: [chronosphere, datadog, dynatrace, elastic, grafana, ibm-instana, new-relic, splunk]
+      desafiante: [aws, azure-monitor, logicmonitor, oracle]
+      visionario: [apica, coralogix, honeycomb, sciencelogic]
+      nicho: [bmc-helix, itrs, solarwinds, sumo-logic]
+    obs: "Lista completa (20 fornecedores) confirmada pelo gráfico oficial Gartner 'As of June 2025' publicado pela Elastic; bate 100% com a lista informada. Data 07/07/2025 segundo Cisco/Splunk e AWSInsider; Coralogix cita 09/07/2025 e SolarWinds 10/07/2025 (a divergência está só nas citações dos fornecedores). Autores: Gregg Siegfried, Matt Crossley, Padraig Byrne, Andre Bridges, Martin Caren. Comparando os gráficos: entraram Apica, Coralogix, ITRS, ScienceLogic e SolarWinds; saíram ServiceNow e Logz.io. IBM subiu de Visionário (2024) para Líder; LogicMonitor e Oracle passaram a Desafiantes."
+  - ano: 2024
+    titulo: "Magic Quadrant for Observability Platforms"
+    data_publicacao: 2024-08-12
+    confianca: Alta
+    fontes: ["https://aws.amazon.com/blogs/mt/aws-named-as-a-challenger-in-the-2024-gartner-magic-quadrant-for-observability-platforms/", "https://d2908q01vomqb2.cloudfront.net/972a67c48192728a34979d9a35164c1295401b71/2024/08/29/2024_Gartner_Magic_Quadrant_Observability_Platforms.jpg", "https://www.dynatrace.com/news/blog/dynatrace-named-leader-in-2024-gartner-magic-quadrant-for-observability-platforms/", "https://www.logicmonitor.com/press/logicmonitor-recognized-as-a-visionary-in-the-gartner-magic-quadrant-for-observability-platforms-2024", "https://logz.io/news-posts/logz-io-recognized-as-a-visionary-in-the-2024-gartner-magic-quadrant-for-observability-platforms/", "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2024/m08/splunk-named-a-leader-in-the-gartner-magic-quadrant-for-observability-platforms-for-the-second-consecutive-year.html"]
+    quadrantes:
+      lider: [chronosphere, datadog, dynatrace, elastic, grafana, new-relic, splunk]
+      desafiante: [aws, azure-monitor]
+      visionario: [honeycomb, ibm-instana, logicmonitor, logz-io, servicenow]
+      nicho: [bmc-helix, oracle, sumo-logic]
+    obs: "Lista completa (17 fornecedores; a Dynatrace confirma 'Gartner evaluated 17 vendors') confirmada pelo gráfico oficial Gartner 'As of June 2024' publicado pela AWS. CORREÇÃO: IBM foi Visionário em 2024, e não Desafiante; os únicos Desafiantes foram AWS e Microsoft. O gráfico usa o rótulo 'BMC' (mapeado para bmc-helix). Data 12/08/2024 (AWS, Dynatrace, Logz.io, Chronosphere); o press release da LogicMonitor cita 13/06/2024. Autores: Gregg Siegfried, Padraig Byrne, Mrudula Bangera, Matt Crossley. Cisco (AppDynamics) não aparece mais como fornecedor separado (provável efeito da compra da Splunk pela Cisco; inferência). Comparando os gráficos: entraram Chronosphere, LogicMonitor e BMC; saíram Cisco, SolarWinds, Broadcom, Riverbed e ManageEngine."
+  - ano: 2023
+    titulo: "Magic Quadrant for Application Performance Monitoring and Observability"
+    data_publicacao: 2023-07-05
+    confianca: Alta
+    fontes: ["https://aws.amazon.com/blogs/mt/aws-observability-2023-gartner-magic-quadrant-for-application-performance-monitoring-and-observability/", "https://d2908q01vomqb2.cloudfront.net/972a67c48192728a34979d9a35164c1295401b71/2023/08/07/gartner-mq-2023-1024x1024.jpg", "https://www.prnewswire.com/news-releases/honeycomb-named-a-leader-in-2023-gartner-magic-quadrant-for-apm--observability-301873158.html", "https://newsroom.servicenow.com/press-releases/details/2023/ServiceNow-recognized-as-a-Visionary-in-the-2023-Gartner-Magic-Quadrant-for-Application-Performance-Monitoring-APM-and-Observability-07-10-2023-traffic/default.aspx", "https://www.splunk.com/en_us/blog/devops/splunk-named-a-leader-in-gartner-2023-magic-quadrant-for-apm-observability.html"]
+    quadrantes:
+      lider: [datadog, dynatrace, honeycomb, new-relic, splunk]
+      desafiante: [aws, azure-monitor, cisco-appdynamics, ibm-instana]
+      visionario: [elastic, grafana, logz-io, servicenow]
+      nicho: [broadcom, manageengine, oracle, riverbed, solarwinds, sumo-logic]
+    obs: "Lista completa (19 fornecedores; número confirmado no press release da Honeycomb) lida do gráfico oficial Gartner 'As of June 2023' publicado pela AWS. Casos-limite conferidos com zoom: IBM fica logo acima da linha horizontal (Desafiante); Oracle e Grafana Labs ficam logo abaixo (Nicho e Visionário). O gráfico usa o rótulo 'Cisco' (AppDynamics). Honeycomb foi Líder pelo 2º ano; Grafana Labs estreou como Visionário. Comparando com 2022: entraram Grafana Labs e ServiceNow; saíram Alibaba Cloud e VMware. Autores: Gregg Siegfried, Mrudula Bangera, Matt Crossley, Padraig Byrne. Não obtive o texto integral do relatório de 2023."
+  - ano: 2022
+    titulo: "Magic Quadrant for Application Performance Monitoring and Observability"
+    data_publicacao: 2022-06-07
+    confianca: Alta
+    fontes: ["https://em360tech.com/sites/default/files/2023-01/Gartner%20Reprint_0.pdf", "https://www.prnewswire.com/news-releases/honeycomb-named-a-leader-in-2022-gartner-magic-quadrant-for-application-performance-monitoring-and-observability-301565881.html", "https://ir.elastic.co/News--Events/news/news-details/2022/Elastic-Named-a-Visionary-in-the-2022-Gartner-Magic-Quadrant-for-Application-Performance-Monitoring-and-Observability/default.aspx"]
+    quadrantes:
+      lider: [datadog, dynatrace, honeycomb, ibm-instana, new-relic]
+      desafiante: [aws, azure-monitor, cisco-appdynamics, sumo-logic]
+      visionario: [elastic, logz-io, splunk, vmware]
+      nicho: [alibaba-cloud, broadcom, manageengine, oracle, riverbed, solarwinds]
+    obs: "Lista completa extraída do texto do reprint Gartner (ID G00750730, 'Published 7 June 2022', Padraig Byrne, Gregg Siegfried e mais 1) numa cópia em PDF hospedada pela em360tech: cada fornecedor tem a frase 'is a Leader/Challenger/Visionary/Niche Player in this Magic Quadrant'. 19 fornecedores; adicionados AWS, Honeycomb, Logz.io, Sumo Logic e VMware (Tanzu Observability); removidos Bonree e Tingyun; LogicMonitor só teve 'Honorable Mention'. IDs novos: logz-io, vmware (= VMware Tanzu Observability), manageengine; riverbed = Riverbed (Aternity); cisco-appdynamics = Cisco (AppDynamics)."

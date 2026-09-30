@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Dados de cliente NUNCA entram neste repositório.
+# Rode o kit apontando para a pasta do cliente (fora do repo). Qualquer _analise-rfp/ aqui dentro é ignorada,
+# exceto as dos exemplos fictícios (só as entradas; as saídas são geradas).
+_analise-rfp/
+!exemplos/*/_analise-rfp/
+exemplos/*/_analise-rfp/00-projeto/
+exemplos/*/_analise-rfp/01-extracao/
+exemplos/*/_analise-rfp/03-entregas/
+exemplos/*/_analise-rfp/02-analise/*
+!exemplos/*/_analise-rfp/02-analise/narrativa.md
+!exemplos/*/_analise-rfp/02-analise/eixos.yaml
+!exemplos/*/_analise-rfp/02-analise/ajustes-notas.yaml
+!exemplos/*/_analise-rfp/02-analise/gates-override.yaml
+!exemplos/*/_analise-rfp/02-analise/classificacao-manual.csv
+!exemplos/*/_analise-rfp/02-analise/respostas.json
+!exemplos/*/_analise-rfp/02-analise/duvidas.yaml
+!exemplos/*/_analise-rfp/02-analise/cases-referencia.yaml
+!exemplos/*/_analise-rfp/02-analise/registro-evidencias.yaml
+!exemplos/*/_analise-rfp/02-analise/revisao-requisitos.json
+!exemplos/*/_analise-rfp/02-analise/custo.yaml
+!exemplos/*/_analise-rfp/02-analise/esforco-poc.yaml
+/clientes/
+
+# Guarda local contra vazamento de nomes de clientes (ver tests/test_vazamento.py) — nunca versionar
+.nomes-proibidos.txt
+
+# Office / SO
+~$*
+Thumbs.db
+.DS_Store
+kb-pendencias.csv
+
+# Workspaces do VS Code gerados pelo init (caminhos absolutos da máquina)
+*.code-workspace

@@ -1,0 +1,356 @@
+[
+  {
+    "id": "RF-01",
+    "requisito": "Mapa de dependências entre serviços gerado automaticamente.",
+    "categoria": "apm",
+    "obrigatoriedade": "eliminatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L4",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "O Application Map do Application Insights monta automaticamente a topologia dos componentes e das dependências a partir da telemetria coletada, sem configuração manual.",
+    "evidencias": [
+      "EV-AZ-002"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-02",
+    "requisito": "Correlação automática entre traces, logs e métricas da mesma transação.",
+    "categoria": "apm",
+    "obrigatoriedade": "eliminatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L5",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "O rastreamento distribuído do Application Insights correlaciona requisições, dependências, exceções e logs da mesma operação, com instrumentação OpenTelemetry.",
+    "evidencias": [
+      "EV-AZ-001",
+      "EV-AZ-006"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-03",
+    "requisito": "Captura de erros JavaScript e tempo de carregamento de páginas.",
+    "categoria": "experiencia-usuario",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L6",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "O SDK JavaScript do Application Insights coleta visualizações de página, tempos de carregamento, chamadas AJAX/fetch e exceções de navegador.",
+    "evidencias": [
+      "EV-AZ-011"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-04",
+    "requisito": "Monitoramento de crashes de aplicativos móveis.",
+    "categoria": "experiencia-usuario",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L7",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Não Atende",
+    "justificativa": "Não há SDK nativo de RUM ou de crash para aplicativos Android e iOS no Application Insights nem caminho oficialmente suportado de ingestão para esse cenário.",
+    "evidencias": [
+      "EV-AZ-045"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-05",
+    "requisito": "Live tail de logs em tempo real.",
+    "categoria": "logs",
+    "obrigatoriedade": "desejavel",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L8",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Parcialmente",
+    "justificativa": "O Live Metrics do Application Insights mostra a telemetria das aplicações em tempo quase real; para logs em geral a análise é feita por consultas KQL no Log Analytics, sem recurso de live tail equivalente.",
+    "evidencias": [
+      "EV-AZ-001",
+      "EV-AZ-005"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-06",
+    "requisito": "Redução de ruído e deduplicação de alertas.",
+    "categoria": "aiops",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L9",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Parcialmente",
+    "justificativa": "Dynamic Thresholds reduzem alertas falsos com baseline aprendido por machine learning e as regras de alerta com action groups controlam a notificação; não há deduplicação e correlação de eventos equivalente a uma camada AIOps dedicada.",
+    "evidencias": [
+      "EV-AZ-003",
+      "EV-AZ-004"
+    ],
+    "metodo": "Configuração",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-07",
+    "requisito": "Assistente em linguagem natural para investigação de incidentes.",
+    "categoria": "aiops",
+    "obrigatoriedade": "desejavel",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L10",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "O Microsoft Copilot in Azure responde a perguntas em linguagem natural sobre os recursos e a telemetria, inclusive gerando consultas KQL.",
+    "evidencias": [
+      "EV-AZ-019"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-08",
+    "requisito": "Monitoramento de funções serverless.",
+    "categoria": "infraestrutura",
+    "obrigatoriedade": "desejavel",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L11",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "O Azure Functions tem integração nativa com o Application Insights para execuções, falhas, dependências e desempenho.",
+    "evidencias": [
+      "EV-AZ-034"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-09",
+    "requisito": "Criptografia de dados em repouso e em trânsito.",
+    "categoria": "seguranca-governanca",
+    "obrigatoriedade": "eliminatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L12",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "Os dados do Azure Monitor são criptografados em trânsito (TLS) e em repouso, com opção de chaves gerenciadas pelo cliente no Key Vault.",
+    "evidencias": [
+      "EV-AZ-039",
+      "EV-AZ-021"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-10",
+    "requisito": "Envio de eventos para webhooks e API REST documentada.",
+    "categoria": "integracoes-itsm",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L13",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "Action groups enviam notificações para webhooks, Logic Apps, Azure Functions e ferramentas de ITSM; o Application Insights expõe API REST documentada.",
+    "evidencias": [
+      "EV-AZ-033",
+      "EV-AZ-035"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-11",
+    "requisito": "Retenção configurável de dados por tipo de telemetria.",
+    "categoria": "plataforma",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L14",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Plenamente",
+    "justificativa": "O Log Analytics permite configurar a retenção por workspace e por tabela, inclusive retenção de longo prazo.",
+    "evidencias": [
+      "EV-AZ-036"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "RF-12",
+    "requisito": "Monitoramento de qualidade e atualidade (freshness) de tabelas analíticas.",
+    "categoria": "dados-pipelines",
+    "obrigatoriedade": "desejavel",
+    "natureza": "tecnico",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Requisitos Funcionais!L15",
+    "escala": [
+      "Atende Plenamente",
+      "Atende Parcialmente",
+      "Se propõe a desenvolver",
+      "Não Atende"
+    ],
+    "resposta": "Atende Parcialmente",
+    "justificativa": "A atualidade das tabelas pode ser monitorada com regras de alerta de log (KQL) sobre o horário de ingestão dos dados; não há módulo nativo de qualidade de dados ou linhagem.",
+    "evidencias": [
+      "EV-AZ-005",
+      "EV-AZ-004"
+    ],
+    "metodo": "Configuração",
+    "poc": true,
+    "paginas": ""
+  },
+  {
+    "id": "DQ-1",
+    "requisito": "Hosts monitorados simultaneamente",
+    "categoria": "infraestrutura",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "comercial",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Dados Quantitativos!L2",
+    "escala": [
+      "Atendido Nativamente",
+      "Atendido por Extensão",
+      "Atendido Parcialmente",
+      "Não Atendido",
+      "Não Fornecido"
+    ],
+    "resposta": "Atendido Nativamente",
+    "justificativa": "O VM insights monitora desempenho e dependências de máquinas virtuais; a volumetria de 200 hosts é atendida pelo serviço gerenciado.",
+    "evidencias": [
+      "EV-AZ-037"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "DQ-2",
+    "requisito": "Ingestão diária de logs",
+    "categoria": "coleta",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "comercial",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Dados Quantitativos!L3",
+    "escala": [
+      "Atendido Nativamente",
+      "Atendido por Extensão",
+      "Atendido Parcialmente",
+      "Não Atendido",
+      "Não Fornecido"
+    ],
+    "resposta": "Atendido Nativamente",
+    "justificativa": "O Log Analytics oferece commitment tiers de ingestão diária compatíveis com 500 GB/dia, com controles de consumo.",
+    "evidencias": [
+      "EV-AZ-016"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  },
+  {
+    "id": "DQ-3",
+    "requisito": "Retenção de métricas",
+    "categoria": "plataforma",
+    "obrigatoriedade": "obrigatorio",
+    "natureza": "comercial",
+    "fonte": "Matriz-Requisitos-Exemplo.xlsx",
+    "localizacao": "Dados Quantitativos!L4",
+    "escala": [
+      "Atendido Nativamente",
+      "Atendido por Extensão",
+      "Atendido Parcialmente",
+      "Não Atendido",
+      "Não Fornecido"
+    ],
+    "resposta": "Atendido Nativamente",
+    "justificativa": "O serviço gerenciado do Azure Monitor para Prometheus retém métricas por até 18 meses (acima dos 13 meses pedidos), com consulta em PromQL; a granularidade ao longo do período é objeto da DUV-002.",
+    "evidencias": [
+      "EV-AZ-007"
+    ],
+    "metodo": "Nativo",
+    "poc": false,
+    "paginas": ""
+  }
+]

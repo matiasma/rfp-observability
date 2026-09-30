@@ -1,0 +1,31 @@
+# Cases e arquiteturas de referência PÚBLICOS do proponente relevantes para ESTE edital (prompts/12-cases-referencia.md).
+# Só material publicado pelo fabricante/cliente do case (customer stories, blogs oficiais, Architecture Center).
+# Vão para o Anexo B do memorial e têm a URL verificada em 'python kit.py validar-urls'.
+#
+# Prefira apontar para a KB (kb/cases/<fornecedor>.yaml) com 'kb:' — os dados públicos vêm de lá; aqui fica só
+# 'relacao': por que o case importa para ESTE cliente (setor, escala, picos, arquitetura). Nunca leve 'relacao'
+# para a KB.
+#
+# - kb: REF-AZ-002
+#   relacao: "Mesmo setor e mesmo padrão de pico sazonal do cliente."
+#
+# - tipo: case                         # case | arquitetura (item próprio do estudo, sem KB)
+#   organizacao: "Empresa X"
+#   setor: "Varejo"
+#   pais: "Brasil"
+#   cenario: "Observabilidade de e-commerce com APM e RUM"
+#   resultados: ["Redução do MTTR (conforme publicado)"]
+#   relacao: "Par de setor do cliente"
+#   fornecedor: azure-monitor
+#   url: "https://..."
+#   palavras_chave: ["application insights"]
+#   publicado_em: 2025-01-01
+- kb: REF-AZ-002
+  relacao: "Picos sazonais de demanda e APM de aplicações web, como no contexto (fictício) do cliente."
+  pontuacao: {solucao: 3.5, setor: 1.5, escala: 1.0, capacidades: 1.0}
+
+- kb: REF-AZ-003
+  relacao: "Referência para a arquitetura das aplicações web do cliente com Application Insights."
+
+- kb: REF-AZ-006
+  relacao: "Ambiente híbrido com várias assinaturas: desenho de workspaces e da coleta."

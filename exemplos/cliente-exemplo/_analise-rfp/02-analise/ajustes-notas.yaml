@@ -1,0 +1,11 @@
+# Ajustes de nota para ESTE edital (sobrepõem kb/fornecedores/<id>.yaml -> notas_base).
+# Use quando o contexto do cliente muda a leitura da capacidade (ex.: stack de dados 100% em uma nuvem,
+# exigência específica que o edital detalha). Cada ajuste EXIGE justificativa e ao menos uma fonte oficial.
+# Régua: 1.0 nativo-líder · 0.75 forte · 0.5 parcial/por extensão · 0.25 fraco · 0 não atende.
+#
+# - fornecedor: azure-monitor
+#   categoria: dados-pipelines
+#   nota: 0.4
+#   justificativa: "Edital concentra requisitos em pipelines de outra nuvem; cobertura via integrações limitadas."
+#   fontes: ["https://learn.microsoft.com/..."]
+[]

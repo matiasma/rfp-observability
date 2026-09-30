@@ -1,0 +1,138 @@
+id: grafana
+nome: Grafana Labs (Grafana Cloud / LGTM)
+fabricante: Grafana Labs
+produto: Grafana Cloud / LGTM Stack
+aliases: ["Grafana Cloud", "LGTM", "Loki", "Grafana Mimir", "Grafana Tempo", "Pyroscope"]
+entrega: [saas, self-managed]
+atualizado_em: 2026-09-29
+ttl_dias: 180
+confianca: Alta
+fatos:
+  integracoes_nativas:
+    valor: 363
+    qualificador: null
+    texto: "Catálogo público de plugins; evidência registrou 363 plugins."
+    fonte: https://grafana.com/grafana/plugins/
+    verificado_em: 2026-09-21
+  sla_disponibilidade_pct:
+    valor: 99.5
+    fonte: https://grafana.com/legal/grafana-cloud-sla/
+    verificado_em: 2026-09-21
+  regiao_dados_brasil:
+    valor: SIM
+    fonte: https://grafana.com/docs/grafana-cloud/platform/security-and-account-management/account-management/regional-availability/
+    verificado_em: 2026-09-21
+  suporte_ptbr:
+    valor: NAO_DOCUMENTADO
+    fonte: null
+    verificado_em: 2026-09-21
+    obs: "Sem evidência pública de suporte local em português (ausência de evidência, não evidência de ausência)."
+  agente_open_source:
+    valor: SIM
+    texto: "Stack LGTM/Alloy/Beyla/Loki/Mimir/Tempo/Pyroscope/Faro com código público."
+    fonte: https://grafana.com/docs/alloy/latest/
+    verificado_em: 2026-09-21
+  opentelemetry:
+    valor: SIM
+    fonte: https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/application-observability/
+    verificado_em: 2026-09-21
+  retencao_metricas_meses:
+    valor: 13
+    fonte: https://grafana.com/docs/mimir/latest/configure/configure-metrics-storage-retention/
+    verificado_em: 2026-09-21
+    obs: "Retenção padrão citada; retenções maiores podem depender de contrato."
+  retencao_metricas_integral:
+    valor: SIM
+    fonte: https://grafana.com/docs/mimir/latest/configure/configure-metrics-storage-retention/
+    verificado_em: 2026-09-21
+  so_suportados:
+    valor: [linux, windows, macos, arm]
+    fonte: https://grafana.com/docs/alloy/latest/
+    verificado_em: 2026-09-21
+  self_managed:
+    valor: SIM
+    fonte: https://grafana.com/docs/alloy/latest/
+    verificado_em: 2026-09-21
+  rum_mobile:
+    valor: NAO
+    fonte: https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/frontend-observability/
+    verificado_em: 2026-09-21
+  session_replay:
+    valor: PREVIEW
+    fonte: https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/session-replay/how-it-works/
+    verificado_em: 2026-09-21
+  certificacoes:
+    valor: null
+    fonte: null
+    verificado_em: null
+notas_base:
+  coleta:
+    nota: 0.75
+    obs: "Coleta baseada em Alloy, OpenTelemetry, Prometheus e exporters é forte, mas requer mais montagem operacional."
+    fontes: ["https://grafana.com/docs/alloy/latest/", "https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/", "https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/application-observability/"]
+  infraestrutura:
+    nota: 1.0
+    obs: "Excelente cobertura de infraestrutura, Kubernetes e integrações via ecossistema Prometheus/Grafana Cloud."
+    fontes: ["https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/", "https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/"]
+  apm:
+    nota: 0.75
+    obs: "APM via Application Observability, Tempo, OTel e Beyla é forte, mas menos turnkey que plataformas APM proprietárias."
+    fontes: ["https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/application-observability/", "https://grafana.com/docs/beyla/latest/"]
+  logs:
+    nota: 1.0
+    obs: "Loki e pipelines de ingestão oferecem logs nativos, escaláveis e integrados à experiência Grafana."
+    fontes: ["https://grafana.com/docs/loki/latest/"]
+  correlacao:
+    nota: 0.75
+    obs: "Trace-to-logs, exemplars e labels comuns permitem correlação, com dependência de boa governança de labels."
+    fontes: ["https://grafana.com/docs/grafana/latest/datasources/tempo/configure-tempo-data-source/configure-trace-to-logs/", "https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/application-observability/"]
+  banco-dados:
+    nota: 0.5
+    obs: "Cobertura de bancos é majoritariamente via exporters e dashboards; DBM query-level profundo não é nativo."
+    fontes: ["https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/"]
+  experiencia-usuario:
+    nota: 0.5
+    obs: "Faro cobre RUM web; RUM mobile não é GA e Session Replay estava em preview."
+    fontes: ["https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/frontend-observability/", "https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/session-replay/how-it-works/"]
+  alertas-dashboards:
+    nota: 0.75
+    obs: "Dashboards são referência de mercado e há alerting/SLO; automação avançada pode exigir composição com IRM."
+    fontes: ["https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/", "https://grafana.com/docs/grafana-cloud/alerting-and-irm/irm/"]
+  aiops:
+    nota: 0.5
+    obs: "Há recursos de ML/LLM auxiliares, mas AIOps turnkey é menos maduro que nos líderes proprietários."
+    fontes: ["https://grafana.com/docs/grafana-cloud/machine-learning/llm/", "https://grafana.com/docs/grafana-cloud/alerting-and-irm/irm/"]
+  ia-llm:
+    nota: 0.25
+    obs: "Não há LLM observability turnkey comparável a plataformas especializadas; o caminho é instrumentação OTel e composição."
+    fontes: ["https://grafana.com/docs/grafana-cloud/machine-learning/llm/", "https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-applications/application-observability/"]
+  profiling:
+    nota: 0.75
+    obs: "Pyroscope fornece profiling contínuo forte, com cobertura variável por linguagem e runtime."
+    fontes: ["https://grafana.com/docs/pyroscope/latest/"]
+  dados-pipelines:
+    nota: 0.5
+    obs: "Pipelines de dados são observáveis por métricas/logs/exporters; freshness, lineage e data quality não são nativos."
+    fontes: ["https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/"]
+  seguranca-governanca:
+    nota: 0.75
+    obs: "SAML, RBAC e audit logs existem em Cloud/Enterprise, com parte dos recursos fora do OSS puro."
+    fontes: ["https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/saml/", "https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/audit-grafana/"]
+  integracoes-itsm:
+    nota: 0.75
+    obs: "IRM/OnCall/Incident e integrações como ServiceNow cobrem fluxos ITSM, com dependência de configuração e plano."
+    fontes: ["https://grafana.com/docs/grafana-cloud/alerting-and-irm/irm/"]
+  plataforma:
+    nota: 0.75
+    obs: "Oferece SaaS e self-managed/OSS, com região no Brasil; SLA padrão é 99,5% e retenção acima do padrão pode ser comercial."
+    fontes: ["https://grafana.com/legal/grafana-cloud-sla/", "https://grafana.com/docs/grafana-cloud/platform/security-and-account-management/account-management/regional-availability/", "https://grafana.com/docs/alloy/latest/"]
+destaques:
+  - "Stack aberta e auditável, alinhada a OpenTelemetry e Prometheus."
+  - "Região de dados no Brasil está documentada para Grafana Cloud."
+  - "Dashboards, logs, métricas, traces e profiling têm forte integração."
+  - "Há opções SaaS e self-managed/OSS para diferentes modelos de operação."
+gaps:
+  - "RUM mobile não é GA nativo."
+  - "Session Replay estava em preview e não deve contar como GA."
+  - "DBM profundo e data observability dedicada dependem de exporters ou composição."
+  - "SLA padrão publicado é 99,5%."

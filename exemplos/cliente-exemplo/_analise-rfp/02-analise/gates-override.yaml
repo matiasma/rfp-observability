@@ -1,0 +1,12 @@
+# Override de veredito de gate — vale SÓ para este edital.
+# Use quando: (a) a regra automática não captura a leitura correta da cláusula; (b) o gate usa regra "manual";
+# (c) o fabricante confirmou/negou algo POR ESCRITO para este edital (e-mail, resposta a dúvida, proposta).
+# Essas confirmações dependem do requisito deste cliente e podem ser confidenciais: ficam aqui, nunca na KB.
+# Justificativa é OBRIGATÓRIA; sem ela o override é ignorado. veredito: PASSA | RISCO | NAO
+#
+# - fornecedor: datadog
+#   gate: G3
+#   veredito: PASSA
+#   justificativa: "Fabricante confirmou por escrito suporte local em português via parceiro certificado."
+#   fonte: "Resposta à DUV-03, e-mail de 2026-10-02"
+[]

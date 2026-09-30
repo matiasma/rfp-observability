@@ -1,0 +1,99 @@
+# MODELO de ficha de fornecedor da base de conhecimento (KB).
+# Copie para kb/fornecedores/<id>.yaml. O arquivo que começa com "_" é ignorado pelo kit.
+#
+# Regras:
+#  - Apenas informação PÚBLICA do fabricante (docs oficiais, termos, SLA, trust center). Nada de cliente.
+#  - Todo fato tem valor + fonte (URL) + verificado_em (AAAA-MM-DD). Sem fonte => valor: null.
+#  - Fato vencido (verificado_em + ttl_dias < data de referência do estudo) vira "INDEFINIDO" nos gates
+#    até ser revalidado (python kit.py kb-status lista o que venceu).
+#  - Recursos em preview NÃO contam como GA (use PARCIAL/PREVIEW e explique em obs).
+#  - Régua das notas: 1.0 nativo-líder · 0.75 forte · 0.5 parcial/por extensão · 0.25 fraco · 0 não atende.
+#    Notas são "priors" genéricos; o estudo de cada RFP pode ajustá-las (02-analise/ajustes-notas.yaml)
+#    com justificativa e fonte.
+
+id: exemplo-fornecedor            # kebab-case, igual ao nome do arquivo e aos ids de kb/gartner-mq.yaml
+nome: Exemplo Fornecedor          # nome de exibição nos relatórios
+fabricante: Exemplo Inc.
+produto: Exemplo Observability Cloud
+aliases: []                       # outros nomes (p/ busca), ex.: ["Exemplo APM"]
+entrega: [saas]                   # saas | self-managed
+atualizado_em: 2026-01-01         # última revisão geral da ficha
+ttl_dias: 180                     # validade padrão dos fatos (pode ser sobreposta por fato com ttl_dias)
+confianca: Baixa                  # Alta | Média | Baixa — qualidade/abrangência da evidência
+
+fatos:
+  integracoes_nativas:            # nº de integrações nativas documentadas pelo fabricante
+    valor: null                   # inteiro (ex.: 1000)
+    qualificador: null            # "mais de" quando a fonte diz "more than N"
+    texto: null                   # citação curta da fonte
+    fonte: null
+    verificado_em: null
+  sla_disponibilidade_pct:        # SLA de disponibilidade publicado do SaaS (%)
+    valor: null                   # ex.: 99.8
+    fonte: null
+    verificado_em: null
+  regiao_dados_brasil:            # região de armazenamento de dados no Brasil
+    valor: null                   # SIM | NAO | NAO_CONFIRMADO
+    fonte: null
+    verificado_em: null
+  suporte_ptbr:                   # suporte local/atendimento em português
+    valor: null                   # SIM | NAO | NAO_DOCUMENTADO
+    fonte: null
+    verificado_em: null
+  agente_open_source:             # agente open source ou código publicamente auditável
+    valor: null                   # SIM | NAO | PARCIAL
+    texto: null                   # ex.: "Apache-2.0 no GitHub"
+    fonte: null
+    verificado_em: null
+  opentelemetry:                  # ingestão/correlação nativa de OTel (traces, métricas, logs)
+    valor: null                   # SIM | NAO | PARCIAL
+    fonte: null
+    verificado_em: null
+  retencao_metricas_meses:        # retenção máxima de métricas oferecida (meses)
+    valor: null                   # inteiro
+    fonte: null
+    verificado_em: null
+  retencao_metricas_integral:     # retenção em granularidade integral, sem downsampling/rollup
+    valor: null                   # SIM | NAO | PARCIAL
+    fonte: null
+    verificado_em: null
+  so_suportados:                  # SOs com agente/coletor suportado
+    valor: null                   # lista: linux, windows, macos, aix, solaris, hpux, zos, arm
+    fonte: null
+    verificado_em: null
+  self_managed:                   # opção de implantação no ambiente do cliente (on-prem/nuvem própria)
+    valor: null                   # SIM | NAO | PARCIAL
+    fonte: null
+    verificado_em: null
+  rum_mobile:                     # RUM nativo para apps móveis (Android/iOS)
+    valor: null                   # SIM | NAO | PARCIAL
+    fonte: null
+    verificado_em: null
+  session_replay:                 # session replay web/mobile GA
+    valor: null                   # SIM | NAO | PARCIAL | PREVIEW
+    fonte: null
+    verificado_em: null
+  certificacoes:                  # certificações de segurança da plataforma
+    valor: null                   # lista, ex.: [ISO27001, ISO27701, SOC2, PCI-DSS]
+    fonte: null
+    verificado_em: null
+
+notas_base:                       # uma entrada por categoria de produto de kb/taxonomia.yaml
+  coleta:               {nota: null, obs: "", fontes: []}
+  infraestrutura:       {nota: null, obs: "", fontes: []}
+  apm:                  {nota: null, obs: "", fontes: []}
+  logs:                 {nota: null, obs: "", fontes: []}
+  correlacao:           {nota: null, obs: "", fontes: []}
+  banco-dados:          {nota: null, obs: "", fontes: []}
+  experiencia-usuario:  {nota: null, obs: "", fontes: []}
+  alertas-dashboards:   {nota: null, obs: "", fontes: []}
+  aiops:                {nota: null, obs: "", fontes: []}
+  ia-llm:               {nota: null, obs: "", fontes: []}
+  profiling:            {nota: null, obs: "", fontes: []}
+  dados-pipelines:      {nota: null, obs: "", fontes: []}
+  seguranca-governanca: {nota: null, obs: "", fontes: []}
+  integracoes-itsm:     {nota: null, obs: "", fontes: []}
+  plataforma:           {nota: null, obs: "", fontes: []}
+
+destaques: []                     # 3-6 frases curtas, com base em evidência
+gaps: []                          # 3-6 frases curtas, honestas (sem inflar)

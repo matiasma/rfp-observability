@@ -1,0 +1,21 @@
+# Dúvidas a submeter ao cliente — fonte estruturada do anexo de dúvidas (python kit.py duvidas).
+# Gerado/atualizado com prompts/05-armadilhas-duvidas.md. Só 'id', 'documento', 'referencia', 'tema' e 'pergunta'
+# vão para o cliente; os demais campos são INTERNOS e alimentam 02-analise/duvidas-interna.md (versão estratégica,
+# nunca enviar). enviar: false mantém a dúvida só no mapa interno (retirada).
+# Se o edital trouxer modelo próprio de envio, informe-o no rfp.yaml (duvidas.modelo) e use o formato de id dele.
+#
+# - id: DUV-001
+#   documento: "Anexo — Matriz de Requisitos"
+#   referencia: "Aba Requisitos Funcionais, RF-04"
+#   tema: "RUM mobile"
+#   pergunta: "Para o requisito RF-04, a instrumentação via OpenTelemetry nos aplicativos móveis é aceita como atendimento?"
+#   objetivo: "interno: por que perguntamos"
+#   resposta_desejada: "interno: a resposta que nos favorece"
+#   impacto: "interno: o que muda na análise/resposta conforme a resposta"
+#   gates: [G2]                        # opcional: gates que a resposta pode reabrir
+#   prioridade: Alta                   # Alta | Média | Baixa
+#   status: PENDENTE                   # PENDENTE | ENVIADA | RESPONDIDA | RETIRADA
+#   resposta_cliente: ""               # quando o cliente responder
+#   enviar: true                       # false = retirada (explique em motivo_retirada)
+#   motivo_retirada: ""
+[]

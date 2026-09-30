@@ -1,0 +1,28 @@
+# Exemplo FICTÍCIO — esforço ILUSTRATIVO de POC (não representa avaliação real de nenhum fornecedor).
+unidade: "dias úteis, 1 pessoa"
+descricao: "POC fictícia do exemplo: jornada web e app móvel com correlação ponta a ponta e integração ITSM."
+frentes:
+  - id: F1
+    nome: "Setup de ambiente e coleta"
+    dias: {azure-monitor: [3, 5], datadog: [1, 2], dynatrace: [1, 2], new-relic: [1, 2]}
+    obs: "SaaS + agente em todos; no proponente inclui workspaces e regras de coleta."
+  - id: F2
+    nome: "Jornada web ponta a ponta (RUM + APM + traces)"
+    dias: {azure-monitor: [2, 4], datadog: [1, 2], dynatrace: [1, 2], new-relic: [1, 3]}
+  - id: F3
+    nome: "Crashes de app móvel (RF-04)"
+    portao: true
+    dias: {azure-monitor: [8, 12], datadog: [3, 5], dynatrace: [3, 5], new-relic: [3, 5]}
+    obs: "Sem SDK móvel nativo GA no proponente: instrumentação aberta (ver DUV-001)."
+  - id: F4
+    nome: "Deduplicação de alertas (RF-06)"
+    portao: true
+    dias: {azure-monitor: [4, 6], datadog: [1, 2], dynatrace: [1, 2], new-relic: [2, 3]}
+  - id: F5
+    nome: "Integração ITSM e webhooks (RF-10)"
+    dias: {azure-monitor: [1, 2], datadog: [1, 2], dynatrace: [1, 2], new-relic: [1, 2]}
+risco:
+  azure-monitor: {nivel: alto, motivo: "Metade do esforço está em frentes-portão (mobile e deduplicação)."}
+  datadog: {nivel: baixo, motivo: "Recursos prontos nas frentes-portão."}
+  dynatrace: {nivel: baixo, motivo: "Recursos prontos nas frentes-portão."}
+  new-relic: {nivel: baixo, motivo: "Recursos prontos; deduplicação exige configuração."}

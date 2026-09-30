@@ -1,0 +1,123 @@
+# =====================================================================================
+# rfp.yaml — configuração da análise de UM edital (RFP/TR) de observabilidade.
+# É o único arquivo que muda de um cliente para outro. Gerado por: python kit.py init
+# Documentação de cada campo: README.md do kit (seção "rfp.yaml").
+# =====================================================================================
+
+cliente:
+  nome: "{{ cliente_nome }}"
+  sigla: "{{ sigla }}"                 # usada nos nomes dos arquivos entregues
+  setor: "{{ setor }}"
+  contexto:                            # fatos fixos do cliente que influenciam notas e riscos (premissa R3)
+    - "(ex.: stack de dados em Google Cloud — BigQuery/Composer)"
+    - "(ex.: ~50 hosts Windows on-premises; LGPD; ITSM ServiceNow)"
+
+data_referencia: {{ data_referencia }}   # data do estudo: validade dos fatos da KB e edição vigente do Gartner
+
+modo: {{ modo }}                       # neutro = estudo de seleção vendor-neutro | proponente = resposta como fornecedor
+proponente: {{ proponente }}           # id da KB quando modo=proponente (ex.: azure-monitor)
+
+# Execução assistida: o kit roda no VS Code pela skill do GitHub Copilot. A cada execução o LLM atualiza a KB dos
+# fornecedores do campo, confere o Gartner MQ, revisa TODOS os requisitos (lacunas viram perguntas de
+# esclarecimento) e as URLs citadas são verificadas. Sem isso a validação acusa ERRO e os entregáveis saem PRELIMINAR.
+execucao:
+  assistida: {{ 'true' if assistida else 'false' }}
+  kb_max_dias: 1                       # idade máxima (dias) da KB/Gartner para valer como "atualizada nesta execução"
+
+# Documentos do edital (caminhos relativos à pasta do cliente). Tipos: docx | xlsx | pdf.
+entradas:
+{% for e in entradas %}
+  - arquivo: "{{ e.arquivo }}"
+    tipo: {{ e.tipo }}
+{% if e.tipo == 'xlsx' %}
+    # abas:                             # opcional — sem isto, o kit detecta o cabeçalho de cada aba sozinho
+    #   - nome: "Requisitos Funcionais"
+    #     linha_cabecalho: 3
+    #     colunas: {id: A, modulo: B, requisito: E, tipo: F, resposta: G, justificativa: H, paginas: I}
+    #     natureza: tecnico             # tecnico | implantacao | sla | qualificacao | comercial | processo
+    #     escala: ["Atendido Nativamente", "Atendido Parcialmente", "Não Atendido"]   # se não houver dropdown
+{% elif e.tipo == 'pdf' %}
+    # ocr: true                         # páginas escaneadas (requer pymupdf + pytesseract + Tesseract)
+{% else %}
+    # min_niveis_numeracao: 3           # "2.1.1" = título; "2.1.1.3 ... deverá ..." = requisito
+{% endif %}
+{% endfor %}
+{% if not entradas %}
+  - arquivo: "TR.docx"
+    tipo: docx
+{% endif %}
+
+fornecedores:
+  obrigatorios: [azure-monitor]        # SEMPRE avaliados até o fim (diretriz), mesmo se reprovarem gate
+  lideres_gartner: auto                # auto = Líderes da edição vigente em kb/gartner-mq.yaml | lista de ids | []
+  contexto: []                         # extras: ex. splunk (incumbente), ibm-instana (AIX/mainframe)
+  excluir: []                          # ids a remover (registre o motivo em premissas_adicionais)
+  max_avaliacao_completa: 6            # obrigatórios + melhores da triagem
+
+# Critérios eliminatórios do edital -> regras de kb/gates-biblioteca.yaml.
+# Transcreva a cláusula literal em 'clausula'. eliminatorio: false = requisito crítico só exibido.
+gates:
+  - id: G1
+    regra: gartner_lider
+    params: {anos: 3, consecutivos: true}
+    clausula: "(transcrever) Fabricante Líder no Quadrante Mágico do Gartner nos últimos 3 anos"
+    eliminatorio: true
+  # - id: G2
+  #   regra: integracoes_min
+  #   params: {min: 1000, estrito: true}
+  #   clausula: "catálogo com mais de 1.000 integrações nativas"
+  # - id: G3
+  #   regra: suporte_ptbr
+  #   clausula: "suporte local no Brasil em português"
+  # - id: G4
+  #   regra: sla_min
+  #   params: {pct: 99.8}
+  #   clausula: "SaaS com disponibilidade mínima de 99,8%"
+  # - id: G5
+  #   regra: agente_open_source
+  #   eliminatorio: false
+  # - id: G6
+  #   regra: retencao_metricas_min
+  #   params: {meses: 15, integral: true}
+  #   eliminatorio: false
+  # - id: G7
+  #   regra: so_suportados
+  #   params: {so: [aix]}
+  #   eliminatorio: false
+
+classificacao:
+  limite_nao_classificado_pct: 5       # acima disto a validação avisa
+  mapa_blocos: {}                      # "trecho do título do bloco": categoria (força a categoria do bloco inteiro)
+
+pesos:
+  multiplicadores: {eliminatorio: 2.0, obrigatorio: 1.0, desejavel: 0.5}
+  naturezas: [tecnico, implantacao, sla]
+  categorias_excluidas: [servicos, licenciamento]
+  override: {}                         # ex.: {dados-pipelines: 12} fixa o peso (0-100) e redistribui o resto
+
+eixos:                                 # soma 100; aderência é calculada, os demais vêm de 02-analise/eixos.yaml
+  aderencia: 35
+  risco: 20
+  esforco: 15
+  custo: 20
+  estrategico: 10
+
+modulos: [nucleo]                      # opcionais: armadilhas, direcionamento, red_team, poc, respostas,
+                                       #            pente_fino, defesa, cases, esforco, custo
+
+premissas_adicionais: []               # frases que entram em 00-projeto/premissas.md
+
+relatorio:
+  incluir_pendencias: true             # false na versão enviada ao cliente
+  confidencial: true
+  pdf: false                           # true: converte memorial/sumário para PDF (Word ou LibreOffice)
+
+duvidas:
+  modelo: {{ modelo_duvidas }}                     # planilha de envio de dúvidas do edital (detectada pelo nome)
+
+respostas:                             # modo proponente
+  # escala padrão; a escala de cada aba é lida do dropdown da própria planilha quando existir
+  # (ou defina 'escala' por aba em entradas[].abas[])
+  escala: ["Atende plenamente", "Atende parcialmente", "Não atende", "Não se aplica"]
+  observacao: {metodo: true, poc: true, referencias: true, prefixo_referencias: "Ref.:"}
+  pente_fino: {justificativa_min: 90, reuso_url: 5}   # sinais do pente-fino automático

@@ -1,0 +1,18 @@
+# MODELO de biblioteca de cases e arquiteturas de referência públicos. Copie para kb/cases/<id-do-fornecedor>.yaml.
+fornecedor: exemplo-fornecedor
+atualizado_em: 2026-01-01
+referencias:
+  - id: REF-EX-001
+    tipo: case                    # case | arquitetura
+    organizacao: "Nome publicado"
+    setor: "Varejo"
+    pais: "Brasil"
+    cenario: "O que foi feito"
+    resultados: ["Resultado conforme publicado"]
+    solucao: "Produtos usados"
+    url: https://...
+    fonte: "Customer story (data)"
+    publicado_em: 2025-01-01
+    palavras_chave: [termo]
+    status: A_VALIDAR           # VALIDADA | A_VALIDAR | QUEBRADA
+    verificado_em: null

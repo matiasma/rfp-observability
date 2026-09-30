@@ -1,0 +1,138 @@
+id: dynatrace
+nome: Dynatrace
+fabricante: Dynatrace
+produto: Dynatrace Platform
+aliases: ["Dynatrace OneAgent", "Dynatrace Grail"]
+entrega: [saas, self-managed]
+atualizado_em: 2026-09-29
+ttl_dias: 180
+confianca: Alta
+fatos:
+  integracoes_nativas:
+    valor: 500
+    qualificador: "mais de"
+    texto: "Hub divulgado com mais de 500 tecnologias/extensões."
+    fonte: https://ir.dynatrace.com/news-events/press-releases/detail/192/dynatrace-launches-software-intelligence-hub
+    verificado_em: 2026-09-21
+  sla_disponibilidade_pct:
+    valor: 99.5
+    fonte: https://www.dynatrace.com/company/trust-center/sla/saas/
+    verificado_em: 2026-09-21
+  regiao_dados_brasil:
+    valor: NAO_CONFIRMADO
+    fonte: https://dynatrace.status.io/
+    verificado_em: 2026-09-21
+  suporte_ptbr:
+    valor: NAO_DOCUMENTADO
+    fonte: null
+    verificado_em: 2026-09-21
+    obs: "Sem evidência pública de suporte local em português (ausência de evidência, não evidência de ausência)."
+  agente_open_source:
+    valor: NAO
+    texto: "OneAgent é proprietário; há mitigação parcial via OpenTelemetry Collector."
+    fonte: https://docs.dynatrace.com/docs/ingest-from/technology-support/oneagent-platform-and-capability-support-matrix
+    verificado_em: 2026-09-21
+  opentelemetry:
+    valor: SIM
+    fonte: https://docs.dynatrace.com/docs/ingest-from/opentelemetry
+    verificado_em: 2026-09-21
+  retencao_metricas_meses:
+    valor: 15
+    fonte: https://docs.dynatrace.com/docs/analyze-explore-automate/metrics/limits
+    verificado_em: 2026-09-21
+    obs: "Retenção padrão no Grail, com possibilidade documentada de ampliar."
+  retencao_metricas_integral:
+    valor: SIM
+    fonte: https://docs.dynatrace.com/docs/analyze-explore-automate/metrics/limits
+    verificado_em: 2026-09-21
+  so_suportados:
+    valor: [linux, windows, macos, aix, arm]
+    fonte: https://docs.dynatrace.com/docs/ingest-from/technology-support/oneagent-platform-and-capability-support-matrix
+    verificado_em: 2026-09-21
+  self_managed:
+    valor: SIM
+    fonte: https://docs.dynatrace.com/managed
+    verificado_em: 2026-09-21
+  rum_mobile:
+    valor: SIM
+    fonte: https://docs.dynatrace.com/docs/observe/digital-experience/rum
+    verificado_em: 2026-09-21
+  session_replay:
+    valor: SIM
+    fonte: https://docs.dynatrace.com/docs/observe/digital-experience/rum
+    verificado_em: 2026-09-21
+  certificacoes:
+    valor: null
+    fonte: null
+    verificado_em: null
+notas_base:
+  coleta:
+    nota: 0.95
+    obs: "OneAgent oferece auto-descoberta, ampla matriz de plataformas e ingestão OTLP; a ressalva é o agente proprietário."
+    fontes: ["https://docs.dynatrace.com/docs/ingest-from/dynatrace-oneagent", "https://docs.dynatrace.com/docs/ingest-from/technology-support/oneagent-platform-and-capability-support-matrix", "https://docs.dynatrace.com/docs/ingest-from/opentelemetry"]
+  infraestrutura:
+    nota: 1.0
+    obs: "Cobertura nativa forte para hosts, processos, containers, Kubernetes, rede e nuvens."
+    fontes: ["https://docs.dynatrace.com/docs/observe/infrastructure-observability/infrastructure-and-operations", "https://docs.dynatrace.com/docs/ingest-from/dynatrace-oneagent"]
+  apm:
+    nota: 1.0
+    obs: "APM, PurePath, tracing e topologia automática são capacidades centrais da plataforma."
+    fontes: ["https://docs.dynatrace.com/docs/observe/application-observability/distributed-tracing", "https://docs.dynatrace.com/docs/ingest-from/opentelemetry"]
+  logs:
+    nota: 0.9
+    obs: "Logs no Grail com DQL, OpenPipeline, parsing, mascaramento e extração de métricas."
+    fontes: ["https://docs.dynatrace.com/docs/analyze-explore-automate/logs", "https://docs.dynatrace.com/docs/platform/grail/dynatrace-query-language"]
+  correlacao:
+    nota: 1.0
+    obs: "Grail, Smartscape e Davis fornecem correlação e análise causal entre sinais."
+    fontes: ["https://docs.dynatrace.com/docs/dynatrace-intelligence/anomaly-detection", "https://docs.dynatrace.com/docs/platform/grail/dynatrace-query-language"]
+  banco-dados:
+    nota: 0.9
+    obs: "Observabilidade de banco combina serviços vistos pela aplicação e extensões de engine; profundidade varia por tecnologia."
+    fontes: ["https://docs.dynatrace.com/docs/observe/infrastructure-observability/databases/get-started"]
+  experiencia-usuario:
+    nota: 1.0
+    obs: "RUM web/mobile, Session Replay e sintéticos são recursos nativos."
+    fontes: ["https://docs.dynatrace.com/docs/observe/digital-experience/rum"]
+  alertas-dashboards:
+    nota: 1.0
+    obs: "SLOs, dashboards e alertas com baselines e Davis AI são bem integrados."
+    fontes: ["https://docs.dynatrace.com/docs/deliver/service-level-objectives/create-slo", "https://docs.dynatrace.com/docs/dynatrace-intelligence/anomaly-detection"]
+  aiops:
+    nota: 1.0
+    obs: "Davis AI é um componente central para anomalia, causa raiz e redução de ruído."
+    fontes: ["https://docs.dynatrace.com/docs/dynatrace-intelligence/anomaly-detection"]
+  ia-llm:
+    nota: 0.75
+    obs: "AI Observability cobre GenAI/LLM via OpenTelemetry e OpenLLMetry, mas é uma área recente."
+    fontes: ["https://docs.dynatrace.com/docs/observe/dynatrace-for-ai-observability", "https://docs.dynatrace.com/docs/ingest-from/opentelemetry"]
+  profiling:
+    nota: 0.9
+    obs: "Always-on profiling e Live Debugger são fortes, mas dependem do OneAgent."
+    fontes: ["https://docs.dynatrace.com/docs/observe/application-observability/services/always-on-app-profiling"]
+  dados-pipelines:
+    nota: 0.5
+    obs: "Não há produto dedicado de data observability; pipelines podem ser modelados por eventos, logs e DQL."
+    fontes: ["https://docs.dynatrace.com/docs/platform/grail/dynatrace-query-language", "https://docs.dynatrace.com/docs/analyze-explore-automate/logs"]
+  seguranca-governanca:
+    nota: 0.9
+    obs: "SSO, SCIM, RBAC/policies, audit log e integrações corporativas são robustos."
+    fontes: ["https://docs.dynatrace.com/docs/manage/identity-access-management/user-and-group-management/access-saml", "https://docs.dynatrace.com/docs/platform/grail/dynatrace-query-language"]
+  integracoes-itsm:
+    nota: 1.0
+    obs: "Integrações ServiceNow e fluxos de notificação são suportados na plataforma."
+    fontes: ["https://docs.dynatrace.com/docs/manage/identity-access-management/user-and-group-management/access-saml", "https://ir.dynatrace.com/news-events/press-releases/detail/192/dynatrace-launches-software-intelligence-hub"]
+  plataforma:
+    nota: 0.75
+    obs: "Há SaaS e opção gerenciada pelo cliente, com retenção forte; região no Brasil não foi confirmada e o SLA SaaS público é 99,5%."
+    fontes: ["https://www.dynatrace.com/company/trust-center/sla/saas/", "https://docs.dynatrace.com/managed", "https://dynatrace.status.io/"]
+destaques:
+  - "APM, topologia, correlação e causa raiz são pontos fortes da plataforma."
+  - "Retenção de métricas no Grail é forte e documentada."
+  - "RUM, Session Replay e sintéticos têm cobertura ampla."
+  - "Existe opção self-managed para cenários que exigem controle de implantação."
+gaps:
+  - "OneAgent não é open source."
+  - "Região de dados no Brasil não foi confirmada em fonte pública."
+  - "SLA SaaS publicado é inferior a 99,8%."
+  - "Data observability dedicada requer construção customizada."

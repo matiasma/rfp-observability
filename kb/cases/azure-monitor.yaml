@@ -1,0 +1,80 @@
+# Cases de clientes e arquiteturas de referência PÚBLICOS do fornecedor — reaproveitáveis entre editais.
+# Só material publicado pelo fabricante/cliente do case. A relação com o cliente de um edital fica no estudo
+# (02-analise/cases-referencia.yaml, campo 'relacao'), nunca aqui. Revalide com: python kit.py kb-validar-urls
+fornecedor: azure-monitor
+atualizado_em: '2026-09-30'
+referencias:
+- id: REF-AZ-001
+  tipo: case
+  organizacao: ASOS
+  setor: Varejo de moda online
+  pais: Reino Unido
+  cenario: 'Substituição do monitoramento legado por Azure Monitor: visão única da jornada do cliente entre microsserviços.'
+  resultados:
+  - Alertas de até 15 minutos passaram a quase tempo real.
+  - Application Insights para APM em nível de código e dependências entre ~80 microsserviços; Log Analytics como painel único.
+  - Action Groups notificando as equipes por limiares; APIs com 10.000 requisições/s na Black Friday sem incidentes maiores.
+  solucao: Azure Monitor (Application Insights, Log Analytics, Action Groups)
+  url: https://web.archive.org/web/20211122044515/https://customers.microsoft.com/en-us/story/839783-asos-retailers-azure-monitor
+  fonte: Microsoft customer story (02/09/2020), cópia arquivada no Internet Archive
+  publicado_em: '2020-09-02'
+  palavras_chave:
+  - azure monitor
+  status: A_VALIDAR
+  verificado_em: null
+  verificacao: navegador
+  observacao: A página original saiu do ar; o snapshot do Internet Archive é montado por JavaScript. Abra no navegador, confira os resultados
+    citados e registre status/verificado_em.
+- id: REF-AZ-002
+  tipo: case
+  organizacao: Idever
+  setor: Varejo / inteligência de consumo
+  pais: Brasil
+  cenario: Monitoramento de desempenho de aplicações em períodos de alta demanda sazonal (Black Friday/Natal).
+  resultados:
+  - Métricas, telemetria e logs de rastreamento com observação em tempo real.
+  - Falhas e anomalias detectadas automaticamente; eliminação de paradas de até 15 minutos nos picos.
+  solucao: Azure Monitor + Application Insights
+  url: https://news.microsoft.com/pt-br/fim-de-ano-na-nuvem-como-a-idever-atende-a-alta-demanda-sazonal-do-varejo-com-cloud-computing/
+  fonte: Microsoft News Brasil (21/12/2022)
+  publicado_em: '2022-12-21'
+  palavras_chave:
+  - azure monitor
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+- id: REF-AZ-003
+  tipo: arquitetura
+  organizacao: Azure Architecture Center
+  cenario: Baseline de web app com redundância de zona, monitorado com Application Insights e Azure Monitor
+  url: https://learn.microsoft.com/en-us/azure/architecture/web-apps/app-service/architectures/baseline-zone-redundant
+  palavras_chave:
+  - application insights
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+- id: REF-AZ-004
+  tipo: arquitetura
+  organizacao: Azure Well-Architected Framework
+  cenario: 'Guia de serviço: Application Insights'
+  url: https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights
+  palavras_chave:
+  - application insights
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+- id: REF-AZ-005
+  tipo: arquitetura
+  organizacao: Azure Well-Architected Framework
+  cenario: 'Guia de serviço: Log Analytics'
+  url: https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-log-analytics
+  palavras_chave:
+  - log analytics
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+- id: REF-AZ-006
+  tipo: arquitetura
+  organizacao: Azure Monitor
+  cenario: Arquitetura de monitoramento corporativo (múltiplos workspaces e assinaturas)
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/enterprise-monitoring-architecture
+  palavras_chave:
+  - workspace
+  status: VALIDADA
+  verificado_em: '2026-09-30'

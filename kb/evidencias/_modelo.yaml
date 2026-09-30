@@ -1,0 +1,17 @@
+# MODELO de biblioteca de evidências públicas de um fornecedor. Copie para kb/evidencias/<id-do-fornecedor>.yaml.
+# Serve às respostas requisito a requisito (modo proponente): cada resposta cita ids EV-... em vez de repetir URLs.
+# Regras: só documentação oficial pública; recurso GA (ga: false = preview, não sustenta "Atende plenamente");
+# capacidade descrita de forma genérica (nunca com texto de requisito ou nome de cliente).
+fornecedor: exemplo-fornecedor        # id de kb/fornecedores
+prefixo: EV-EX                         # prefixo dos ids desta biblioteca
+atualizado_em: 2026-01-01
+evidencias:
+  - id: EV-EX-001
+    capacidade: "Descrição genérica da capacidade"
+    categorias: [apm]                  # ids de categoria de produto (kb/taxonomia.yaml)
+    url: https://docs.exemplo.com/...
+    citacao: "Trecho curto e literal da página que sustenta a capacidade"
+    palavras_chave: [termo1, termo2]   # termos que precisam aparecer na página (checados em kb-validar-urls)
+    ga: true
+    status: VALIDADA                   # VALIDADA | A_VALIDAR | QUEBRADA
+    verificado_em: 2026-01-01

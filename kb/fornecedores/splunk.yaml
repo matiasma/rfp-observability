@@ -1,0 +1,108 @@
+id: splunk
+nome: Splunk (Cisco)
+fabricante: Cisco (Splunk)
+produto: "Splunk Observability Cloud (Splunk APM, Splunk Infrastructure Monitoring, Splunk RUM, Splunk Synthetic Monitoring, Splunk Database Monitoring, Log Observer Connect/Observability Logs, Splunk Distribution of the OpenTelemetry Collector); Splunk AppDynamics (SaaS, On-Premises, Virtual Appliance); Splunk Cloud Platform / Splunk Enterprise (logs, Universal Forwarder); Splunk IT Service Intelligence (ITSI)"
+aliases: [Splunk Observability Cloud, AppDynamics, Cisco AppDynamics]
+entrega: [saas, self-managed]
+atualizado_em: 2026-09-29
+ttl_dias: 180
+confianca: Alta
+fatos:
+  integracoes_nativas:
+    valor: 300
+    qualificador: "mais de"
+    texto: "'300+ out-of-the-box integrations' — catálogo de integrações do Splunk Observability Cloud (página do Splunk Infrastructure Monitoring)."
+    fonte: "https://www.splunk.com/en_us/products/infrastructure-monitoring.html"
+    verificado_em: 2026-09-29
+    obs: "A service description do Observability Cloud diz 'more than 200 supported open standards-based integrations'. Para logs, o Splunkbase oferece 'More than 1,200 apps and add-ons', incluindo apps de parceiros e da comunidade (https://www.splunk.com/en_us/products/splunk-cloud-platform.html)."
+  sla_disponibilidade_pct:
+    valor: 99.9
+    fonte: "https://www.splunk.com/en_us/legal/observability-service-level-schedule.html"
+    verificado_em: 2026-09-29
+    obs: "Medido por mês civil: considera-se disponível quando é possível fazer login e acessar os dados de monitoramento. O crédito de serviço é o único remédio. O Splunk Cloud Platform (logs) publica compromisso de 100% por trimestre (https://www.splunk.com/en_us/legal/splunk-cloud-service-level-schedule.html)."
+  regiao_dados_brasil:
+    valor: SIM
+    fonte: "https://help.splunk.com/en/splunk-cloud-platform/get-started/service-terms-and-policies/10.5.2605/information-about-the-service/splunk-cloud-platform-service-details"
+    verificado_em: 2026-09-29
+    obs: "SIM vale só para o Splunk Cloud Platform (Victoria Experience na AWS, região 'South America (Brazil)'; a página não nomeia São Paulo). O Splunk Observability Cloud não tem realm no Brasil — os realms são us0, us1, us2, eu0, eu1, eu2, au0, jp0 e sg0 (https://help.splunk.com/en/splunk-observability-cloud/get-started/service-description/splunk-observability-cloud-service-description). Portanto métricas, traces, RUM e sintéticos ficam fora do país."
+  suporte_ptbr:
+    valor: NAO_DOCUMENTADO
+    fonte: "https://www.splunk.com/en_us/legal/support-terms.html"
+    verificado_em: 2026-09-29
+    obs: "Support Terms (set/2024): 'Support Services are delivered in English unless you are in a location where localized Support Services are available'. Nenhuma página oficial lista o português. Há um telefone comercial no Brasil (+55 11 2666 9002) em https://www.splunk.com/en_us/about-splunk/contact-us.html."
+  agente_open_source:
+    valor: PARCIAL
+    texto: "Splunk Distribution of the OpenTelemetry Collector sob Apache License 2.0 (https://github.com/signalfx/splunk-otel-collector); as instrumentações Splunk OTel são descritas como 'open-source software agents and libraries'. O Universal Forwarder e os agentes AppDynamics são proprietários: os Splunk General Terms proíbem engenharia reversa e tentativa de descobrir o código-fonte."
+    fonte: "https://github.com/signalfx/splunk-otel-collector/blob/main/LICENSE"
+    verificado_em: 2026-09-29
+    obs: "Fontes complementares: https://help.splunk.com/en/splunk-observability-cloud/get-started/service-description/splunk-observability-cloud-service-description e https://www.splunk.com/en_us/legal/splunk-general-terms.html"
+  opentelemetry:
+    valor: SIM
+    fonte: "https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector"
+    verificado_em: 2026-09-29
+    obs: "O coletor oficial é uma distribuição do OTel Collector (base Contrib) para métricas, traces e logs. O Collector upstream também é aceito, com suporte best-effort. Database Monitoring e AI Agent Monitoring usam receivers e convenções semânticas OTel. A correlação entre sinais é feita via Related Content."
+  retencao_metricas_meses:
+    valor: 13
+    fonte: "https://help.splunk.com/en/splunk-observability-cloud/monitor-infrastructure/resolution-and-data-retention"
+    verificado_em: 2026-09-29
+    obs: "13 meses (416 dias) para resolução de 1 minuto ou mais, nos planos Standard e Enterprise/Custom (assinaturas por host/MTS). No Splunk Cloud Platform, a retenção segue os volumes e durações configurados pelo cliente nos índices."
+  retencao_metricas_integral:
+    valor: PARCIAL
+    fonte: "https://help.splunk.com/en/splunk-observability-cloud/monitor-infrastructure/resolution-and-data-retention"
+    verificado_em: 2026-09-29
+    obs: "Resolução abaixo de 1 minuto (até 1 s em high-resolution; 10 s no padrão) fica guardada só 8 dias (Standard) ou 3 meses/96 dias (Enterprise/Custom). Depois disso restam rollups de 1 min (sum/min/max/count/latest) por 13 meses. Métricas enviadas a cada 1 minuto ou mais ficam 13 meses na resolução nativa."
+  so_suportados:
+    valor: [linux, windows, macos, aix, solaris, hpux, arm]
+    fonte: "https://help.splunk.com/en/splunk-enterprise/get-started/install-and-upgrade/10.4/plan-your-splunk-enterprise-installation/system-requirements-for-use-of-splunk-enterprise-on-premises"
+    verificado_em: 2026-09-29
+    obs: "Universal Forwarder 10.4: Linux (x86_64, ARM64, s390x, PPCLE), Windows, macOS (ARM64), Solaris 11.4 (x86/SPARC), AIX 7.3 e FreeBSD 14. HP-UX 11.31 (IA-64) só pelo AppDynamics Machine Agent (https://help.splunk.com/en/appdynamics-on-premises/infrastructure-visibility/26.2.0/machine-agent/machine-agent-requirements-and-supported-environments). OTel Collector: Linux e Windows em amd64/arm64. Não há agente para z/OS; há apenas Linux on Z (s390x)."
+  self_managed:
+    valor: SIM
+    fonte: "https://help.splunk.com/en/appdynamics-on-premises"
+    verificado_em: 2026-09-29
+    obs: "Opções self-managed: Splunk AppDynamics On-Premises e Virtual Appliance ('Self-hosted application observability for regulated and sensitive environments') e Splunk Enterprise (logs/ITSI). O Splunk Observability Cloud (APM, IM, RUM, Synthetics, DBM) é somente SaaS."
+  rum_mobile:
+    valor: SIM
+    fonte: "https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/introduction-to-splunk-rum"
+    verificado_em: 2026-09-29
+    obs: "O Splunk RUM for Mobile cobre apps nativos iOS e Android. React Native e Flutter foram anunciados em Alpha (fev/2026); React Native já aparece na documentação de instrumentação."
+  session_replay:
+    valor: SIM
+    fonte: "https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/replay-user-sessions"
+    verificado_em: 2026-09-29
+    obs: "Disponível para browser, iOS e Android, em vídeo ou wireframe, com sessões de até 4 h. Exige assinatura Enterprise e agente browser versão 2.1.0 ou superior. A documentação de 2026 não marca o recurso como preview, mas não consegui acessar um anúncio formal de GA."
+  certificacoes:
+    valor: ["SOC1", "SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO9001", "CSA STAR", "HIPAA", "IRAP", "TISAX", "PCI DSS", "FedRAMP Moderate", "FedRAMP High", "DoD IL5", "GovRAMP", "TX-RAMP", "ISMAP", "ACN QC1/QC2", "Common Criteria", "FIPS 140-2", "Cyber Essentials"]
+    fonte: "https://www.splunk.com/en_us/about-splunk/splunk-data-security-and-privacy/compliance-at-splunk.html"
+    verificado_em: 2026-09-29
+    obs: "Observability Cloud (IM, APM, Profiling, Log Observer Connect, RUM, Synthetics): SOC 1, SOC 2 Type II, ISO 27001/27017/27018/9001, CSA STAR L1/L2, HIPAA, IRAP e TISAX. Não tem PCI nem FedRAMP. PCI DSS, FedRAMP Moderate/High, DoD IL5, GovRAMP, TX-RAMP, ISMAP e ACN valem para o Splunk Cloud Platform. AppDynamics SaaS: SOC 2, ISO 27001/9001 e IRAP. AppDynamics GovAPM: FedRAMP Moderate e GovRAMP. Common Criteria: Splunk Enterprise."
+notas_base:
+  coleta: {nota: 0.9, obs: "Coletor OTel da Splunk (Apache 2.0, com discovery mode) e instrumentações OTel; UF com ampla cobertura de SOs (AIX, Solaris, macOS, ARM) e agentes AppDynamics (inclui HP-UX). Tem 300+ integrações e ingestão por REST API/HEC, mas não há agente para z/OS.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector", "https://help.splunk.com/en/splunk-enterprise/get-started/install-and-upgrade/10.4/plan-your-splunk-enterprise-installation/system-requirements-for-use-of-splunk-enterprise-on-premises", "https://www.splunk.com/en_us/products/infrastructure-monitoring.html"]}
+  infraestrutura: {nota: 0.85, obs: "Cobre hosts, AWS/Azure/GCP, Kubernetes com autodescoberta, VMware vSphere, storage (ex.: Pure Storage), serverless e Network Explorer. SNMP é feito via Telegraf+OTel (o monitor Smart Agent está em depreciação); não verifiquei suporte a fluxos de rede.", fontes: ["https://www.splunk.com/en_us/products/infrastructure-monitoring.html", "https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud", "https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/applications-networks/snmp-agent"]}
+  apm: {nota: 0.95, obs: "Splunk APM com instrumentação OTel para Java, .NET, Node.js, Python, Go, Ruby, PHP e C++, além de service map e análise de erros. Business Transactions e Call Graphs (nível de código) estão em GA no Observability Cloud, e o AppDynamics cobre APM n-tier.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud", "https://www.splunk.com/en_us/blog/observability/conf25-splunk-observability-announcements.html", "https://help.splunk.com/en/appdynamics-on-premises/application-performance-monitoring/26.8.0/install-app-server-agents/java-agent/java-supported-environments"]}
+  logs: {nota: 0.95, obs: "O Splunk Cloud Platform/Enterprise oferece SPL (inclusive busca em tempo real); Ingest Actions, Edge Processor e Ingest Processor para filtrar, mascarar e rotear; arquivo DDAA com restauração; DDSS; e Federated Search S3. No Observability Cloud, os logs chegam via Log Observer Connect e Observability Logs (set/2026).", fontes: ["https://help.splunk.com/en/splunk-cloud-platform/get-started/service-terms-and-policies/10.5.2605/information-about-the-service/splunk-cloud-platform-service-details", "https://help.splunk.com/en/splunk-observability-cloud/get-started/service-description/splunk-observability-cloud-service-description", "https://help.splunk.com/en/splunk-observability-cloud/release-notes/september-2026"]}
+  correlacao: {nota: 0.9, obs: "O Related Content correlaciona automaticamente APM, infraestrutura e logs. Há service map de dependências, vínculo RUM→APM e DB Monitoring↔traces, além de Unified Identity entre Splunk Cloud Platform e Observability Cloud.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/data-tools/related-content", "https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/introduction-to-splunk-rum", "https://help.splunk.com/en/splunk-observability-cloud/monitor-databases/introduction-to-splunk-database-monitoring"]}
+  banco-dados: {nota: 0.9, obs: "O Splunk Database Monitoring (baseado em OTel, com licença própria) cobre SQL Server, Oracle, PostgreSQL, MySQL/MariaDB e MongoDB com query samples, top queries, wait time e planos de execução correlacionados a traces. O AppDynamics Database Visibility adiciona DB2, Sybase, SAP HANA, Couchbase e Cassandra.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/monitor-databases/get-data-in/configure-receivers", "https://help.splunk.com/en/appdynamics-saas/database-visibility/26.9.0/database-visibility-supported-environments", "https://help.splunk.com/en/splunk-observability-cloud/monitor-databases/introduction-to-splunk-database-monitoring"]}
+  experiencia-usuario: {nota: 0.9, obs: "RUM para browser e mobile nativo (iOS/Android); session replay em browser, iOS e Android (exige assinatura Enterprise); Synthetic Monitoring com testes browser, API e uptime e private runner; e Digital Experience Analytics.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/introduction-to-splunk-rum", "https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/replay-user-sessions", "https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/synthetic-monitoring/introduction-to-splunk-synthetic-monitoring"]}
+  alertas-dashboards: {nota: 0.9, obs: "Dashboards e detectores em tempo real, SLOs com error budget e alertas de burn rate. Notificações multicanal e Splunk On-Call com rotações e políticas de escalonamento.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/create-alerts-detectors-and-service-level-objectives/create-service-level-objectives-slos/introduction-to-service-level-objective-slo-management", "https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/notification-services", "https://help.splunk.com/en/splunk-cloud-platform/alert-and-respond/splunk-on-call/introduction-to-splunk-on-call"]}
+  aiops: {nota: 0.85, obs: "AI SRE em GA (set/2026): detecção por IA em apps e Kubernetes, agrupamento de alertas em incidentes e agente de troubleshooting que aponta causa raiz com nível de confiança e evidências. O ITSI Event iQ (GA) reduz ruído; a remediação por agentes ainda está em Alpha.", fontes: ["https://www.splunk.com/en_us/blog/observability/ai-sre-in-splunk-observability-cloud-can-remediate-incidents-with-claude-managed-agents.html", "https://www.splunk.com/en_us/blog/observability/conf25-splunk-observability-announcements.html", "https://help.splunk.com/en/splunk-observability-cloud/release-notes/july-2026"]}
+  ia-llm: {nota: 0.75, obs: "AI Agent Monitoring (GA em fev/2026) e AI Token and Cost Monitoring cobrem desempenho, qualidade, tokens/custo e risco de agentes e LLMs; AI Infrastructure Monitoring também é GA. Há migração em curso para o Splunk Agent Observability (avaliações e guardrails), liberado sob solicitação em set/2026.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-agent-monitoring", "https://www.splunk.com/en_us/blog/observability/splunk-observability-ai-agent-monitoring-innovations.html", "https://help.splunk.com/en/splunk-observability-cloud/release-notes/september-2026"]}
+  profiling: {nota: 0.8, obs: "AlwaysOn Profiling contínuo (CPU e memória, com flame graphs) vinculado a traces para Java, Node.js e .NET; Python só tem CPU. Não cobre Go, Ruby nem PHP.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/alwayson-profiling"]}
+  dados-pipelines: {nota: 0.4, obs: "Coleta apenas métricas de componentes (Kafka, Apache Spark, Hadoop, Snowflake, RabbitMQ) via integrações e receivers OTel. Não há recursos nativos de freshness, qualidade ou linhagem de dados.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/opentelemetry-receivers/apache-spark-receiver", "https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/applications-messaging/kafka", "https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/opentelemetry-receivers/snowflake-receiver"]}
+  seguranca-governanca: {nota: 0.8, obs: "RBAC por roles/capabilities, SSO SAML 2.0 (MFA via IdP), TLS 1.2+ e AES-256, API de eventos de auditoria e amplo leque de certificações. O Observability Cloud está fora do escopo PCI/FedRAMP e a LGPD não é citada nas páginas de compliance.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/get-started/service-description/splunk-observability-cloud-service-description", "https://www.splunk.com/en_us/about-splunk/splunk-data-security-and-privacy/compliance-at-splunk.html", "https://dev.splunk.com/observability/reference/api/audit_events/latest"]}
+  integracoes-itsm: {nota: 0.9, obs: "Notificações nativas para ServiceNow, Jira, Microsoft Teams, Slack, PagerDuty, Opsgenie, xMatters, BigPanda, EventBridge e webhooks. O Splunk Add-on for ServiceNow cria incidentes e eventos e coleta CIs do CMDB.", fontes: ["https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/notification-services", "https://splunk.github.io/splunk-add-on-for-servicenow/", "https://splunkbase.splunk.com/app/1928"]}
+  plataforma: {nota: 0.8, obs: "Entrega SaaS (Observability Cloud, Splunk Cloud Platform, AppDynamics SaaS) e self-managed (Splunk Enterprise, AppDynamics On-Premises/Virtual Appliance). SLA de 99,9% (Observability Cloud) e 100% trimestral (Splunk Cloud), métricas por 13 meses e suporte P1 24x7; o Observability Cloud não tem realm no Brasil.", fontes: ["https://www.splunk.com/en_us/legal/observability-service-level-schedule.html", "https://help.splunk.com/en/splunk-observability-cloud/get-started/service-description/splunk-observability-cloud-service-description", "https://help.splunk.com/en/splunk-cloud-platform/get-started/service-terms-and-policies/10.5.2605/information-about-the-service/splunk-cloud-platform-service-details"]}
+destaques:
+  - "Coleta nativa em OpenTelemetry: a distribuição Splunk do OTel Collector e as instrumentações são open source e oficialmente suportadas."
+  - "O Splunk Cloud Platform/Enterprise é referência em logs (SPL, pipelines com mascaramento, arquivo com restauração) e o Splunk Cloud Platform tem região AWS 'South America (Brazil)'."
+  - "O portfólio cobre APM cloud-native (Observability Cloud) e n-tier (AppDynamics), com opção self-hosted (AppDynamics On-Premises/Virtual Appliance e Splunk Enterprise) para ambientes regulados."
+  - "O Database Monitoring traz planos de execução para SQL Server, Oracle, PostgreSQL, MySQL/MariaDB e MongoDB, e o AppDynamics Database Visibility cobre ainda DB2, Sybase e SAP HANA."
+  - "O AI SRE (GA em set/2026) faz detecção por IA, agrupa alertas e identifica causa raiz por agente, complementado pelo ITSI Event iQ."
+  - "Amplo leque de certificações: SOC 1/2, ISO 27001/27017/27018/9001, CSA STAR e HIPAA no Observability Cloud; PCI DSS, FedRAMP e DoD IL5 no Splunk Cloud Platform."
+gaps:
+  - "O Splunk Observability Cloud não tem realm no Brasil (só EUA, Europa, Austrália, Japão e Singapura), então métricas, traces, RUM e sintéticos ficam fora do país; apenas o Splunk Cloud Platform tem região brasileira."
+  - "Suporte em português não é documentado: os Support Terms preveem atendimento em inglês, salvo em localidades com suporte localizado."
+  - "As capacidades estão espalhadas em produtos distintos (Observability Cloud, AppDynamics, Splunk Cloud/Enterprise, ITSI), com licenças específicas: Database Monitoring exige licença própria e session replay exige assinatura Enterprise. O Observability Cloud é somente SaaS."
+  - "A retenção de métricas por 13 meses só vale para resolução de 1 minuto ou mais; dados abaixo de 1 minuto ficam 8 dias (Standard) ou 3 meses (Enterprise)."
+  - "O Observability Cloud está fora do escopo de PCI DSS e FedRAMP, e a LGPD não é citada nas páginas oficiais de compliance e privacidade consultadas."
+  - "A observabilidade de LLM está em transição (AI Agent Monitoring programado para descontinuação) e a remediação por agentes ainda está em Alpha. Também não há agente para z/OS nem observabilidade de dados (freshness/linhagem)."

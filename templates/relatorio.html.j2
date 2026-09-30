@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if modo == 'proponente' %}Análise de aderência — {{ proponente_nome }} × {{ cliente.nome }}{% else %}Seleção de observabilidade — {{ cliente.nome }}{% endif %}</title>
+<style>
+:root{--brand:#1F4E78;--brand2:#2E75B6;--ok:#2e7d32;--warn:#b8860b;--bad:#c0392b;--bg:#f7f9fc;--card:#fff;--line:#e3e8ef}
+*{box-sizing:border-box}body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:#1a2330;line-height:1.55}
+header{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:34px 28px}
+header h1{margin:0 0 6px;font-size:25px}header p{margin:0;opacity:.92;font-size:14px}
+nav{position:sticky;top:0;background:#ffffffe6;backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 28px;font-size:13px;z-index:5}
+nav a{color:var(--brand);text-decoration:none;margin-right:16px;font-weight:600}nav a:hover{text-decoration:underline}
+main{max-width:1180px;margin:0 auto;padding:22px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin:18px 0;box-shadow:0 1px 3px #0000000a}
+h2{color:var(--brand);border-bottom:2px solid var(--line);padding-bottom:8px;margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--brand);color:#fff;font-weight:600}td.c,th.c{text-align:center}
+.badge{display:inline-block;padding:2px 9px;border-radius:11px;font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
+.b-ok{background:var(--ok)}.b-warn{background:var(--warn)}.b-bad{background:var(--bad)}
+.rec{background:#eaf4ff;border-left:5px solid var(--brand2);padding:12px 18px;border-radius:8px}
+.pendente{background:#fff8e1;border-left:5px solid var(--warn);padding:10px 16px;border-radius:8px;font-size:13px}
+.s10{background:#c6efce}.s075{background:#e2efda}.s05{background:#fff2cc}.s025{background:#fce4d6}.s0{background:#f8cbad}.sna{background:#ededed}
+.muted{color:#5b6b7f;font-size:12px}.top{font-weight:800;color:var(--brand)}
+footer{max-width:1180px;margin:0 auto;padding:16px 24px;color:#5b6b7f;font-size:12px}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.kpi{flex:1 1 200px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi b{display:block;font-size:22px;color:var(--brand)}.kpi span{font-size:12px;color:#5b6b7f}
+.card{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}.card h3{margin:0 0 6px;font-size:15px}
+</style>
+</head>
+<body>
+<header>
+{% if modo == 'proponente' %}
+  <h1>Análise de aderência — {{ proponente_nome }} × {{ cliente.nome }}</h1>
+  <p>Resposta como proponente ({{ proponente_nome }}) com inteligência competitiva do campo avaliado · referência {{ data_referencia }}</p>
+{% else %}
+  <h1>Estudo de seleção de solução de observabilidade — {{ cliente.nome }}</h1>
+  <p>Comparativo vendor-neutro ({{ ranking.ranking | map(attribute='nome') | join(' · ') }}) · referência {{ data_referencia }}</p>
+{% endif %}
+</header>
+<nav><a href="#rec">Recomendação</a>{% if cobertura and cobertura.respondidos %}<a href="#respostas">Respostas</a>{% endif %}{% if confianca_linhas %}<a href="#confianca">Confiança</a>{% endif %}<a href="#gates">Triagem e gates</a>{% if cenarios_gate | length > 1 %}<a href="#cenarios">Cenários</a>{% endif %}<a href="#score">Scorecard</a>{% if sens %}<a href="#sens">Sensibilidade</a>{% endif %}<a href="#ader">Aderência</a>{% if esforco %}<a href="#esforco">Esforço de POC</a>{% endif %}{% if custo %}<a href="#custo">Custo</a>{% endif %}{% if battlecards %}<a href="#battle">Battlecards</a>{% endif %}<a href="#estrat">Fatores estratégicos</a><a href="#prox">Próximos passos</a><a href="#metodo">Metodologia</a>{% if pendencias %}<a href="#pend">Pendências</a>{% endif %}</nav>
+<main>
+{% if execucao and execucao.assistida and not execucao.completa %}<div class="pendente" style="margin-top:18px"><b>PRELIMINAR — execução assistida incompleta.</b> {{ execucao.pendencias | join('; ') }}. Rode pela skill no VS Code (atualização da KB, revisão dos requisitos por LLM e verificação das URLs nesta execução).</div>
+{% elif execucao and not execucao.assistida %}<div class="pendente" style="margin-top:18px">Execução não assistida (exemplo/diagnóstico): sem atualização da KB nem revisão dos requisitos por LLM nesta execução.</div>{% endif %}
+{% if panorama %}<div class="kpis">{% for valor, rotulo in panorama %}<div class="kpi"><b>{{ valor }}</b><span>{{ rotulo }}</span></div>{% endfor %}</div>{% endif %}
+
+<section id="rec"><h2>Recomendação</h2>
+{% if narrativa['Recomendação'] %}<div class="rec">{{ narrativa['Recomendação'] | safe }}</div>
+{% else %}<div class="pendente">⚠️ Narrativa pendente — preencha <code>02-analise/narrativa.md</code> (ver <code>prompts/07-narrativa.md</code>).
+{% if melhor_elegivel %} Pelo cálculo, o melhor fornecedor elegível no gate é <b>{{ melhor_elegivel.nome }}</b> (aderência {{ melhor_elegivel.aderencia_pct | br }}%{% if melhor_elegivel.nota_final is not none %}, nota final {{ melhor_elegivel.nota_final | br(2) }}{% endif %}).{% elif melhor_merito %} Nenhum fornecedor passa em todos os gates eliminatórios; o melhor por mérito é <b>{{ melhor_merito.nome }}</b>.{% endif %}</div>
+{% endif %}
+<p class="muted">Critério eliminatório é pass/fail: nenhuma nota de aderência compensa um gate reprovado.{% if lentes.lider_aderencia %} Duas lentes: na aderência pura ao edital o líder é <b>{{ nome_de(lentes.lider_aderencia) }}</b> ({{ lentes.aderencia_pct | br }}%){% if lentes.lider_nota %}; no balanço completo (nota final) é <b>{{ nome_de(lentes.lider_nota) }}</b> ({{ lentes.nota_final | br(2) }}){% endif %}.{% endif %}{% if sens %} 1º robusto na análise de sensibilidade: <b>{{ nome_de(sens.robusto) }}</b>{% if sens.robusto_elegivel and sens.robusto_elegivel != sens.robusto %} (entre os elegíveis: <b>{{ nome_de(sens.robusto_elegivel) }}</b>){% endif %}.{% endif %}</p>
+</section>
+
+{% if cobertura and cobertura.respondidos %}
+<section id="respostas"><h2>Aderência do {{ proponente_nome }} — respostas ao edital</h2>
+<p>{{ cobertura.respondidos }} de {{ cobertura.total }} requisitos respondidos.</p>
+{% for tb in cobertura.tabelas %}
+<h3>{{ tb.abas }} — {{ tb.respondidos }} resposta(s)</h3>
+<table><tr><th>Obrigatoriedade</th>{% for e in tb.escala %}<th class="c">{{ e }}</th>{% endfor %}</tr>
+{% for linha in tb.linhas %}<tr><td>{{ linha[0] }}</td>{% for v in linha[1:] %}<td class="c">{{ v }}</td>{% endfor %}</tr>{% endfor %}
+</table>
+{% endfor %}
+{% if cobertura.eliminatorios_em_risco %}<h3>Eliminatórios com resposta parcial ou negativa</h3><ul>{% for n in cobertura.eliminatorios_em_risco %}<li><b>{{ n.id }}</b> — {{ n.resposta }}: {{ n.requisito }}</li>{% endfor %}</ul>{% endif %}
+<p class="muted">Detalhe por requisito em <code>matriz-respostas-{{ cliente.sigla | lower }}.xlsx</code> e no memorial técnico.</p>
+</section>
+{% endif %}
+
+{% if confianca_linhas %}
+<section id="confianca"><h2>Confiança da análise</h2>
+<table><tr><th>Fornecedor</th><th class="c">Avaliações</th><th class="c">% alta</th><th class="c">Alta</th><th class="c">Média</th><th class="c">Baixa</th><th class="c">Eliminatórios com alta</th><th class="c">Com pendência</th></tr>
+{% for c in confianca_linhas %}<tr><td>{{ c.nome }}</td><td class="c">{{ c.total }}</td><td class="c"><b>{{ c.pct_alta | br }}%</b></td><td class="c s10">{{ c.alta }}</td><td class="c s05">{{ c.media }}</td><td class="c s0">{{ c.baixa }}</td><td class="c">{{ c.elim_alta }}/{{ c.elim_total }}</td><td class="c">{{ c.pendencias }}</td></tr>{% endfor %}
+</table>
+<p class="muted">Confiança calculada por regras: <b>alta</b> = requisito claro + citação oficial literal conferida + recurso GA + a fonte cobre o parâmetro pedido. Abaixo de alta, cada item exige encaminhamento: pergunta de esclarecimento ao cliente (lacuna do edital), pergunta ao fabricante ou POC (lacuna da documentação) ou nova verificação.{% if independente.amostra %} Verificação independente: {{ independente.verificados }}/{{ independente.amostra }} da amostra, concordância {{ independente.concordancia_pct | br }}%{% if independente.divergencias_abertas %}, {{ independente.divergencias_abertas }} divergência(s) sem decisão{% endif %}.{% endif %}{% if confianca.inconsistencias %} {{ confianca.inconsistencias | length }} inconsistência(s) apontada(s).{% endif %}</p>
+</section>
+{% endif %}
+
+<section id="gates"><h2>Triagem e gates eliminatórios</h2>
+<p class="muted">Campo avaliado: {{ ranking.triagem | length }} fornecedores (obrigatórios + Líderes do Gartner MQ {{ edicao.ano if edicao else '—' }} + contexto). Avaliação completa: {{ ranking.avaliacao_completa | length }}.</p>
+<table>
+<tr><th>Fornecedor</th><th>Origem</th><th class="c">Gartner {{ edicao.ano if edicao else '' }}</th>
+{% for g in gates_cfg %}<th class="c" title="{{ g.clausula | default('') }}">{{ g.id }}{% if not g.get('eliminatorio', true) %}*{% endif %}</th>{% endfor %}
+<th class="c">Resultado</th><th class="c">Aderência prévia</th></tr>
+{% for tr in ranking.triagem %}
+{% set vg = {} %}{% for l in gates.fornecedores[tr.id].gates %}{% set _ = vg.update({l.gate: l}) %}{% endfor %}
+<tr><td><b>{{ tr.nome }}</b></td><td>{{ tr.origem }}</td><td class="c">{{ posicao_gartner(tr.id) }}</td>
+{% for g in gates_cfg %}{% set l = vg.get(g.id) %}<td class="c" title="{{ l.justificativa if l else '' }}">{% if l %}<span class="badge {{ classe_veredito(l.veredito) }}">{{ ROTULO[l.veredito] }}</span>{% endif %}</td>{% endfor %}
+<td class="c"><span class="badge {{ classe_veredito(tr.status_gate) }}">{{ ROTULO[tr.status_gate] }}</span></td>
+<td class="c">{{ tr.aderencia_previa_pct | br }}%</td></tr>
+{% endfor %}
+</table>
+<table><tr><th>Gate</th><th>Cláusula do edital</th><th>Regra</th></tr>
+{% for g in gates_cfg %}<tr><td><b>{{ g.id }}</b>{% if not g.get('eliminatorio', true) %}*{% endif %}</td><td>{{ g.clausula | default('') }}</td><td><code>{{ g.regra }}</code> {{ g.params | params }}</td></tr>{% endfor %}
+</table>
+<p class="muted">* não eliminatório (requisito crítico, exibido para contexto). Passe o mouse sobre um veredito para ver a justificativa; fontes na seção Metodologia.</p>
+</section>
+
+{% if cenarios_gate | length > 1 %}
+<section id="cenarios"><h2>Recomendação por cenário de gate</h2>
+<table><tr><th>Cenário</th><th>Melhor elegível (por nota final)</th><th>Passam a elegíveis</th><th>Reprovados pelo gate</th></tr>
+{% for c in cenarios_gate %}<tr><td>{{ c.cenario }}</td><td><b>{{ nome_de(c.melhor) if c.melhor else 'nenhum' }}</b></td><td>{{ c.passam_nomes | join(', ') or '—' }}</td><td>{{ c.reprovados_nomes | join(', ') or '—' }}</td></tr>{% endfor %}
+</table>
+{% if narrativa['Cenários'] %}{{ narrativa['Cenários'] | safe }}{% endif %}
+<p class="muted">Cada linha flexibiliza só o(s) gate(s) indicado(s) e mantém os demais. Flexibilização só vale com aceite do cliente por escrito.</p>
+</section>
+{% endif %}
+
+<section id="score"><h2>Scorecard multi-eixo (0–5)</h2>
+<table>
+<tr><th>#</th><th>Fornecedor</th><th class="c">Aderência %</th>{% for k in ['risco','esforco','custo','estrategico'] %}<th class="c">{{ k | capitalize }}</th>{% endfor %}<th class="c">Nota final</th><th class="c">Gate</th><th class="c">Confiança</th></tr>
+{% for l in ranking.ranking %}
+<tr><td class="c">{{ l.posicao }}</td><td class="{{ 'top' if loop.first else '' }}">{{ l.nome }}{% if not l.notas_completas %} <span class="muted">(notas incompletas)</span>{% endif %}</td>
+<td class="c">{{ l.aderencia_pct | br }}</td>{% for k in ['risco','esforco','custo','estrategico'] %}<td class="c">{{ l[k] | br }}</td>{% endfor %}
+<td class="c {{ 'top' if loop.first else '' }}">{{ l.nota_final | br(2) }}</td>
+<td class="c"><span class="badge {{ classe_veredito(l.status_gate) }}">{{ ROTULO[l.status_gate] }}</span></td><td class="c">{{ l.confianca }}</td></tr>
+{% endfor %}
+</table>
+<p class="muted">Nota final = {% for k, p in ranking.eixos.items() %}{{ (p / 100) | br(2) }}·{{ k }}{% if not loop.last %} + {% endif %}{% endfor %}. Eixos sem nota (—) deixam a nota final em aberto — preencher <code>02-analise/eixos.yaml</code>.</p>
+</section>
+
+{% if sens %}
+<section id="sens"><h2>Análise de sensibilidade</h2>
+<table><tr><th>Cenário de pesos</th><th>1º</th><th>2º</th><th>3º</th><th>1º elegível</th></tr>
+{% for c in sens.cenarios %}<tr><td>{{ c.cenario }}</td>{% for f in c.ordem[:3] %}<td>{{ nome_de(f) }} <span class="muted">{{ c.notas[f] | br(2) }}</span></td>{% endfor %}{% for _ in range(3 - (c.ordem[:3] | length)) %}<td></td>{% endfor %}<td>{{ nome_de(c.primeiro_elegivel) if c.primeiro_elegivel else '—' }}</td></tr>{% endfor %}
+</table>
+<p><b>1º robusto:</b> {{ nome_de(sens.robusto) }} — 1º em {{ sens.vitorias[sens.robusto] }} de {{ sens.cenarios | length }} cenários (posição média {{ sens.posicao_media[sens.robusto] | br(2) }}).{% if sens.estavel %} O 1º não muda em nenhum cenário.{% endif %}{% if sens.robusto_elegivel %} Entre os elegíveis: <b>{{ nome_de(sens.robusto_elegivel) }}</b>.{% endif %}</p>
+<p class="muted">Cada cenário soma {{ sens.delta_pp | br(0) }} p.p. ao eixo indicado e reduz os demais proporcionalmente; "só aderência" é a lente do edital puro.</p>
+</section>
+{% endif %}
+
+<section id="ader"><h2>Aderência por categoria</h2>
+<table>
+<tr><th>Categoria</th><th class="c">Peso</th>{% for l in ranking.ranking %}<th class="c">{{ l.nome }}</th>{% endfor %}</tr>
+{% for c in ranking.categorias %}
+<tr><td>{{ c.nome }}</td><td class="c">{{ c.peso | br }}</td>{% for l in ranking.ranking %}{% set n = l.notas.get(c.id) %}<td class="c {{ classe_nota(n) }}">{{ n | br(2) }}{% if l.origem_notas.get(c.id) == 'ajuste' %}*{% endif %}</td>{% endfor %}</tr>
+{% endfor %}
+<tr><td><b>ADERÊNCIA PONDERADA</b></td><td class="c"><b>100</b></td>{% for l in ranking.ranking %}<td class="c"><b>{{ l.aderencia_pct | br }}%</b></td>{% endfor %}</tr>
+</table>
+<p class="muted">Régua: 1,0 nativo-líder · 0,75 forte · 0,5 parcial/por extensão · 0,25 fraco · 0 não atende. * nota ajustada para este edital (02-analise/ajustes-notas.yaml). Pesos = massa de requisitos do edital por categoria ({{ rtm.total }} requisitos extraídos).</p>
+</section>
+
+{% if esforco %}
+<section id="esforco"><h2>Esforço de POC</h2>
+<p class="muted">{{ esforco.unidade }}{% if esforco.descricao %} · {{ esforco.descricao }}{% endif %}</p>
+<table><tr><th>Fornecedor</th><th class="c">Esforço (dias)</th><th class="c">% em frentes-portão</th><th class="c">Risco de reprovar</th><th>Motivo</th></tr>
+{% for fid, t in esforco.fornecedores.items() | sort(attribute='1.medio') %}<tr><td>{{ nome_de(fid) }}</td><td class="c">{{ faixa(t.min, t.max, 0) }} (~{{ t.medio | br(0) }})</td><td class="c">{% if t.pct_portoes is not none %}{{ t.pct_portoes | br(0) }}%{% else %}—{% endif %}</td><td class="c">{{ t.risco or '—' }}</td><td>{{ t.motivo_risco or '' }}</td></tr>{% endfor %}
+</table>
+<table><tr><th>Frente</th><th class="c">Portão</th>{% for fid, t in esforco.fornecedores.items() | sort(attribute='1.medio') %}<th class="c">{{ nome_de(fid) }}</th>{% endfor %}<th>Observação</th></tr>
+{% for fr in esforco.frentes %}<tr><td>{{ fr.id or '' }} {{ fr.nome }}</td><td class="c">{{ 'sim' if fr.portao else '' }}</td>{% for fid, t in esforco.fornecedores.items() | sort(attribute='1.medio') %}<td class="c">{% if fr.dias[fid] %}{{ faixa(fr.dias[fid][0], fr.dias[fid][1], 0) }}{% else %}—{% endif %}</td>{% endfor %}<td>{{ fr.obs or '' }}</td></tr>{% endfor %}
+</table>
+</section>
+{% endif %}
+
+{% if custo %}
+<section id="custo"><h2>Estimativa de custo de produção (list price){% if custo.ilustrativo %} — ILUSTRATIVO{% endif %}</h2>
+<p>Cenário de referência: {{ custo.cenario.descricao or '—' }}. Estimativa indicativa em {{ custo.moeda }}, não é proposta comercial.</p>
+<table><tr><th>Fornecedor</th><th class="c">Custo/mês</th><th class="c">Anualizado</th><th>Modelo de cobrança</th><th>Ressalva</th></tr>
+{% for fid, t in custo.fornecedores.items() | sort(attribute='1.mensal_min') %}<tr><td>{{ nome_de(fid) }}</td><td class="c">{{ dinheiro(t.mensal_min, t.mensal_max, custo.moeda) }}</td><td class="c">{{ dinheiro(t.anual_min, t.anual_max, custo.moeda) }}</td><td>{{ t.modelo_cobranca or '' }}</td><td>{{ t.ressalva or '' }}</td></tr>{% endfor %}
+</table>
+<h3>Preços unitários (fontes oficiais)</h3>
+<table><tr><th>Fornecedor</th><th>Componente</th><th class="c">Qtde</th><th class="c">Preço unitário</th><th class="c">Valor/mês</th><th>Fonte</th><th>Verificado em</th></tr>
+{% for fid, t in custo.fornecedores.items() | sort(attribute='1.mensal_min') %}{% for c in t.componentes %}<tr><td>{{ nome_de(fid) }}</td><td>{{ c.item }}</td><td class="c">{{ c.quantidade if c.quantidade is not none else '' }} {{ c.unidade or '' }}</td><td class="c">{{ c.preco_unitario if c.preco_unitario is not none else '' }}</td><td class="c">{{ dinheiro(c.valor_min, c.valor_max, custo.moeda) }}</td><td>{% if c.fonte and c.fonte.startswith('http') %}<a href="{{ c.fonte }}">{{ c.fonte }}</a>{% else %}{{ c.fonte or '' }}{% endif %}</td><td>{{ c.verificado_em or '' }}</td></tr>{% endfor %}{% endfor %}
+</table>
+{% if custo.leitura %}<p><b>Leitura:</b> {{ custo.leitura }}</p>{% endif %}
+</section>
+{% endif %}
+
+{% if cruzamento %}
+<section id="cruz"><h2>Esforço × custo (leitura de decisão)</h2>
+<table><tr><th>Fornecedor</th><th class="c">Esforço POC</th><th class="c">Risco POC</th><th class="c">Custo/mês</th><th class="c">Gate</th><th class="c">Nota final</th></tr>
+{% for c in cruzamento %}<tr><td>{{ c.nome }}</td><td class="c">{{ c.esforco }}</td><td class="c">{{ c.risco }}</td><td class="c">{{ c.custo_mensal }}</td><td class="c"><span class="badge {{ classe_veredito(c.status_gate) }}">{{ ROTULO[c.status_gate] }}</span></td><td class="c">{{ c.nota_final | br(2) }}</td></tr>{% endfor %}
+</table>
+</section>
+{% endif %}
+
+{% if battlecards %}
+<section id="battle"><h2>Inteligência competitiva — battlecards (× {{ proponente_nome }})</h2>
+{% for c in battlecards %}<div class="card"><h3>{{ c.nome }} <span class="muted">· {{ c.gartner }} no MQ · gate {{ ROTULO[c.gate] }} · aderência {{ c.aderencia_pct | br }}% · nota final {{ c.nota_final | br(2) }}</span></h3>
+{% if c.mais_forte %}<p><b>Mais forte que o {{ proponente_nome }}:</b> {% for n, a, b, p in c.mais_forte %}{{ n }} ({{ a | br(2) }} × {{ b | br(2) }}){% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+{% if c.proponente_mais_forte %}<p><b>{{ proponente_nome }} mais forte:</b> {% for n, a, b, p in c.proponente_mais_forte %}{{ n }} ({{ b | br(2) }} × {{ a | br(2) }}){% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+{% if c.destaques or c.gaps %}<p class="muted">{% for d in c.destaques[:3] %}✅ {{ d }} {% endfor %}{% for g in c.gaps[:3] %}⚠️ {{ g }} {% endfor %}</p>{% endif %}
+</div>{% endfor %}
+<p class="muted">Diferenças de nota por categoria (≥ 0,25), ordenadas pelo peso da categoria no edital; destaques e gaps da base de conhecimento. Uso interno.</p>
+</section>
+{% endif %}
+
+<section id="estrat"><h2>Fatores estratégicos</h2>
+{% if narrativa['Fatores estratégicos'] %}{{ narrativa['Fatores estratégicos'] | safe }}{% else %}<div class="pendente">⚠️ Seção pendente em <code>02-analise/narrativa.md</code>.</div>{% endif %}
+{% if narrativa['Ressalvas'] %}<h3>Ressalvas</h3>{{ narrativa['Ressalvas'] | safe }}{% endif %}
+</section>
+
+<section id="prox"><h2>Próximos passos</h2>
+{% if narrativa['Próximos passos'] %}{{ narrativa['Próximos passos'] | safe }}{% else %}<div class="pendente">⚠️ Seção pendente em <code>02-analise/narrativa.md</code>.</div>{% endif %}
+</section>
+{% if narrativa['Revisão crítica'] %}
+<section id="critica"><h2>Revisão crítica</h2>
+{{ narrativa['Revisão crítica'] | safe }}
+</section>
+{% endif %}
+
+<section id="metodo"><h2>Metodologia e fontes</h2>
+<ul>
+<li><b>Ordem:</b> extração do edital → matriz de requisitos ({{ rtm.total }} itens) → pesos por categoria → gates eliminatórios (pass/fail) → aderência ponderada → scorecard → recomendação.</li>
+<li><b>Campo avaliado:</b> fornecedores obrigatórios{% if cfg.fornecedores.obrigatorios %} ({{ cfg.fornecedores.obrigatorios | join(', ') }}){% endif %} + Líderes do Gartner Magic Quadrant {{ edicao.titulo if edicao else '' }} {{ edicao.ano if edicao else '' }} + fornecedores de contexto.</li>
+<li><b>Evidência:</b> fatos e notas-base vêm da base de conhecimento do kit (documentação pública oficial dos fabricantes, com URL e data de verificação); ajustes específicos deste edital exigem justificativa e fonte.</li>
+<li><b>Custo:</b> eixo do scorecard baseado em estimativa indicativa/list price; valores contratuais pertencem à fase comercial.</li>
+</ul>
+<table><tr><th>Fornecedor</th><th>Gate</th><th>Fato</th><th>Valor</th><th>Fonte</th><th>Verificado em</th></tr>
+{% for f in fatos %}<tr><td>{{ f.fornecedor }}</td><td>{{ f.gate }}</td><td>{{ f.fato }}</td><td>{{ f.valor }}</td><td>{% if f.fonte and f.fonte.startswith('http') %}<a href="{{ f.fonte }}">{{ f.fonte }}</a>{% else %}{{ f.fonte }}{% endif %}</td><td>{{ f.verificado_em }}</td></tr>{% endfor %}
+</table>
+</section>
+
+{% if pendencias %}
+<section id="pend"><h2>Pendências de qualidade (uso interno)</h2>
+<table><tr><th>Nível</th><th>Verificação</th><th>Detalhe</th></tr>
+{% for p in pendencias %}<tr><td><span class="badge {{ 'b-bad' if p.nivel == 'ERRO' else 'b-warn' }}">{{ p.nivel }}</span></td><td>{{ p.codigo }}</td><td>{{ p.mensagem }}</td></tr>{% endfor %}
+</table>
+<p class="muted">Remova esta seção da versão enviada ao cliente com <code>relatorio.incluir_pendencias: false</code> no rfp.yaml.</p>
+</section>
+{% endif %}
+</main>
+<footer>Gerado pelo kit-rfp-observabilidade v{{ kit_versao }} em {{ gerado_em }} a partir dos artefatos de análise.{% if confidencial %} Confidencial — uso restrito.{% endif %}</footer>
+</body>
+</html>

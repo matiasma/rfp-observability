@@ -1,0 +1,45 @@
+# Registro de evidências DESTE estudo: alegações que sustentam decisões (gate, direcionamento, resposta negativa,
+# risco, recomendação). É o que um avaliador ou o cliente vai questionar — cada linha precisa de fonte e citação.
+# Vai para 00-projeto/evidencias/registro-evidencias.md e as URLs entram em 'python kit.py validar-urls'.
+#
+# Diferente da KB: aqui cabe o que é específico do edital (cláusulas do próprio edital, respostas do fabricante a
+# este processo, leitura de uma exigência do cliente). O que for fato público e reaproveitável vai para
+# kb/evidencias/<fornecedor>.yaml — e aqui você só aponta com 'kb:'.
+#
+# - id: EV-0001
+#   tema: "Gate G2 — região de dados no Brasil"
+#   fornecedor: datadog                # opcional: a alegação aparece no dossiê do fornecedor
+#   alegacao: "O fornecedor não oferece região de dados no Brasil."
+#   fonte: "https://..."               # URL oficial, ou "edital: <arquivo> item 4.2" para cláusula do edital
+#   data_acesso: 2026-01-15
+#   citacoes: ["trecho literal da fonte"]
+#   confianca: alta                    # alta | media | baixa
+#   impacto: "Reprova o gate G2 (eliminatório)."
+#   usado_em: ["G2", "memorial §3"]    # opcional
+#   palavras_chave: ["region"]         # opcional: conferidas na página por 'validar-urls'
+#
+# - id: EV-0002
+#   tema: "Resposta negativa ao item de session replay"
+#   kb: EV-AZ-040                      # reaproveita a evidência pública da KB (herda URL, alegação e citações)
+#   confianca: alta
+#   impacto: "Sustenta a resposta 'Não atende' e a ressalva do memorial."
+- id: EV-0001
+  tema: "Gate G1 — leitura da cláusula 2.1.1 (Líder nos últimos 3 anos)"
+  alegacao: "A cláusula exige posição de Líder no MQ de Observability Platforms nas três últimas edições; a leitura adotada são as edições publicadas até a data de referência (2024, 2025 e 2026)."
+  fonte: "edital: TR-Exemplo-Observabilidade.docx, item 2.1.1"
+  citacoes: ["2.1.1 O fabricante deverá estar posicionado como Líder no Quadrante Mágico do Gartner de Observability Platforms nos últimos 3 anos. Requisito eliminatório."]
+  confianca: alta
+  impacto: "Define quem passa no G1 (eliminatório) — resultado por fornecedor em 00-projeto/evidencias/gartner-mq.md."
+  usado_em: [G1]
+
+- id: EV-0002
+  tema: "Gate G2 — catálogo de integrações do Azure Monitor"
+  fornecedor: azure-monitor
+  alegacao: "A documentação oficial descreve as fontes de dados e os métodos de coleta do Azure Monitor, mas não publica uma contagem de 'integrações nativas' comparável à cláusula 2.1.2; o gate fica INDEFINIDO até dúvida ao cliente ou confirmação do fabricante neste edital."
+  fonte: "https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-sources"
+  data_acesso: 2026-09-29
+  citacoes: ["This article describes common sources of monitoring data that Azure Monitor collects and their data collection methods."]
+  palavras_chave: ["data collection methods"]
+  confianca: media
+  impacto: "G2 INDEFINIDO para Azure Monitor (ver 02-analise/gates.json)."
+  usado_em: [G2]

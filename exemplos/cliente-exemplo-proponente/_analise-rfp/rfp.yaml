@@ -1,0 +1,79 @@
+# Exemplo FICTÍCIO no modo PROPONENTE — resposta da matriz como Azure Monitor. Nenhum dado real de cliente.
+cliente:
+  nome: "Companhia Exemplo S.A."
+  sigla: "EXEMPLO-PROP"
+  setor: "Serviços (fictício)"
+  contexto:
+    - "Ambiente híbrido com ~200 hosts e Kubernetes em nuvem pública"
+    - "Aplicações web e app móvel próprio; LGPD; ITSM ServiceNow"
+
+data_referencia: 2026-09-29
+
+modo: proponente
+proponente: azure-monitor
+
+# Exemplo FICTÍCIO: roda sem as etapas de LLM (KB, revisão dos requisitos) para demonstração e testes.
+# Um estudo real usa execucao.assistida: true e é executado pela skill no VS Code.
+execucao:
+  assistida: false
+
+entradas:
+  - arquivo: "Matriz-Requisitos-Exemplo.xlsx"
+    tipo: xlsx
+
+fornecedores:
+  obrigatorios: [azure-monitor]
+  lideres_gartner: auto
+  contexto: []
+  excluir: []
+  max_avaliacao_completa: 6
+
+gates:
+  - id: G1
+    regra: suporte_ptbr
+    clausula: "O fabricante deverá oferecer suporte técnico local no Brasil, com atendimento em língua portuguesa."
+    eliminatorio: true
+  - id: G2
+    regra: sla_min
+    params: {pct: 99.5}
+    clausula: "A solução SaaS deverá possuir SLA de disponibilidade publicado de no mínimo 99,5%."
+    eliminatorio: true
+  - id: G3
+    regra: opentelemetry
+    clausula: "A solução deverá ser compatível com OpenTelemetry."
+    eliminatorio: false
+
+classificacao:
+  limite_nao_classificado_pct: 10
+  mapa_blocos: {}
+
+pesos:
+  multiplicadores: {eliminatorio: 2.0, obrigatorio: 1.0, desejavel: 0.5}
+  naturezas: [tecnico, implantacao, sla]
+  categorias_excluidas: [servicos, licenciamento]
+  override: {}
+
+eixos:
+  aderencia: 35
+  risco: 20
+  esforco: 15
+  custo: 20
+  estrategico: 10
+
+modulos: [nucleo, respostas, cases, esforco, custo]
+
+premissas_adicionais:
+  - "Exemplo fictício: eixos de risco/esforço/custo/estratégico são ILUSTRATIVOS e não representam avaliação real."
+  - "Somente recursos GA com SLA; gaps respondidos com 'Não Atende' honesto, sem composição com terceiros."
+
+relatorio:
+  incluir_pendencias: true
+  confidencial: false
+  pdf: false
+
+duvidas:
+  modelo: "Anexo-Duvidas-Exemplo.xlsx"
+
+respostas:
+  escala: ["Atende Plenamente", "Atende Parcialmente", "Se propõe a desenvolver", "Não Atende"]
+  observacao: {metodo: true, poc: true, referencias: true, prefixo_referencias: "Ref.:"}

@@ -1,0 +1,18 @@
+# Eixos do scorecard (0–5) por fornecedor da AVALIAÇÃO COMPLETA (ver 02-analise/selecao.json).
+# A aderência é calculada pelo kit; aqui entram os demais eixos, cada um com justificativa curta.
+#   risco:       5 = baixíssimo risco (gates, fornecedor, lock-in, presença no Brasil) · 0 = risco crítico
+#   esforco:     5 = implantação/POC simples e rápida · 0 = esforço muito alto
+#   custo:       5 = TCO indicativo mais baixo do campo · 0 = mais caro (list price/estimativa, nunca contratual)
+#   estrategico: 5 = aderência máxima ao contexto do cliente (nuvem, OSS/OTel, soberania, roadmap)
+#
+# azure-monitor:
+#   risco: 3.0
+#   esforco: 3.5
+#   custo: 3.5
+#   estrategico: 3.5
+#   justificativa:
+#     risco: "..."
+#     esforco: "..."
+#     custo: "..."
+#     estrategico: "..."
+{}

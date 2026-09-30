@@ -1,0 +1,137 @@
+id: new-relic
+nome: New Relic
+fabricante: New Relic
+produto: New Relic Observability Platform
+aliases: ["New Relic One", "NRDB"]
+entrega: [saas]
+atualizado_em: 2026-09-29
+ttl_dias: 180
+confianca: Alta
+fatos:
+  integracoes_nativas:
+    valor: 400
+    qualificador: "mais de"
+    texto: "Catálogo oficial divulgou 400+ quickstarts."
+    fonte: https://docs.newrelic.com/whats-new/2022/01/whats-new-01-31-io-partner-quickstarts/
+    verificado_em: 2026-09-21
+  sla_disponibilidade_pct:
+    valor: 99.8
+    fonte: https://docs.newrelic.com/docs/licenses/license-information/referenced-policies/service-level-availability-commitment/
+    verificado_em: 2026-09-21
+  regiao_dados_brasil:
+    valor: NAO
+    fonte: https://docs.newrelic.com/docs/accounts/accounts-billing/account-setup/choose-your-data-center/
+    verificado_em: 2026-09-21
+  suporte_ptbr:
+    valor: SIM
+    fonte: https://docs.newrelic.com/pt/
+    verificado_em: 2026-09-21
+  agente_open_source:
+    valor: SIM
+    texto: "Agentes e integrações principais têm código público em GitHub, incluindo infrastructure-agent."
+    fonte: https://github.com/newrelic/infrastructure-agent
+    verificado_em: 2026-09-21
+  opentelemetry:
+    valor: SIM
+    fonte: https://docs.newrelic.com/docs/opentelemetry/get-started/apm-monitoring/opentelemetry-apm-intro/
+    verificado_em: 2026-09-21
+  retencao_metricas_meses:
+    valor: 13
+    fonte: https://docs.newrelic.com/docs/data-apis/manage-data/manage-data-retention/
+    verificado_em: 2026-09-21
+  retencao_metricas_integral:
+    valor: PARCIAL
+    fonte: https://docs.newrelic.com/docs/data-apis/manage-data/manage-data-retention/
+    verificado_em: 2026-09-21
+    obs: "Granularidade integral é curta; retenções longas usam rollups/agregações."
+  so_suportados:
+    valor: [linux, windows, macos, arm]
+    fonte: https://github.com/newrelic/infrastructure-agent
+    verificado_em: 2026-09-21
+  self_managed:
+    valor: NAO
+    fonte: https://docs.newrelic.com/docs/accounts/accounts-billing/account-setup/choose-your-data-center/
+    verificado_em: 2026-09-21
+  rum_mobile:
+    valor: SIM
+    fonte: https://docs.newrelic.com/docs/browser/browser-monitoring/getting-started/introduction-browser-monitoring/
+    verificado_em: 2026-09-21
+  session_replay:
+    valor: SIM
+    fonte: https://docs.newrelic.com/docs/browser/browser-monitoring/browser-pro-features/session-replay/get-started/
+    verificado_em: 2026-09-21
+  certificacoes:
+    valor: null
+    fonte: null
+    verificado_em: null
+notas_base:
+  coleta:
+    nota: 0.6
+    obs: "Coleta e OTel são fortes, mas a contagem de integrações é menor que a de líderes de catálogo e não há AIX nativo."
+    fontes: ["https://github.com/newrelic/infrastructure-agent", "https://docs.newrelic.com/docs/opentelemetry/get-started/apm-monitoring/opentelemetry-apm-intro/", "https://docs.newrelic.com/whats-new/2022/01/whats-new-01-31-io-partner-quickstarts/"]
+  infraestrutura:
+    nota: 1.0
+    obs: "Cobertura forte de hosts, Kubernetes, containers, nuvens e rede."
+    fontes: ["https://docs.newrelic.com/docs/kubernetes-pixie/kubernetes-integration/get-started/introduction-kubernetes-integration/", "https://docs.newrelic.com/docs/infrastructure/host-integrations/get-started/introduction-host-integrations/"]
+  apm:
+    nota: 1.0
+    obs: "APM, distributed tracing e agentes por linguagem são maduros, com bom suporte a OpenTelemetry."
+    fontes: ["https://docs.newrelic.com/docs/distributed-tracing/concepts/quick-start/", "https://docs.newrelic.com/docs/opentelemetry/get-started/apm-monitoring/opentelemetry-apm-intro/"]
+  logs:
+    nota: 0.75
+    obs: "Log management é robusto, com parsing, live tail e logs-in-context; obfuscação avançada pode depender de plano."
+    fontes: ["https://docs.newrelic.com/docs/logs/get-started/get-started-log-management/"]
+  correlacao:
+    nota: 1.0
+    obs: "NRDB e entidades permitem correlação de métricas, eventos, logs, traces e banco."
+    fontes: ["https://docs.newrelic.com/docs/data-apis/understand-data/new-relic-data-types/", "https://docs.newrelic.com/docs/distributed-tracing/concepts/quick-start/"]
+  banco-dados:
+    nota: 0.75
+    obs: "Integrações de banco cobrem engines comuns, com profundidade variável por tecnologia."
+    fontes: ["https://docs.newrelic.com/docs/infrastructure/host-integrations/get-started/introduction-host-integrations/"]
+  experiencia-usuario:
+    nota: 1.0
+    obs: "Browser, mobile, Session Replay e Synthetics são capacidades nativas."
+    fontes: ["https://docs.newrelic.com/docs/browser/browser-monitoring/getting-started/introduction-browser-monitoring/", "https://docs.newrelic.com/docs/browser/browser-monitoring/browser-pro-features/session-replay/get-started/", "https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/"]
+  alertas-dashboards:
+    nota: 1.0
+    obs: "Dashboards, alertas e SLM/SLOs são recursos centrais sobre a base NRDB."
+    fontes: ["https://docs.newrelic.com/docs/service-level-management/intro-slm/"]
+  aiops:
+    nota: 0.75
+    obs: "Possui anomalias e assistência operacional, mas com menor diferenciação que plataformas centradas em AIOps causal."
+    fontes: ["https://docs.newrelic.com/docs/service-level-management/intro-slm/", "https://docs.newrelic.com/docs/ai-monitoring/intro-to-ai-monitoring/"]
+  ia-llm:
+    nota: 0.75
+    obs: "AI Monitoring captura custo, tokens, latência e qualidade para aplicações GenAI."
+    fontes: ["https://docs.newrelic.com/docs/ai-monitoring/intro-to-ai-monitoring/"]
+  profiling:
+    nota: 0.25
+    obs: "Não há evidência forte de continuous profiler always-on dedicado equivalente aos líderes dessa categoria."
+    fontes: ["https://docs.newrelic.com/docs/distributed-tracing/concepts/quick-start/"]
+  dados-pipelines:
+    nota: 0.5
+    obs: "Pipelines podem ser monitorados por SLIs, eventos e instrumentação customizada; data quality/lineage não são nativos."
+    fontes: ["https://docs.newrelic.com/docs/service-level-management/intro-slm/", "https://docs.newrelic.com/docs/data-apis/understand-data/new-relic-data-types/"]
+  seguranca-governanca:
+    nota: 0.75
+    obs: "SSO, SCIM, RBAC, auditoria e criptografia são documentados, com alguns recursos por edição/plano."
+    fontes: ["https://docs.newrelic.com/docs/accounts/accounts-billing/new-relic-one-user-management/authentication-domains-saml-sso-scim-more/", "https://docs.newrelic.com/docs/accounts/accounts/account-maintenance/query-account-audit-logs-nrauditevent/"]
+  integracoes-itsm:
+    nota: 0.9
+    obs: "Workflows e integrações de notificação/ITSM são fortes, embora detalhes devam ser validados por plano."
+    fontes: ["https://docs.newrelic.com/docs/service-level-management/intro-slm/", "https://docs.newrelic.com/whats-new/2022/01/whats-new-01-31-io-partner-quickstarts/"]
+  plataforma:
+    nota: 0.75
+    obs: "SaaS com SLA público, suporte/documentação em português e agentes abertos; não há região no Brasil e a retenção de métricas é limitada."
+    fontes: ["https://docs.newrelic.com/docs/licenses/license-information/referenced-policies/service-level-availability-commitment/", "https://docs.newrelic.com/docs/accounts/accounts-billing/account-setup/choose-your-data-center/", "https://docs.newrelic.com/pt/"]
+destaques:
+  - "APM, infraestrutura, RUM e sintéticos formam uma plataforma SaaS integrada."
+  - "Agentes de coleta principais têm código público."
+  - "OpenTelemetry é suportado como caminho de ingestão nativo."
+  - "Documentação em português está disponível."
+gaps:
+  - "Não há região de dados no Brasil."
+  - "Retenção de métricas e granularidade integral são limitadas frente a alguns concorrentes."
+  - "Continuous profiling dedicado não foi confirmado como ponto forte."
+  - "Recursos avançados de segurança e retenção podem depender de plano."

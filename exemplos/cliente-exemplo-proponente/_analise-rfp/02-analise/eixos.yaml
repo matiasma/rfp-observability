@@ -1,0 +1,62 @@
+# Exemplo FICTÍCIO — valores ILUSTRATIVOS para demonstrar o scorecard. Não representam avaliação real
+# de nenhum fornecedor. Em um estudo real, preencha com prompts/04-eixos-scorecard.md.
+azure-monitor:
+  risco: 2.5
+  esforco: 3.5
+  custo: 3.5
+  estrategico: 3.5
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+datadog:
+  risco: 3.5
+  esforco: 4.5
+  custo: 2.5
+  estrategico: 3.5
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+dynatrace:
+  risco: 3.0
+  esforco: 4.0
+  custo: 2.5
+  estrategico: 3.0
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+new-relic:
+  risco: 3.0
+  esforco: 4.0
+  custo: 4.0
+  estrategico: 3.0
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+grafana:
+  risco: 2.5
+  esforco: 3.0
+  custo: 4.5
+  estrategico: 3.5
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+elastic:
+  risco: 3.0
+  esforco: 3.0
+  custo: 3.5
+  estrategico: 3.5
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+chronosphere:
+  risco: 2.5
+  esforco: 3.0
+  custo: 3.5
+  estrategico: 2.5
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+ibm-instana:
+  risco: 3.0
+  esforco: 3.5
+  custo: 3.0
+  estrategico: 3.0
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+coralogix:
+  risco: 2.5
+  esforco: 3.5
+  custo: 4.0
+  estrategico: 2.5
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}
+splunk:
+  risco: 3.0
+  esforco: 3.0
+  custo: 2.5
+  estrategico: 3.0
+  justificativa: {risco: "Ilustrativo.", esforco: "Ilustrativo.", custo: "Ilustrativo.", estrategico: "Ilustrativo."}

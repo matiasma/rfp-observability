@@ -1,0 +1,147 @@
+# Taxonomia canônica de observabilidade — fixa entre RFPs.
+# É ela que permite reaproveitar as notas dos fornecedores (kb/fornecedores/*.yaml) de um edital para outro.
+# Palavras-chave: minúsculas e SEM acento (o texto é normalizado antes da comparação). Termos de até 4 letras casam
+# só a palavra inteira; os demais casam por prefixo de palavra ("instrumenta" casa "instrumentação").
+# palavras_chave valem 1 ponto; palavras_fracas (termos genéricos que aparecem em muitos assuntos) valem 0,5.
+# Título do bloco/seção pesa 2x (+1 para a categoria do primeiro termo forte do título); texto do requisito 1x.
+
+versao: 1
+
+regua:
+  1.0: nativo-líder
+  0.75: forte
+  0.5: parcial / por extensão
+  0.25: fraco
+  0.0: não atende
+
+categorias:
+  - id: coleta
+    nome: Coleta, agentes, OpenTelemetry e integrações
+    escopo: produto
+    descricao: Agentes/coletores (inclusive open source e OTel), cobertura de sistemas operacionais, catálogo de integrações, APIs de ingestão e autodescoberta.
+    palavras_chave: [coletor, coletores, collector, opentelemetry, otel, otlp, instrumenta, agente unico, agentes de coleta, integracao nativa, integracoes nativas, catalogo de integracoes, exporter, prometheus, statsd, agentless, sem agente, autodescoberta, auto-descoberta, descoberta automatica, sistema operacional, sistemas operacionais, aix, solaris, hp-ux, macos, codigo aberto, open source, codigo-fonte]
+    palavras_fracas: [agente, agentes, coleta, ingestao, telemetria, plugin, plugins, integracoes]
+
+  - id: infraestrutura
+    nome: Infraestrutura, nuvem, containers, Kubernetes e rede
+    escopo: produto
+    descricao: Hosts físicos/virtuais, nuvens públicas, containers/Kubernetes, rede (SNMP/fluxos), storage, processos e serverless.
+    palavras_chave: [infraestrutura, maquina virtual, maquinas virtuais, vmware, hyper-v, kubernetes, k8s, container, containers, conteiner, docker, openshift, aks, eks, gke, multicloud, multi-cloud, rede, redes, network, snmp, netflow, switch, roteador, firewall, storage, serverless, lambda, mainframe, z/os]
+    palavras_fracas: [host, hosts, servidor, servidores, nuvem, aws, gcp, google cloud, armazenamento, cpu, memoria, disco, processos, windows server, linux]
+
+  - id: apm
+    nome: APM e tracing distribuído
+    escopo: produto
+    descricao: Monitoramento de desempenho de aplicações, tracing distribuído, auto-instrumentação por linguagem, erros/exceções e visibilidade em nível de código.
+    palavras_chave: [apm, desempenho de aplica, performance de aplica, monitoramento de aplica, observabilidade de aplica, tracing, rastreamento distribuido, rastreabilidade de transa, auto-instrumenta, instrumentacao automatica, microsservico, microsservicos, microservice, taxa de erro, excecao, excecoes, nivel de codigo, code-level, depuracao, depurar, debug, jvm, clr]
+    palavras_fracas: [trace, traces, span, spans, transacao, transacoes, java, .net, dotnet, node.js, nodejs, python, golang, php, ruby, tempo de resposta, latencia, throughput]
+
+  - id: logs
+    nome: Gestão e análise de logs
+    escopo: produto
+    descricao: Ingestão, parsing, pipelines, busca, live tail, retenção/arquivamento/reidratação e mascaramento de dados sensíveis em logs.
+    palavras_chave: [syslog, event log, eventos do windows, parsing, pipeline de logs, indexacao, live tail, arquivamento, reidrata, rehydrat, retencao de logs, mascaramento, pii, busca textual, full-text, consulta de logs, gestao de logs, analise de logs]
+    palavras_fracas: [log, logs]
+
+  - id: correlacao
+    nome: Correlação MELT, topologia e mapa de serviços
+    escopo: produto
+    descricao: Correlação entre métricas, eventos, logs e traces; topologia/mapa de dependências; visão fim a fim.
+    palavras_chave: [correla, melt, contexto unificado, contextualiza, topologia, mapa de servico, mapa de servicos, mapa de dependencia, mapa de dependencias, dependencias entre, service map, trace-to-log, fim a fim, end-to-end, visao unificada, navegacao entre, arquitetura da aplicacao, elementos da arquitetura]
+
+  - id: banco-dados
+    nome: Observabilidade de banco de dados
+    escopo: produto
+    descricao: Monitoramento de SGBDs, consultas lentas, planos de execução, bloqueios e correlação com APM.
+    palavras_chave: [banco de dados, bancos de dados, database, databases, sql server, oracle, postgres, postgresql, mysql, mongodb, db2, cosmos, redis, consulta lenta, consultas lentas, queries lentas, slow quer, plano de execucao, planos de execucao, execution plan, deadlock, bloqueios, dbm, sgbd]
+
+  - id: experiencia-usuario
+    nome: Experiência do usuário — RUM web/mobile, session replay e sintéticos
+    escopo: produto
+    descricao: Real User Monitoring web e mobile, session replay, monitoramento sintético (APIs/browsers) e Core Web Vitals.
+    palavras_chave: [rum, real user, usuario real, usuarios reais, experiencia do usuario, experiencia digital, session replay, replay de sess, gravacao de sess, aplicativo movel, aplicativos moveis, app mobile, apps moveis, mobile, movel, moveis, rede movel, operadora, android, ios, navegador, browser, frontend, front-end, web vitals, sintetico, sinteticos, synthetic, teste sintetico, jornada do usuario, crash]
+
+  - id: alertas-dashboards
+    nome: Dashboards, alertas, SLO e automação
+    escopo: produto
+    descricao: Painéis, alertas e notificações, SLO/SLI/error budget, escalonamento, runbooks e automação de resposta.
+    palavras_chave: [visualiza, alerta, alertas, alarme, alarmes, notifica, slo, slos, sli, slis, error budget, orcamento de erro, burn rate, limiar, limiares, threshold, escalonamento, on-call, plantao, runbook, runbooks, automacao, automacoes, automatizad, auto-remedia, remedia, acoes corretivas, fluxos de trabalho, workflow, workflows, regras de monitoramento, politicas de monitoramento, regras e politicas, janela de manutencao, manutencao programada, relatorio gerencial, relatorios gerenciais, relatorios customizados, linguagem de consulta, query language, drill down, drill-down, analise historica, console de eventos]
+    palavras_fracas: [dashboard, dashboards, painel, paineis, relatorio, relatorios]
+
+  - id: aiops
+    nome: AIOps e assistentes de IA para operações
+    escopo: produto
+    descricao: Detecção de anomalias, causa raiz automática, redução de ruído/deduplicação, previsão e assistentes em linguagem natural.
+    palavras_chave: [aiops, inteligencia artificial para opera, machine learning, aprendizado de maquina, anomalia, anomalias, deteccao de anomal, causa raiz, root cause, rca, deduplica, reducao de ruido, previsao, previsoes, forecast, predit, assistente, linguagem natural, nlq, baseline, baselines, limiar dinamico]
+
+  - id: ia-llm
+    nome: Observabilidade de IA/LLM (LLMOps, RAG, agentes)
+    escopo: produto
+    descricao: Rastreamento de chamadas a LLMs, tokens/custo, qualidade (alucinação, relevância), RAG, guardrails, agentes e avaliação.
+    palavras_chave: [llm, llms, llmops, genai, ia generativa, inteligencia artificial generativa, modelo de linguagem, modelos de linguagem, prompt, prompts, token, tokens, rag, retrieval, embedding, embeddings, alucina, hallucinat, guardrail, guardrails, agente de ia, agentes de ia, agentic, vertex ai, openai, gemini, bedrock, azure ai, foundry, golden dataset, avaliacao de modelo, mlops, gpu, gpus]
+
+  - id: profiling
+    nome: Continuous profiling
+    escopo: produto
+    descricao: Profiling contínuo de CPU/memória/locks em produção, flame graphs e correlação com traces.
+    palavras_chave: [profiler, profiling, perfilamento, flame graph, flamegraph, continuous profil, profiling continuo, perfil de cpu, alocacao de memoria]
+
+  - id: dados-pipelines
+    nome: Observabilidade de dados e pipelines
+    escopo: produto
+    descricao: Monitoramento de jobs/pipelines de dados, qualidade e atualidade (freshness) de dados, linhagem e plataformas de dados.
+    palavras_chave: [pipeline de dados, pipelines de dados, produto de dados, produtos de dados, data observability, observabilidade de dados, qualidade de dados, qualidade dos dados, data quality, freshness, atualidade dos dados, linhagem, lineage, airflow, composer, dataflow, dataform, dataplex, bigquery, databricks, spark, kafka, etl, elt, dbt, snowflake, synapse, data factory, jobs de dados, dag, dags]
+
+  - id: seguranca-governanca
+    nome: Segurança, governança, RBAC/SSO, auditoria e privacidade (LGPD)
+    escopo: produto
+    descricao: Controle de acesso, SSO/MFA, trilha de auditoria, criptografia, privacidade/LGPD, certificações e segregação de dados.
+    palavras_chave: [seguranca, rbac, controle de acesso, perfis de acesso, perfil de acesso, sso, single sign-on, saml, oidc, ldap, active directory, entra id, mfa, autenticacao, auditoria, trilha de auditoria, audit log, lgpd, privacidade, dados pessoais, criptografia, encryption, iso 27001, iso/iec 27001, soc 2, soc2, conformidade, compliance, governanca, multi-tenant, segregacao, vulnerabilidade, vulnerabilidades, siem]
+
+  - id: integracoes-itsm
+    nome: ITSM, colaboração e APIs
+    escopo: produto
+    descricao: Integração com ITSM (ServiceNow etc.), abertura automática de chamados, CMDB, ferramentas de colaboração e APIs/webhooks.
+    palavras_chave: [itsm, servicenow, jira, gestao de incidentes, gestao de problemas, gestao de mudancas, incidente, incidentes, sala de crise, abertura de chamado, abertura automatica, chamado, chamados, ticket, tickets, cmdb, microsoft teams, slack, pagerduty, opsgenie, webhook, webhooks, api rest, apis, integracao com ferramentas]
+
+  - id: plataforma
+    nome: Plataforma — entrega, disponibilidade, DR, retenção, escala e suporte
+    escopo: produto
+    descricao: Modelo SaaS/on-prem, SLA de disponibilidade, DR/alta disponibilidade, retenção e residência de dados, escalabilidade e suporte do fabricante.
+    palavras_chave: [saas, software como servico, on-premises, on-premise, on premises, hibrido, disponibilidade, uptime, sla de disponibilidade, nivel de servico, niveis de servico, acordo de nivel, tempo de atendimento, tempo de solucao, severidade, recuperacao de desastre, disaster recovery, alta disponibilidade, escalabilidade, retencao, residencia de dados, data center, datacenter, suporte tecnico, suporte do fabricante, suporte 24x7, 24x7, 24 x 7, lingua portuguesa, em portugues]
+    palavras_fracas: [plataforma, regiao, regioes, idioma, roadmap, atualizacoes, backup]
+
+  - id: servicos
+    nome: Serviços — implantação, treinamento e operação assistida
+    escopo: servicos
+    descricao: Serviços do integrador/fabricante (implantação, configuração, treinamento, operação assistida, sustentação). Por padrão NÃO entram na aderência do produto — alimentam o eixo "esforço".
+    palavras_chave: [implantacao, implementacao, instalacao, configuracao inicial, treinamento, treinamentos, capacitacao, repasse de conhecimento, operacao assistida, hypercare, sustentacao, servicos profissionais, consultoria, cronograma, plano de projeto, plano de trabalho, gerente de projeto, reuniao, reunioes, kickoff, kick-off, homologacao, prova de conceito, poc, pov, entregavel, entregaveis]
+
+  - id: licenciamento
+    nome: Licenciamento, volumetria e modelo comercial
+    escopo: comercial
+    descricao: Modelo de licenciamento/assinatura, volumetria, preço e faturamento. Por padrão NÃO entra na aderência — custo é eixo próprio do scorecard.
+    palavras_chave: [licenca, licencas, licenciamento, licenciado, licenciados, subscricao, assinatura, volumetria, quantidade de hosts, preco, precos, precificacao, pagamento, faturamento, modelo de cobranca, gb/dia, gb por dia, unidades de medida]
+
+# Natureza do requisito (independente da categoria). A primeira que casar vence; padrão = tecnico.
+naturezas:
+  qualificacao: [atestado, capacidade tecnica, qualificacao tecnica, habilitacao, experiencia comprovada, experiencia previa, quadrante magico, magic quadrant, gartner, forrester, certificado de, certidao]
+  comercial: [preco, precos, pagamento, faturamento, proposta comercial, condicoes comerciais, planilha de custos, reajuste, nota fiscal, garantia contratual, valor global, valor unitario, licenciamento, volumetria, modelo de cobranca]
+  sla: [nivel de servico, niveis de servico, acordo de nivel, glosa, glosas, indicador de desempenho, penalidade, tempo de atendimento, tempo de solucao, severidade]
+  implantacao: [implantacao, implementacao, instalacao, operacao assistida, hypercare, treinamento, capacitacao, repasse de conhecimento, sustentacao, cronograma, plano de trabalho]
+  processo: [preposto, ordem de servico, gestao do contrato, relatorio mensal, reuniao de acompanhamento, fiscal do contrato]
+
+# Radicais mais amplos aplicados SÓ a títulos de seção/aba (ex.: aba "Requisitos Comerciais"); não ao texto do
+# requisito, onde "horário comercial" não é natureza comercial.
+naturezas_titulo:
+  qualificacao: [qualifica, habilita]
+  comercial: [comercia, precificacao, proposta de preco, dados quantitativos, quantitativo, quantitativos, volumetria]
+  sla: [sla, slas, nivel de servico, niveis de servico, acordo de nivel]
+  implantacao: [implanta, implementa, servicos profissionais, treinamento, operacao assistida, sustentacao]
+  processo: [obrigacoes da contratada, obrigacoes da contratante, gestao do contrato, fiscalizacao]
+
+# Obrigatoriedade. Valor explícito do edital (ex.: coluna "Tipo") sempre prevalece sobre o texto.
+obrigatoriedade:
+  eliminatorio: [eliminatori, desclassifica, knock-out, knockout, must have, mandatori, imprescindivel]
+  desejavel: [desejavel, desejaveis, opcional, opcionais, preferencialmente, preferencial, nice to have, diferencial, pontuavel, classificatori, could have, should have, podera, poderao]
+  obrigatorio: [devera, deverao, deve, devem, obrigatori, exige, exigido, exigida, sera exigid, must, shall, required, necessariamente]

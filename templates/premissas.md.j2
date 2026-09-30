@@ -1,0 +1,58 @@
+# Premissas canônicas — {{ cliente.nome }}
+_Gerado a partir do rfp.yaml em {{ data_referencia }} (não edite à mão: altere o rfp.yaml e rode `python kit.py premissas`). Em caso de conflito entre qualquer artefato e este documento, **este documento prevalece.**_
+
+## P1 — Natureza do trabalho
+{% if cfg.modo == 'proponente' %}
+**Resposta como proponente: {{ proponente_nome }}.** A análise mede a aderência do produto ofertado e usa os demais fornecedores como inteligência competitiva. Onde o produto não atende nativamente, a resposta é honesta: **Atende parcialmente** só com base GA demonstrável; **Não atende** quando não há caminho oficial suportado — nunca "resolve com terceiro" sem evidência.
+{% else %}
+**Estudo de seleção vendor-neutro.** Não há produto pré-escolhido; a recomendação deriva da evidência (gates eliminatórios + aderência + risco + esforço + custo + estratégia).
+{% endif %}
+
+## P2 — Campo avaliado
+- **Obrigatórios (sempre avaliados até o fim):** {{ cfg.fornecedores.obrigatorios | join(', ') or '—' }}.
+- **Líderes do Gartner MQ:** {% if cfg.fornecedores.lideres_gartner == 'auto' %}automático — Líderes da edição {{ edicao.ano if edicao else '—' }} ({{ edicao.titulo if edicao else '' }}){% else %}{{ cfg.fornecedores.lideres_gartner }}{% endif %}.
+- **Contexto do cliente:** {{ cfg.fornecedores.contexto | join(', ') or '—' }} · **Excluídos:** {{ cfg.fornecedores.excluir | join(', ') or '—' }}.
+{% if ranking.triagem %}
+- **Triagem:** {{ ranking.triagem | map(attribute='nome') | join(', ') }}.
+- **Avaliação completa (máx. {{ cfg.fornecedores.max_avaliacao_completa }}):** {{ ranking.avaliacao_completa | join(', ') }}.
+{% endif %}
+
+## P3 — Gate eliminatório antes do mérito
+1. **Gate (pass/fail):** reprovar um critério eliminatório desclassifica, independentemente da nota técnica.
+2. **Mérito ponderado:** ranqueado por scorecard multi-eixo; para quem reprova, o mérito é mostrado apenas como referência (hipótese de flexibilização do gate).
+
+Nenhuma nota de aderência "compra" um gate reprovado. Gates são tratados como estritos até que o cliente confirme flexibilização **por escrito**.
+
+## P4 — Gates do edital
+| Gate | Regra | Parâmetros | Eliminatório | Cláusula |
+|---|---|---|:--:|---|
+{% for g in cfg.gates %}
+| {{ g.id }} | `{{ g.regra }}` | {{ g.params | params }} | {{ 'Sim' if g.get('eliminatorio', true) else 'Não' }} | {{ g.clausula | default('') }} |
+{% endfor %}
+
+## P5 — Régua e pesos
+- Régua única para todos: **1,0** nativo-líder · **0,75** forte · **0,5** parcial/por extensão · **0,25** fraco · **0** não atende.
+- Peso da categoria = requisitos do edital da categoria (naturezas {{ cfg.pesos.naturezas | join(', ') }}) × multiplicador de obrigatoriedade ({% for k, v in cfg.pesos.multiplicadores.items() %}{{ k }} ×{{ v }}{% if not loop.last %}, {% endif %}{% endfor %}), normalizado para 100. Fora da aderência: {{ cfg.pesos.categorias_excluidas | join(', ') }}.
+- Scorecard: {% for k, p in cfg.eixos.items() %}{{ k }} {{ p }}%{% if not loop.last %} · {% endif %}{% endfor %}.
+
+## P6 — Evidência e confiança
+- Fatos e notas-base vêm da KB do kit: documentação **pública oficial** do fabricante, com URL e data de verificação. Fato vencido ou ausente deixa o gate **INDEFINIDO** até ser revalidado.
+- **Sem inflar matriz:** onde não há cobertura nativa, registra-se Parcial (só com base demonstrável) ou Não atende. Ajuste de nota para este edital exige justificativa e fonte (`02-analise/ajustes-notas.yaml`).
+
+## P7 — Guardrails
+| Guardrail | Regra |
+|---|---|
+| **R1** | Preferir recursos **GA com SLA**; preview é sinalizado e não pontua como GA. |
+| **R2** | Custo usa list price/estimativa indicativa; nenhum valor contratual é inventado. |
+| **R3** | Contexto do cliente é fixo: {{ cliente.contexto | join('; ') if cliente.contexto else '(preencher cliente.contexto no rfp.yaml)' }}. |
+| **R4** | Nenhum dado de cliente volta para a KB compartilhada; a KB só recebe informação pública de fabricante. |
+
+## P8 — Ordem de operações
+Extração → RTM → classificação/pesos → **gates** → notas (KB + ajustes) → **ranking** → red team → narrativa → entregas. Regenerar Excel/HTML **somente** depois que os artefatos de análise estiverem coerentes com estas premissas.
+{% if cfg.premissas_adicionais %}
+
+## Premissas adicionais deste estudo
+{% for p in cfg.premissas_adicionais %}
+- {{ p }}
+{% endfor %}
+{% endif %}

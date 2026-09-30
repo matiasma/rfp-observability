@@ -1,0 +1,139 @@
+id: azure-monitor
+nome: Azure Monitor
+fabricante: Microsoft
+produto: Azure Monitor
+aliases: ["Application Insights", "Log Analytics", "Azure Monitor Managed Service for Prometheus"]
+entrega: [saas]
+atualizado_em: 2026-09-29
+ttl_dias: 180
+confianca: Alta
+fatos:
+  integracoes_nativas:
+    valor: null
+    qualificador: null
+    texto: null
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-sources
+    verificado_em: 2026-09-21
+  sla_disponibilidade_pct:
+    valor: 99.9
+    fonte: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+    verificado_em: 2026-09-21
+  regiao_dados_brasil:
+    valor: SIM
+    fonte: https://learn.microsoft.com/en-us/azure/reliability/regions-list
+    verificado_em: 2026-09-21
+  suporte_ptbr:
+    valor: SIM
+    fonte: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+    verificado_em: 2026-09-21
+    obs: "Subsidiária Microsoft Brasil com atendimento em português; a fonte citada é o documento geral de SLA dos serviços online."
+  agente_open_source:
+    valor: PARCIAL
+    texto: "Azure Monitor Agent é proprietário; OpenTelemetry, Prometheus e Grafana oferecem caminho aberto para parte da coleta."
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-overview
+    verificado_em: 2026-09-21
+  opentelemetry:
+    valor: SIM
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable
+    verificado_em: 2026-09-21
+  retencao_metricas_meses:
+    valor: 18
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
+    verificado_em: 2026-09-21
+  retencao_metricas_integral:
+    valor: PARCIAL
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
+    verificado_em: 2026-09-21
+    obs: "18 meses se aplica ao Managed Prometheus; métricas de plataforma têm retenção menor."
+  so_suportados:
+    valor: [linux, windows]
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-overview
+    verificado_em: 2026-09-21
+  self_managed:
+    valor: NAO
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+    verificado_em: 2026-09-21
+  rum_mobile:
+    valor: NAO
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk
+    verificado_em: 2026-09-21
+    obs: "O SDK JavaScript cobre só browser/web; não há SDK nativo de RUM mobile (Android/iOS) nem caminho OTel mobile oficialmente suportado para Application Insights."
+  session_replay:
+    valor: NAO
+    fonte: https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk
+    verificado_em: 2026-09-21
+  certificacoes:
+    valor: [ISO27001, ISO27701, SOC2]
+    fonte: https://learn.microsoft.com/en-us/compliance/regulatory/offering-home
+    verificado_em: 2026-07-08
+notas_base:
+  coleta:
+    nota: 0.6
+    obs: "Coleta é forte no ecossistema Azure e via OTel/Prometheus, mas o AMA é proprietário e a cobertura fora de Linux/Windows é limitada."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-overview", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable", "https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview"]
+  infraestrutura:
+    nota: 0.9
+    obs: "Excelente para Azure e Kubernetes/Prometheus; multicloud fora de Kubernetes exige mais composição."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview", "https://learn.microsoft.com/en-us/azure/managed-grafana/overview"]
+  apm:
+    nota: 0.6
+    obs: "Application Insights com OpenTelemetry é sólido, mas a cobertura gerenciada por linguagem é menos ampla que suítes APM líderes."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable"]
+  logs:
+    nota: 0.75
+    obs: "Log Analytics/KQL é forte para ingestão, consulta, retenção e transformação, com curva de aprendizado em KQL."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview", "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure"]
+  correlacao:
+    nota: 0.75
+    obs: "Application Map e Application Insights correlacionam componentes e telemetria, com maior profundidade dentro do ecossistema Azure."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-map"]
+  banco-dados:
+    nota: 0.5
+    obs: "Observabilidade é forte para Azure SQL e serviços gerenciados, mas limitada para Oracle, MongoDB self-managed e DBM profundo geral."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-sql/database-watcher-overview"]
+  experiencia-usuario:
+    nota: 0.25
+    obs: "RUM web existe via JavaScript SDK, mas RUM mobile GA e Session Replay nativo não são cobertos."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability"]
+  alertas-dashboards:
+    nota: 0.9
+    obs: "Alertas, action groups, Workbooks e Managed Grafana fornecem boa base para operação e SLOs."
+    fontes: ["https://learn.microsoft.com/en-us/azure/managed-grafana/overview", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability"]
+  aiops:
+    nota: 0.75
+    obs: "Dynamic thresholds, Application Map e assistência operacional oferecem AIOps parcial a forte, especialmente em Azure."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-map", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"]
+  ia-llm:
+    nota: 0.75
+    obs: "Azure AI Foundry e Application Insights suportam tracing de aplicações GenAI, com forte acoplamento ao ecossistema Azure AI."
+    fontes: ["https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-application", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable"]
+  profiling:
+    nota: 0.5
+    obs: "Profiler é útil para .NET/Java, mas a cobertura de continuous profiling poliglota é desigual."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview"]
+  dados-pipelines:
+    nota: 0.4
+    obs: "Azure Data Factory e serviços de dados expõem monitoramento, mas data quality, freshness e lineage não são recursos gerais do Azure Monitor."
+    fontes: ["https://learn.microsoft.com/en-us/azure/data-factory/monitor-visually"]
+  seguranca-governanca:
+    nota: 1.0
+    obs: "RBAC, Entra ID, auditoria, Private Link, CMK e ofertas de conformidade são pontos fortes da plataforma."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/roles-permissions-security", "https://learn.microsoft.com/en-us/compliance/regulatory/offering-home"]
+  integracoes-itsm:
+    nota: 0.9
+    obs: "Action Groups e ITSM Connector oferecem integração com fluxos de incidentes e ServiceNow."
+    fontes: ["https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/itsmc-overview"]
+  plataforma:
+    nota: 0.75
+    obs: "SaaS Azure com SLA alto, região no Brasil e suporte Microsoft; sem self-managed e com gaps de experiência digital."
+    fontes: ["https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services", "https://learn.microsoft.com/en-us/azure/reliability/regions-list", "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"]
+destaques:
+  - "Região no Brasil, conformidade e integração com Entra ID são diferenciais fortes."
+  - "OpenTelemetry, Managed Prometheus e Managed Grafana dão base aberta e moderna."
+  - "Log Analytics/KQL, alertas e Workbooks são robustos para operação em Azure."
+  - "SLA público de Azure Online Services é superior ao de alguns concorrentes."
+gaps:
+  - "RUM mobile nativo (Android/iOS) e Session Replay não são atendidos nativamente."
+  - "Azure Monitor Agent é proprietário, embora coexistam caminhos abertos."
+  - "DBM profundo e suporte amplo a bancos fora de Azure exigem composição."
+  - "Análises avançadas podem depender de domínio de KQL."

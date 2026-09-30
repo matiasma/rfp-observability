@@ -1,0 +1,30 @@
+# Exemplo FICTÍCIO — valores ILUSTRATIVOS (não são cotação nem preço de tabela validado).
+ilustrativo: true
+moeda: USD
+cenario:
+  descricao: "Ambiente fictício: ~200 hosts · ~60 GB/dia de logs · 500 mil sessões RUM/mês · 10 usuários"
+  premissas: ["Valores redondos só para demonstrar o cálculo e o cruzamento com o esforço."]
+leitura: "O modelo de cobrança decide a ordem: por volume de dados é barato em baixa volumetria; por host fica previsível, mas caro com muitos hosts."
+fornecedores:
+  new-relic:
+    modelo_cobranca: "dados + usuários"
+    componentes:
+      - {item: "Ingestão de dados (~2 TB/mês)", valor: [1500, 2200]}
+      - {item: "Usuários da plataforma (10)", valor: [1000, 1600]}
+  azure-monitor:
+    modelo_cobranca: "volume (GB)"
+    componentes:
+      - {item: "Ingestão de logs (~60 GB/dia)", valor: 4800}
+      - {item: "Alertas, testes de disponibilidade e retenção", valor: 500}
+    ressalva: "Sem SDK móvel nativo GA: o custo não cobre a lacuna de RF-04."
+  datadog:
+    modelo_cobranca: "host + sessão"
+    componentes:
+      - {item: "Infraestrutura", quantidade: 200, unidade: "host/mês", preco_unitario: 15}
+      - {item: "APM", quantidade: 80, unidade: "host/mês", preco_unitario: 31}
+      - {item: "Logs e RUM", valor: 3200}
+  dynatrace:
+    modelo_cobranca: "host + sessão"
+    componentes:
+      - {item: "Full-stack", quantidade: 200, unidade: "host/mês", preco_unitario: 45}
+      - {item: "Logs e RUM", valor: 2100}

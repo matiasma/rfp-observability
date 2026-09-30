@@ -1,0 +1,22 @@
+# Esforço de POC por frente × fornecedor (1 pessoa, dias úteis) — prompts/13-esforco-custo.md
+# Julgamento com base no roteiro de POC do edital e na documentação oficial de cada fornecedor.
+# O kit soma as faixas, calcula o peso das frentes-"portão" (critérios de aceite de alto risco) e cruza com o custo.
+# Só aparece nos relatórios se houver frentes preenchidas. Mantenha coerente com o eixo 'esforco' do eixos.yaml
+# (menos esforço -> nota maior): o kit avisa quando os dois divergem.
+#
+# unidade: "dias úteis, 1 pessoa"
+# descricao: "POC do edital (item 1.13): duas jornadas completas (web + mobile) com correlação ponta a ponta"
+# frentes:
+#   - id: F1
+#     nome: "Setup de ambiente/tenant + agente/SDK"
+#     referencia: "TR 1.13"
+#     dias: {azure-monitor: [4, 6], datadog: [1, 2], dynatrace: [1, 2]}
+#     obs: "SaaS + agente turnkey nos ISVs"
+#   - id: F4
+#     nome: "Jornada mobile ponta a ponta"
+#     portao: true                     # critério de aceite de alto risco
+#     dias: {azure-monitor: [12, 20], datadog: [5, 7], dynatrace: [5, 7]}
+# risco:                               # risco de reprovar na POC
+#   azure-monitor: {nivel: alto, motivo: "40% do esforço em frentes-portão"}
+#   datadog: {nivel: baixo, motivo: "RUM mobile e replay prontos"}
+{}

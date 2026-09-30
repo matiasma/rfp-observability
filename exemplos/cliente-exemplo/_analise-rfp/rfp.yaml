@@ -1,0 +1,91 @@
+# Exemplo FICTÍCIO — demonstra o kit de ponta a ponta. Nenhum dado real de cliente.
+cliente:
+  nome: "Companhia Exemplo S.A."
+  sigla: "EXEMPLO"
+  setor: "Serviços (fictício)"
+  contexto:
+    - "Ambiente híbrido: ~200 hosts (120 Windows, 80 Linux) on-premises e Kubernetes em nuvem pública"
+    - "Aplicações Java, .NET e Node.js; app móvel Android/iOS"
+    - "LGPD; ITSM ServiceNow; comunicação via Microsoft Teams"
+
+data_referencia: 2026-09-29
+
+modo: neutro
+proponente: null
+
+# Exemplo FICTÍCIO: roda sem as etapas de LLM (KB, revisão dos requisitos) para demonstração e testes.
+# Um estudo real usa execucao.assistida: true e é executado pela skill no VS Code.
+execucao:
+  assistida: false
+
+entradas:
+  - arquivo: "TR-Exemplo-Observabilidade.docx"
+    tipo: docx
+  - arquivo: "Matriz-Requisitos-Exemplo.xlsx"
+    tipo: xlsx
+
+fornecedores:
+  obrigatorios: [azure-monitor]
+  lideres_gartner: auto
+  contexto: []
+  excluir: []
+  max_avaliacao_completa: 6
+
+gates:
+  - id: G1
+    regra: gartner_lider
+    params: {anos: 3, consecutivos: true}
+    clausula: "2.1.1 O fabricante deverá estar posicionado como Líder no Quadrante Mágico do Gartner de Observability Platforms nos últimos 3 anos."
+    eliminatorio: true
+  - id: G2
+    regra: integracoes_min
+    params: {min: 500, estrito: true}
+    clausula: "2.1.2 Catálogo com mais de 500 integrações nativas, documentadas e suportadas pelo fabricante."
+    eliminatorio: true
+  - id: G3
+    regra: suporte_ptbr
+    clausula: "2.1.3 Suporte técnico local no Brasil, com atendimento em língua portuguesa."
+    eliminatorio: true
+  - id: G4
+    regra: sla_min
+    params: {pct: 99.5}
+    clausula: "2.1.4 SLA de disponibilidade publicado de no mínimo 99,5%."
+    eliminatorio: true
+  - id: G5
+    regra: so_suportados
+    params: {so: [linux, windows, aix]}
+    clausula: "3.1.3 O agente deverá suportar Linux, Windows Server e IBM AIX."
+    eliminatorio: false
+  - id: G6
+    regra: opentelemetry
+    clausula: "3.1.2 Compatível com OpenTelemetry sem exigir agente proprietário."
+    eliminatorio: false
+
+classificacao:
+  limite_nao_classificado_pct: 10
+  mapa_blocos: {}
+
+pesos:
+  multiplicadores: {eliminatorio: 2.0, obrigatorio: 1.0, desejavel: 0.5}
+  naturezas: [tecnico, implantacao, sla]
+  categorias_excluidas: [servicos, licenciamento]
+  override: {}
+
+eixos:
+  aderencia: 35
+  risco: 20
+  esforco: 15
+  custo: 20
+  estrategico: 10
+
+modulos: [nucleo]
+
+premissas_adicionais:
+  - "Exemplo fictício: eixos de risco/esforço/custo/estratégico são ILUSTRATIVOS e não representam avaliação real."
+
+relatorio:
+  incluir_pendencias: true
+  confidencial: false
+
+respostas:
+  escala: ["Atende plenamente", "Atende parcialmente", "Não atende", "Não se aplica"]

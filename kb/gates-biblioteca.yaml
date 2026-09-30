@@ -1,0 +1,79 @@
+# Biblioteca de regras de gate (critério eliminatório) avaliadas automaticamente contra a KB.
+# No rfp.yaml, cada gate do edital aponta para uma regra daqui: {id, regra, params, clausula, eliminatorio}.
+# Vereditos: PASSA | RISCO | NAO | INDEFINIDO (fato ausente, sem data ou vencido -> pesquisar/revalidar).
+# Para cláusulas sem regra, use "manual" e registre o veredito em 02-analise/gates-override.yaml (com justificativa).
+
+regras:
+  gartner_lider:
+    descricao: Líder no Gartner Magic Quadrant de observabilidade nas últimas N edições publicadas até a data de referência.
+    fato: kb/gartner-mq.yaml
+    params: {anos: 3, consecutivos: true}
+    clausula_tipica: "O fabricante deve estar posicionado como Líder no Quadrante Mágico do Gartner (APM and Observability / Observability Platforms) nos últimos 3 anos."
+    observacao: "O MQ foi renomeado em 2024; se a cláusula citar o nome antigo, o kit sinaliza a ambiguidade na justificativa."
+
+  integracoes_min:
+    descricao: Catálogo com mais de N integrações nativas documentadas pelo fabricante.
+    fato: integracoes_nativas
+    params: {min: 1000, estrito: true}   # estrito: true = "mais de N" (aceita N quando a fonte diz "more than N")
+    clausula_tipica: "Catálogo com mais de 1.000 integrações nativas, documentadas e suportadas pelo fabricante."
+
+  sla_min:
+    descricao: SLA de disponibilidade publicado do SaaS maior ou igual ao exigido.
+    fato: sla_disponibilidade_pct
+    params: {pct: 99.8}
+    clausula_tipica: "Disponibilidade de no mínimo 99,8% comprovada em documentação pública do fabricante."
+
+  suporte_ptbr:
+    descricao: Suporte local no Brasil com atendimento em português (SIM=PASSA; NAO_DOCUMENTADO=RISCO; NAO=NAO).
+    fato: suporte_ptbr
+    clausula_tipica: "Suporte local, no Brasil, com atendimento em português."
+
+  regiao_brasil:
+    descricao: Região de armazenamento de dados no Brasil (SIM=PASSA; NAO_CONFIRMADO=RISCO; NAO=NAO).
+    fato: regiao_dados_brasil
+    clausula_tipica: "Os dados devem ser armazenados em território nacional."
+    observacao: "LGPD permite transferência internacional com salvaguardas — confirme se o edital realmente exige residência."
+
+  agente_open_source:
+    descricao: Agente open source ou com código-fonte publicamente auditável (PARCIAL=RISCO).
+    fato: agente_open_source
+    clausula_tipica: "O agente deverá ser open source ou possuir código-fonte publicamente auditável."
+
+  opentelemetry:
+    descricao: Ingestão/correlação nativa de OpenTelemetry (traces, métricas, logs).
+    fato: opentelemetry
+
+  self_managed:
+    descricao: Opção de implantação no ambiente do cliente (on-premises/nuvem própria).
+    fato: self_managed
+
+  rum_mobile:
+    descricao: RUM nativo para aplicativos móveis Android/iOS.
+    fato: rum_mobile
+
+  session_replay:
+    descricao: Session replay GA (PREVIEW/PARCIAL=RISCO).
+    fato: session_replay
+
+  retencao_metricas_min:
+    descricao: Retenção de métricas de no mínimo N meses; com integral=true exige granularidade integral (sem downsampling).
+    fato: [retencao_metricas_meses, retencao_metricas_integral]
+    params: {meses: 15, integral: true}
+    clausula_tipica: "Retenção de métricas por no mínimo 15 meses em granularidade integral, sem downsampling."
+
+  so_suportados:
+    descricao: Agente cobre todos os sistemas operacionais listados (vocabulário linux, windows, macos, aix, solaris, hpux, zos, arm).
+    fato: so_suportados
+    params: {so: [linux, windows, aix]}
+
+  certificacoes:
+    descricao: Plataforma possui todas as certificações listadas.
+    fato: certificacoes
+    params: {lista: [ISO27001, SOC2]}
+
+  fato:
+    descricao: Regra genérica sobre qualquer fato da KB.
+    params: {fato: sla_disponibilidade_pct, operador: ">=", valor: 99.9}   # operadores: == != >= > <= < in contem
+
+  manual:
+    descricao: Cláusula sem regra automática — veredito obrigatório em 02-analise/gates-override.yaml.

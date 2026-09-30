@@ -1,0 +1,29 @@
+# Biblioteca de EVIDÊNCIAS PÚBLICAS do fornecedor: capacidade -> URL oficial -> citação.
+# Reaproveitável entre editais (respostas citam os ids EV-...). Só documentação oficial e recursos GA.
+# Nada de cliente: a justificativa de cada requisito fica no estudo do cliente (02-analise/respostas.json).
+# status: VALIDADA (HTTP 200 + palavras-chave encontradas) | A_VALIDAR | QUEBRADA. Revalide com:
+#   python kit.py kb-validar-urls --fornecedor dynatrace
+fornecedor: dynatrace
+prefixo: EV-DT
+atualizado_em: '2026-09-30'
+evidencias:
+- id: EV-DT-001
+  capacidade: 'Dynatrace: Smartscape (grafo de dependências em tempo real) e Davis (IA causal) como capacidades-assinatura'
+  categorias:
+  - correlacao
+  - aiops
+  url: https://www.dynatrace.com/platform/artificial-intelligence/
+  alegacao: Topologia e dependências automáticas, baseline automático e causa raiz por IA são capacidades-assinatura da Dynatrace (Smartscape
+    e Davis) — requisitos redigidos com esses termos indicam possível direcionamento.
+  citacao: Turn consistent, accurate insights into reliable actions at speed, powered by our industry‑leading causal AI, the unified Grail data
+    lakehouse, and the Smartscape® real‑time dependency graph.
+  citacoes:
+  - Turn consistent, accurate insights into reliable actions at speed, powered by our industry‑leading causal AI, the unified Grail data lakehouse,
+    and the Smartscape® real‑time dependency graph.
+  palavras_chave:
+  - smartscape
+  - causal ai
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'

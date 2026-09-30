@@ -1,0 +1,34 @@
+# Exemplo FICTÍCIO — dúvidas a submeter (fonte do anexo de dúvidas preenchido).
+- id: DUV-001
+  documento: "Matriz de Requisitos"
+  referencia: "Aba Requisitos Funcionais, RF-04"
+  tema: "RUM mobile"
+  pergunta: "Para o RF-04, a coleta de crashes de aplicativos móveis por instrumentação OpenTelemetry com exportação OTLP é aceita como atendimento, ou o requisito exige SDK nativo do fabricante da plataforma?"
+  objetivo: "interno: abrir caminho para resposta parcial caso instrumentação aberta seja aceita"
+  resposta_desejada: "OpenTelemetry com exportação OTLP aceito como atendimento"
+  impacto: "RF-04 pode passar de 'Não Atende' para 'Atende Parcialmente'; reduz o risco da frente F3 da POC"
+  prioridade: Alta
+  status: PENDENTE
+  enviar: true
+- id: DUV-002
+  documento: "Matriz de Requisitos"
+  referencia: "Aba Dados Quantitativos, DQ-3"
+  tema: "Retenção de métricas"
+  pergunta: "Para o DQ-3, a retenção de 13 meses deve manter a granularidade original das métricas durante todo o período, ou é aceita agregação após um prazo inicial?"
+  objetivo: "interno: evitar exigência de granularidade integral não explicitada"
+  resposta_desejada: "agregação aceita após o período inicial"
+  impacto: "Mantém DQ-3 como atendido sem custo adicional de retenção integral"
+  prioridade: Média
+  status: PENDENTE
+  enviar: true
+- id: DUV-003
+  documento: "Matriz de Requisitos"
+  referencia: "Aba Requisitos Funcionais, RF-05"
+  tema: "Logs"
+  pergunta: "Para o RF-05, a visualização de telemetria em tempo quase real (latência de segundos) atende ao conceito de live tail, ou é exigido streaming contínuo do texto bruto dos logs?"
+  objetivo: "interno: qualificar a resposta parcial"
+  resposta_desejada: "latência de segundos atende ao conceito de live tail"
+  impacto: "RF-05 pode passar a 'Atende Plenamente'"
+  prioridade: Média
+  status: PENDENTE
+  enviar: true

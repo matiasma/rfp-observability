@@ -1,0 +1,682 @@
+# Biblioteca de EVIDÊNCIAS PÚBLICAS do fornecedor: capacidade -> URL oficial -> citação.
+# Reaproveitável entre editais (respostas citam os ids EV-...). Só documentação oficial e recursos GA.
+# Nada de cliente: a justificativa de cada requisito fica no estudo do cliente (02-analise/respostas.json).
+# status: VALIDADA (HTTP 200 + palavras-chave encontradas) | A_VALIDAR | QUEBRADA. Revalide com:
+#   python kit.py kb-validar-urls --fornecedor azure-monitor
+fornecedor: azure-monitor
+prefixo: EV-AZ
+atualizado_em: '2026-09-30'
+evidencias:
+- id: EV-AZ-001
+  capacidade: 'Application Insights: APM com OpenTelemetry, rastreamento distribuído, Live Metrics, falhas e desempenho'
+  categorias:
+  - apm
+  - correlacao
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+  citacao: Azure Monitor Application Insights is an application performance monitoring (APM) feature of Azure Monitor... use OpenTelemetry (OTel),
+    a vendor-neutral observability framework, to instrument your applications and collect telemetry
+  palavras_chave:
+  - application performance monitoring
+  - opentelemetry
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-002
+  capacidade: 'Application Map: topologia e dependências entre componentes geradas automaticamente'
+  categorias:
+  - correlacao
+  - apm
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-map
+  citacao: Application map lets you see the full application topology across multiple levels of related application components... locates components
+    by following HTTP dependency calls made between instrumented servers... Intelligent view... applies machine learning to quickly identify potential
+    root causes of issues
+  palavras_chave:
+  - application map
+  - topology
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-003
+  capacidade: 'Dynamic Thresholds: baseline automático e detecção de anomalias por machine learning em alertas'
+  categorias:
+  - aiops
+  - alertas-dashboards
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-dynamic-thresholds
+  citacao: dynamic thresholds apply advanced machine learning... Learn the historical behavior of metrics... Analyze data over time and identify
+    patterns such as hourly, daily, or weekly patterns. Recognize anomalies that indicate possible issues. Calculate the most appropriate thresholds
+  palavras_chave:
+  - dynamic thresholds
+  - machine learning
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-004
+  capacidade: Alertas do Azure Monitor com Action Groups (e-mail, SMS, webhook, Logic Apps, ITSM, Event Hubs) e smart detection
+  categorias:
+  - alertas-dashboards
+  - integracoes-itsm
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview
+  citacao: 'Action groups: These groups can trigger notifications to let users know that an alert has been triggered or start automated workflows.'
+  palavras_chave:
+  - action group
+  - alert
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-005
+  capacidade: 'Log Analytics e KQL: consulta, análise e visualização de logs'
+  categorias:
+  - logs
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview
+  citacao: The Log Analytics tool in the Azure portal lets you run and edit log queries against data in the Azure Monitor Logs store... KQL mode
+    gives advanced users the full power of Kusto Query Language (KQL)
+  palavras_chave:
+  - log analytics
+  - kusto
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-006
+  capacidade: OpenTelemetry nativo no Application Insights (Azure Monitor OpenTelemetry Distro)
+  categorias:
+  - coleta
+  - apm
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable
+  citacao: This article describes how to enable and configure OpenTelemetry-based data collection within Azure Monitor Application Insights using
+    the Azure Monitor OpenTelemetry Distro.
+  palavras_chave:
+  - opentelemetry
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-007
+  capacidade: 'Managed Prometheus: serviço gerenciado com SLA e retenção de métricas de até 18 meses'
+  categorias:
+  - infraestrutura
+  - plataforma
+  - coleta
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
+  citacao: fully managed and scalable environment for running Prometheus... high availability, service-level agreement (SLA) guarantees, automatic
+    software updates, and a highly scalable metrics store that retains data for up to 18 months... fully supports Prometheus Query Language (PromQL)
+  palavras_chave:
+  - prometheus
+  - 18 months
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-008
+  capacidade: 'Azure Managed Grafana: dashboards gerenciados com SLA e integração ao Microsoft Entra ID'
+  categorias:
+  - alertas-dashboards
+  url: https://learn.microsoft.com/en-us/azure/managed-grafana/overview
+  citacao: fully managed Azure service operated and supported by Microsoft... provides high availability, SLA guarantees, and automatic software
+    updates... uses Microsoft Entra ID's centralized identity management
+  palavras_chave:
+  - grafana
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-009
+  capacidade: Testes de disponibilidade (sintéticos Standard) do Application Insights, com local de teste no Brasil
+  categorias:
+  - experiencia-usuario
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability
+  citacao: '''Application Insights supports Standard tests for current availability monitoring: Standard test: A type of availability test that
+    checks the availability of a website by sending a single request'''
+  citacoes:
+  - '''Application Insights supports Standard tests for current availability monitoring: Standard test: A type of availability test that checks
+    the availability of a website by sending a single request'''
+  - 'Tabela de locais de teste: ''Brazil South | latam-br-gru-edge'''
+  palavras_chave:
+  - availability
+  - standard test
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-010
+  capacidade: SLA dos Microsoft Online Services (cobre Azure Monitor, Application Insights e Log Analytics)
+  categorias:
+  - plataforma
+  url: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+  citacao: The Service Level Agreements (SLA) describe Microsoft’s commitments for uptime and connectivity for Microsoft Online Services.
+  palavras_chave:
+  - service level
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-011
+  capacidade: 'SDK JavaScript do Application Insights: RUM web (page views, AJAX/fetch, exceções JavaScript, SPA)'
+  categorias:
+  - experiencia-usuario
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk
+  citacao: The Microsoft Azure Monitor Application Insights JavaScript SDK collects usage data, which allows you to monitor and analyze the performance
+    of JavaScript web applications.
+  palavras_chave:
+  - javascript
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-012
+  capacidade: 'Análise de uso do Application Insights: usuários, sessões, funis, fluxos e retenção'
+  categorias:
+  - experiencia-usuario
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/usage
+  citacao: You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates.
+  palavras_chave:
+  - users
+  - sessions
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-013
+  capacidade: Monitoramento de Kubernetes (Container Insights e Prometheus gerenciado) com descoberta automática
+  categorias:
+  - infraestrutura
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/kubernetes-monitoring-overview
+  citacao: Azure provides a complete set of services based on Azure Monitor for monitoring the health and performance of different layers of your
+    Kubernetes infrastructure and the applications that depend on it.
+  palavras_chave:
+  - kubernetes
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-014
+  capacidade: 'Azure Automation: runbooks para automação de ações corretivas e preventivas'
+  categorias:
+  - alertas-dashboards
+  url: https://learn.microsoft.com/en-us/azure/automation/overview
+  citacao: Azure Alerts action groups can initiate an Automation runbook when an alert is raised.
+  palavras_chave:
+  - runbook
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-015
+  capacidade: 'Microsoft Defender for Cloud: postura de segurança e proteção de workloads'
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction
+  citacao: Microsoft Defender for Cloud is a Cloud Native Application Protection Platform (CNAPP), which is a unified solution that combines multiple
+    cloud security tools to protect applications across their entire lifecycle.
+  palavras_chave:
+  - defender for cloud
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-016
+  capacidade: 'Custos de Azure Monitor Logs: commitment tiers e controles de consumo'
+  categorias:
+  - plataforma
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/cost-logs
+  citacao: In addition to the pay-as-you-go model, Log Analytics has commitment tiers, which can save you as much as 30 percent compared to the
+    pay-as-you-go price for Analytics Logs.
+  palavras_chave:
+  - commitment tier
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-017
+  capacidade: 'Transformações na coleta de dados: filtrar e mascarar dados sensíveis na ingestão'
+  categorias:
+  - logs
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-transformations
+  citacao: Transformations in Azure Monitor filter or modify incoming data before it's sent to a Log Analytics workspace.
+  palavras_chave:
+  - transformation
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-018
+  capacidade: Adicionar e modificar OpenTelemetry no Application Insights (OTLP, instrumentação, convenções semânticas)
+  categorias:
+  - coleta
+  - apm
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-add-modify
+  citacao: This guide provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within Azure Monitor Application
+    Insights.
+  palavras_chave:
+  - opentelemetry
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-019
+  capacidade: 'Microsoft Copilot in Azure: assistência por IA generativa e consultas em linguagem natural'
+  categorias:
+  - aiops
+  url: https://learn.microsoft.com/en-us/azure/copilot/overview
+  citacao: By letting you express your goals in natural language, Azure Copilot simplifies your Azure management experience.
+  palavras_chave:
+  - copilot
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-020
+  capacidade: 'Clusters dedicados de Log Analytics: capacidade reservada e recursos avançados de segurança'
+  categorias:
+  - plataforma
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-dedicated-clusters
+  citacao: A dedicated cluster in Azure Monitor provides advanced security and control capabilities, and cost optimization.
+  palavras_chave:
+  - dedicated cluster
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-021
+  capacidade: Chaves gerenciadas pelo cliente (CMK) para criptografia de dados em repouso
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/customer-managed-keys
+  citacao: By using customer-managed keys in Azure Monitor, you control the encryption key lifecycle and access to logs.
+  palavras_chave:
+  - customer-managed key
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-022
+  capacidade: 'Zonas de disponibilidade no Azure Monitor: resiliência a falhas de datacenter'
+  categorias:
+  - plataforma
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/availability-zones
+  citacao: Azure Monitor Logs availability zones are zone-redundant, which means that Microsoft manages spreading service requests and replicating
+    data across different zones in supported regions.
+  palavras_chave:
+  - availability zone
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-023
+  capacidade: Regiões do Azure e residência de dados (inclui Brazil South)
+  categorias:
+  - plataforma
+  url: https://learn.microsoft.com/en-us/azure/reliability/regions-overview
+  citacao: Every region is contained within a single geography that serves as a fixed data residency boundary.
+  palavras_chave:
+  - region
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-024
+  capacidade: Gestão de dados pessoais no Azure Monitor Logs (purge e ciclo de vida)
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt
+  citacao: This article explains where Azure Monitor Logs stores personal data and how to manage this data.
+  palavras_chave:
+  - personal data
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-025
+  capacidade: 'Activity Log: trilha de auditoria de operações administrativas'
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/activity-log
+  citacao: Azure Monitor records management operations for your Azure resources through the activity log feature.
+  palavras_chave:
+  - activity log
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-026
+  capacidade: 'Microsoft Entra External ID: SSO SAML/OIDC para usuários externos'
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/entra/external-id/customers/overview-customers-ciam
+  citacao: Microsoft Entra External ID includes Microsoft's customer identity and access management (CIAM) solution.
+  palavras_chave:
+  - external id
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-027
+  capacidade: 'Azure Private Link para Azure Monitor: tráfego privado e redes restritas'
+  categorias:
+  - seguranca-governanca
+  - plataforma
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/private-link-security
+  citacao: Use Azure Private Link to connect networks to Azure Monitor
+  palavras_chave:
+  - private link
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-028
+  capacidade: Exportação contínua de dados do Log Analytics (Event Hubs/Storage)
+  categorias:
+  - integracoes-itsm
+  - logs
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-data-export
+  citacao: After you configure data export rules in a Log Analytics workspace, new data for tables in rules is exported from the Azure Monitor
+    pipeline to your storage account or Event Hubs as it arrives.
+  palavras_chave:
+  - export
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-029
+  capacidade: Ofertas de conformidade Microsoft para regulações nacionais, regionais e setoriais
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/compliance/regulatory/offering-home
+  citacao: Information for Azure, Dynamics 365, Microsoft 365, and Power Platform, and other services to help with national, regional, and industry-specific
+    regulations for data collection and use.
+  palavras_chave:
+  - compliance
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-030
+  capacidade: Azure AI Content Safety — Prompt Shields contra prompt injection/jailbreak
+  categorias:
+  - ia-llm
+  url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  citacao: Prompt Shields detects and blocks adversarial inputs to large language models (LLMs).
+  palavras_chave:
+  - prompt shields
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-032
+  capacidade: RBAC, permissões e segurança no Azure Monitor
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/roles-permissions-security
+  citacao: Azure role-based access control (Azure RBAC) provides built-in roles for monitoring to assign to users, groups, service principals,
+    and managed identities.
+  palavras_chave:
+  - role
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-033
+  capacidade: 'Action Groups: notificação por e-mail, SMS, voz, webhook, Logic Apps, Functions, ITSM e Event Hubs'
+  categorias:
+  - alertas-dashboards
+  - integracoes-itsm
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
+  citacao: To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated
+    actions.
+  palavras_chave:
+  - action group
+  - webhook
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacoes:
+  - To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
+  - SMS notifications in Azure Monitor action groups support bi-directional communication.
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-034
+  capacidade: Monitoramento de Azure Functions com Application Insights
+  categorias:
+  - infraestrutura
+  - apm
+  url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-monitoring
+  citacao: As Application Insights instrumentation is built into Azure Functions, you need a valid connection string or instrumentation key to
+    connect your function app to an Application Insights resource.
+  palavras_chave:
+  - application insights
+  - functions
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-035
+  capacidade: API REST do Application Insights
+  categorias:
+  - integracoes-itsm
+  url: https://learn.microsoft.com/en-us/rest/api/application-insights/
+  citacao: Query Application Insights data using the Application Insights Data Access API
+  palavras_chave:
+  - application insights
+  - rest
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-036
+  capacidade: Retenção configurável por workspace e por tabela no Log Analytics
+  categorias:
+  - plataforma
+  - logs
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure
+  citacao: This article explains how Log Analytics workspaces retain data and how to manage the data retention of tables in your workspace.
+  palavras_chave:
+  - retention
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacoes:
+  - This article explains how Log Analytics workspaces retain data and how to manage the data retention of tables in your workspace.
+  - By default, all tables in a Log Analytics workspace retain data for 30 days, except for log tables with 90-day default retention.
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-037
+  capacidade: 'VM insights: desempenho e dependências de máquinas virtuais'
+  categorias:
+  - infraestrutura
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-vm
+  citacao: Use the VM insights Performance view to analyze health and performance data across machines.
+  palavras_chave:
+  - vm insights
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-038
+  capacidade: Alertas para ServiceNow ITOM via Secure Export; ações ITSM para ServiceNow em descontinuação
+  categorias:
+  - integracoes-itsm
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/itsmc-overview
+  citacao: 'Secure Export supports connections with the following ITSM tools: ServiceNow ITOM BMC Helix'
+  palavras_chave:
+  - servicenow
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacoes:
+  - 'Secure Export supports connections with the following ITSM tools: ServiceNow ITOM BMC Helix'
+  - As of September 2022, we are starting the 3-year process of deprecating support for using ITSM actions to send alerts and events to ServiceNow
+  - As of October 2023, we do not support creating a connector for ITSM actions that send alerts and events to ServiceNow in the user interface.
+  alegacao: A integração de alertas com o ServiceNow ITOM é feita pelo Secure Export; o envio de alertas por ações ITSM ao ServiceNow está em
+    processo de descontinuação (iniciado em setembro de 2022) e, desde outubro de 2023, não é possível criar esse conector pela interface.
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-039
+  capacidade: 'Segurança de dados do Azure Monitor Logs: criptografia em trânsito (TLS) e em repouso'
+  categorias:
+  - seguranca-governanca
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/best-practices-security
+  citacao: To provide best-in-class encryption, Azure Monitor Logs already uses TLS 1.2/1.3 as the encryption mechanisms of choice.
+  palavras_chave:
+  - tls
+  - encrypt
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacoes:
+  - To provide best-in-class encryption, Azure Monitor Logs already uses TLS 1.2/1.3 as the encryption mechanisms of choice.
+  - Azure Monitor encrypts all data at rest and saved queries using Microsoft-managed keys (MMK).
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-040
+  capacidade: 'Microsoft Clarity: gratuito, sem SLA, sem suporte e fornecido ''AS IS'''
+  categorias:
+  - experiencia-usuario
+  - plataforma
+  url: https://clarity.microsoft.com/terms
+  alegacao: Os Termos de Uso do Microsoft Clarity definem um produto gratuito sem SLA, sem obrigação de suporte, fornecido 'AS IS', com responsabilidade
+    limitada e possibilidade de cancelamento sem aviso.
+  citacao: 'Sec. 7 SUPPORT SERVICES: ''Microsoft is not obligated under these Terms or otherwise to provide any support services for the Offering.
+    Any support provided is "as is", "with all faults", and without warranty of any kind.'''
+  citacoes:
+  - 'Sec. 7 SUPPORT SERVICES: ''Microsoft is not obligated under these Terms or otherwise to provide any support services for the Offering. Any
+    support provided is "as is", "with all faults", and without warranty of any kind.'''
+  - 'Sec. 16 DISCLAIMER OF WARRANTY: ''THE OFFERING ... IS PROVIDED ON AN "AS IS" AND "WHERE-IS" BASIS, WITH ALL FAULTS AND DEFECTS ... DISCLAIMS
+    ALL WARRANTIES ... FITNESS FOR A PARTICULAR PURPOSE.'''
+  - 'Sec. 17 LIMITATION: ''YOU CAN RECOVER FROM MICROSOFT AND ITS SUPPLIERS ONLY DIRECT DAMAGES UP TO U.S. $5.00.'''
+  - 'Sec. 9 CHANGES: ''Microsoft may cancel or suspend Your use of the Offering ... without cause, without notice, or both. Upon cancellation,
+    Your right to use the Offering will cease immediately.'''
+  - 'Sec. 2b: ''You may not be able to access data used in the Offering when it stops running or when these Terms terminate.'''
+  palavras_chave:
+  - support services
+  - as is
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-07-03'
+  verificacao: navegador
+- id: EV-AZ-041
+  capacidade: 'Microsoft Clarity: termos proíbem uso com serviços financeiros, saúde e governo e a criação de perfis de usuário'
+  categorias:
+  - experiencia-usuario
+  - seguranca-governanca
+  url: https://clarity.microsoft.com/terms
+  alegacao: Os Termos de Uso do Microsoft Clarity proíbem o uso com conteúdo sensível (serviços financeiros, saúde, governo) e a criação de perfis
+    de usuário.
+  citacao: 'Sec. 1(b)(i): ''You will use the Offering solely for analytics purposes ... You will not use the Offering to create user profiles.'''
+  citacoes:
+  - 'Sec. 1(b)(i): ''You will use the Offering solely for analytics purposes ... You will not use the Offering to create user profiles.'''
+  - 'Sec. 1(b)(ii): ''You will not use the Offering in connection with content which may contain sensitive user materials, such as health care,
+    financial services or government-related information.'''
+  palavras_chave:
+  - financial services
+  - user profiles
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-07-03'
+  verificacao: navegador
+- id: EV-AZ-042
+  capacidade: 'Microsoft Clarity: Microsoft atua como controladora independente dos dados coletados'
+  categorias:
+  - seguranca-governanca
+  url: https://clarity.microsoft.com/terms
+  alegacao: No Clarity, Microsoft e cliente são controladores independentes; a Microsoft pode usar os dados pessoais coletados para fins próprios,
+    inclusive publicidade.
+  citacao: 'Sec. 4.4(c)(i): ''You and Microsoft are independent Controllers ... neither of them are a "processor," "service provider," or equivalent
+    status.'''
+  citacoes:
+  - 'Sec. 4.4(c)(i): ''You and Microsoft are independent Controllers ... neither of them are a "processor," "service provider," or equivalent
+    status.'''
+  - 'Sec. 4.4(c)(iii): ''Microsoft may use the Personal Data it collects ... for any purpose ... including ... create user profiles for purposes
+    that include advertising. Microsoft may also use nonpersonal data ... in connection with artificial intelligence initiatives, such as training,
+    fine-tuning, and evaluating machine learning models.'''
+  palavras_chave:
+  - independent controllers
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-07-03'
+  verificacao: navegador
+- id: EV-AZ-043
+  capacidade: 'Microsoft Clarity: gravação de sessão em apps móveis (Android, iOS, Flutter, React Native)'
+  categorias:
+  - experiencia-usuario
+  url: https://learn.microsoft.com/en-us/clarity/mobile-sdk/
+  alegacao: O Clarity oferece gravação de sessão também para aplicativos móveis (Android, iOS, Flutter, React Native); a limitação para uso corporativo
+    é contratual (termos/SLA), não funcional.
+  citacao: 'Índice da documentação (Learn): ''Android SDK Cordova and Ionic SDK Flutter SDK iOS SDK Jetpack Compose Support React Native SDK'''
+  citacoes:
+  - 'Índice da documentação (Learn): ''Android SDK Cordova and Ionic SDK Flutter SDK iOS SDK Jetpack Compose Support React Native SDK'''
+  palavras_chave:
+  - android
+  - ios
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-044
+  capacidade: 'Application Insights: URL ping tests descontinuados (remoção adiada para 30/09/2028); Standard tests (requisição única) são o tipo
+    suportado'
+  categorias:
+  - experiencia-usuario
+  url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability
+  alegacao: 'Os testes URL ping do Application Insights estão descontinuados (deprecated): a remoção, prevista para 30/09/2026, foi adiada em
+    24 meses para 30/09/2028. O tipo suportado para monitoramento atual é o Standard test, de requisição única (single-step); testes customizados
+    com TrackAvailability() constam como orientação clássica arquivada.'
+  citacao: '''URL ping tests are deprecated: URL ping tests in Application Insights were originally planned for retirement on September 30, 2026.
+    In response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to September
+    30, 2028. On September 30, 2028, existing URL ping tests are removed from your resources.'''
+  citacoes:
+  - '''URL ping tests are deprecated: URL ping tests in Application Insights were originally planned for retirement on September 30, 2026. In
+    response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to September
+    30, 2028. On September 30, 2028, existing URL ping tests are removed from your resources.'''
+  - '''Application Insights supports Standard tests for current availability monitoring: Standard test: A type of availability test that checks
+    the availability of a website by sending a single request, similar to the deprecated URL ping test.'''
+  - '''Custom availability tests with TrackAvailability() are archived Classic API guidance.'''
+  - 'Location tags: ''Brazil South | latam-br-gru-edge'''
+  palavras_chave:
+  - standard test
+  - september 30, 2028
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-045
+  capacidade: App Center aposentado; Azure Monitor Mobile Analytics em preview; Microsoft indica ISVs para analytics móvel
+  categorias:
+  - experiencia-usuario
+  url: https://learn.microsoft.com/en-us/appcenter/retirement
+  alegacao: O Visual Studio App Center foi aposentado; o Azure Monitor Mobile Analytics estava em public preview na data de verificação, e a Microsoft
+    recomenda ISVs nativos do Azure (Datadog, Dynatrace, New Relic) para analytics e diagnóstico móvel.
+  citacao: 'Update (04/15/2026): Azure Monitor Mobile Analytics Now in Public Preview — Migration Path for App Center Customers'
+  citacoes:
+  - 'Update (04/15/2026): Azure Monitor Mobile Analytics Now in Public Preview — Migration Path for App Center Customers'
+  - The solution is expected to reach General Availability (GA) later this year
+  - We recommend one of the Azure Native ISV services which provide rich capabilities for mobile analytics and diagnostics.
+  - 'Azure Native ISV Services: Datadog Dynatrace New Relic'
+  - Visual Studio App Center is scheduled for retirement on March 31, 2025.
+  palavras_chave:
+  - app center
+  - retire
+  ga: false
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'
+- id: EV-AZ-046
+  capacidade: Azure Monitor coberto pelo SLA dos Microsoft Online Services (edição em português disponível)
+  categorias:
+  - plataforma
+  url: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+  alegacao: Azure Monitor, Application Insights e Log Analytics são cobertos pelo Service Level Agreement for Microsoft Online Services, publicado
+    também em português do Brasil.
+  citacao: '''The Service Level Agreements (SLA) describe Microsoft''s commitments for uptime and connectivity for Microsoft Online Services...
+    cover Azure...'''
+  citacoes:
+  - '''The Service Level Agreements (SLA) describe Microsoft''s commitments for uptime and connectivity for Microsoft Online Services... cover
+    Azure...'''
+  - 'Tabela de documentos: ''Service Level Agreement for Microsoft Online Services (WW) July 01 2026 Portuguese (Brazil)'''
+  palavras_chave:
+  - service level
+  ga: true
+  status: VALIDADA
+  verificado_em: '2026-09-30'
+  citacao_conferida_em: '2026-09-30'

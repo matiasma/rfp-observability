@@ -1,0 +1,31 @@
+# Estimativa INDICATIVA de custo de produção (list price) — prompts/13-esforco-custo.md
+# NÃO é proposta comercial: preços públicos de tabela, com fonte oficial (URL) e data, num cenário de referência.
+# O kit calcula mensal/anual por fornecedor (quantidade × preço, ou 'valor' mensal pronto; aceita faixas [mín, máx]),
+# mostra o modelo de cobrança e cruza com o esforço de POC. Mantenha coerente com o eixo 'custo' do eixos.yaml
+# (mais barato -> nota maior): o kit avisa quando os dois divergem. Preços vencem em 180 dias.
+#
+# moeda: USD
+# cenario:
+#   descricao: "150 hosts · ~100 GB/dia de logs · ~2 M sessões RUM/mês · 25 usuários"
+#   premissas: ["Preço de tabela sem desconto", "Região Brasil quando houver"]
+# leitura: "O modelo de cobrança decide o vencedor: por volume (GB) é barato em baixa volumetria e escala rápido."
+# fornecedores:
+#   datadog:
+#     modelo_cobranca: "host + sessão"
+#     componentes:
+#       - item: "Infrastructure Pro"
+#         quantidade: 150
+#         unidade: "host/mês"
+#         preco_unitario: 15
+#         fonte: "https://www.datadoghq.com/pricing/"
+#         verificado_em: 2026-07-03
+#     ressalva: ""
+#   azure-monitor:
+#     modelo_cobranca: "volume (GB)"
+#     componentes:
+#       - item: "Analytics Logs — commitment 100 GB/dia"
+#         valor: 11760                 # mensal pronto (ou faixa [mín, máx])
+#         fonte: "https://azure.microsoft.com/pricing/details/monitor/"
+#         verificado_em: 2026-07-03
+# ilustrativo: false                   # true só em exemplos: dispensa fonte e marca os valores como ilustrativos
+{}
